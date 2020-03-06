@@ -7,6 +7,8 @@ import Pin from '../views/pin'
 import Search from '../views/search'
 import Book from '../views/book'
 
+import ArticleList from '../views/article-list'
+
 
 Vue.use(VueRouter)
 
@@ -18,25 +20,33 @@ const router = new VueRouter({
   mode: "history",
   base: process.env.BASE_URL,
   routes: [{
-      path: '/',
-      redirect: '/home',
-    },{
-      path: '/home',
-      component: Home,
-    }, {
-      path: '/user',
-      component: User,
-    }, {
-      path: '/search',
-      component: Search,
-    }, {
-      path: '/books',
-      component: Book,
-    }, {
-      path: '/pin',
-      component: Pin
-    }
-  ]
+    path: '/',
+    redirect: '/home',
+  },{
+    name: 'home',
+    path: '/home',
+    component: Home,
+    children: [{
+      path: '/home/*',
+      component: ArticleList
+    }]
+  }, {
+    name: 'user',
+    path: '/user',
+    component: User,
+  }, {
+    name: 'search',
+    path: '/search',
+    component: Search,
+  }, {
+    name: 'books',
+    path: '/books',
+    component: Book,
+  }, {
+    name: 'pin',
+    path: '/pin',
+    component: Pin
+  }]
 })
 
 export default router;

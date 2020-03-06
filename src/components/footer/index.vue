@@ -1,19 +1,19 @@
 <template>
   <div class="footer">
     <ul class="nav-list">
-      <li :class="{active: $route.path.startsWith('/home'), 'nav-item': true}">
+      <li class="nav-item">
         <router-link to='/home'><i class="iconfont icon-home"></i></router-link>
       </li>
-      <li :class="{active: $route.path.startsWith('/pin'), 'nav-item': true}">
+      <li class="nav-item">
         <router-link to='/pin'><i class="iconfont icon-pin"></i></router-link>
       </li>
-      <li :class="{active: $route.path.startsWith('/search'), 'nav-item': true}">
+      <li class="nav-item">
        <router-link to='/search'><i class="iconfont icon-sousuo"></i></router-link>
       </li>
-      <li :class="{active: $route.path.startsWith('/books'), 'nav-item': true}">
+      <li class="nav-item">
         <router-link to='/books'><i class="iconfont icon-taizhangguanli-copy-copy"></i></router-link>
       </li>
-      <li :class="{active: $route.path.startsWith('/user'), 'nav-item': true}">
+      <li class="nav-item">
         <router-link to='/user'><i class="iconfont icon-yonghu"></i></router-link>
       </li>
     </ul>
@@ -23,6 +23,7 @@
 <script>
   export default {
     created() {
+      
     }
   }
 </script>
@@ -43,7 +44,7 @@
     .nav-item
       .iconfont
         color $text-color
-      &.active
+      .router-link-active
         .iconfont
           color $primary-color
 
