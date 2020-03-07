@@ -1,33 +1,39 @@
 <template>
-  <div class="home">
-    <header class="header con">
-      <div class="header-top">
-        <div class="search-con">
-          <search-box @focus="handleFocus" />
-        </div>
-        <div class="tag-setting-con">
-          <i class="iconfont icon-shezhi"></i>
-          <span>标签</span>
-        </div>
-      </div>
-      <div class="header-bottom">
-        <div class="nav-tab-con">
-          <nav-tab :nav-list="navList"></nav-tab>
-        </div>
-        <div class="triangle-con">
-          <div class="triangle"></div>
-        </div>
-      </div>
-    </header>
-    <section class="main">
-      <router-view></router-view>
-    </section>
-  </div>
+    <div class="home">
+      <transition name="header">
+        <header class="header con">
+          <div class="header-top">
+            <div class="search-con">
+              <search-box @focus="handleFocus" />
+            </div>
+            <div class="tag-setting-con">
+              <i class="iconfont icon-shezhi"></i>
+              <span>标签</span>
+            </div>
+          </div>
+          <div class="header-bottom">
+            <div class="nav-tab-con">
+              <nav-tab :nav-list="navList"></nav-tab>
+            </div>
+            <div class="triangle-con">
+              <div class="triangle"></div>
+            </div>
+          </div>
+        </header>
+      </transition>
+      <transition name="main">
+        <section class="main">
+          <router-view :key="$route.path"></router-view>
+        </section>
+      </transition>
+    </div>
 </template>
 
 <script>
 import SearchBox from '../../components/search-box'
 import NavTab from '../../components/nav-tab'
+import { homePathText } from '../../router/home'
+
 export default {
   components: {
     SearchBox,
@@ -35,25 +41,7 @@ export default {
   },
   data() {
     return {
-      navList: [{
-        path: '/home/1',
-        text: '推荐'
-      }, {
-        path: '/home/2',
-        text: '后端',
-      }, {
-        path: '/home/3',
-        text: '人工智能',
-      }, {
-        path: '/home/4',
-        text: 'Android'
-      }, {
-        path: '/home/5',
-        text: 'IOS',
-      }, {
-        path: '/home/6',
-        text: '人工智能'
-      }]
+      navList: homePathText
     }
   },
   created() {
@@ -70,13 +58,15 @@ export default {
 
 <style lang="stylus" scoped>
 @import "../../assets/css/common.styl"
-
+.home
+  height 100%
+  position relative
 .header
-  height 148rem
-  background $primary-color
   display flex
   flex-direction column
   justify-content space-between
+  height 148rem
+  background $primary-color
   .header-top
     display flex
     padding-top 15rem 
@@ -110,4 +100,17 @@ export default {
         height 0
         border: 15rem solid transparent
         border-top: 15rem solid #fff
+.main
+  position absolute
+  top 148rem
+  bottom 0
+  width 100%
+.header-enter
+  transform translateY(-75rem)
+.header-enter-active
+  transform all .5s
+.main-enter
+  transform translateY(-75rem)
+.main-enter-active
+  transform all .5s
 </style>

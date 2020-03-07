@@ -7,8 +7,8 @@ import Pin from '../views/pin'
 import Search from '../views/search'
 import Book from '../views/book'
 
-import ArticleList from '../views/article-list'
 
+import { homeRoutes } from './home'
 
 Vue.use(VueRouter)
 
@@ -26,10 +26,8 @@ const router = new VueRouter({
     name: 'home',
     path: '/home',
     component: Home,
-    children: [{
-      path: '/home/*',
-      component: ArticleList
-    }]
+    redirect: '/home/recommended',
+    children: homeRoutes
   }, {
     name: 'user',
     path: '/user',

@@ -25,7 +25,7 @@ html,body,#app
   height 100%
   background $gray-color
 #app
-  padding-bottom 42.5px
+  padding-bottom 85rem
 .main-con
   height 100%
 .footer-con

@@ -27,7 +27,6 @@ export default {
     let arr = []
     for (let i = 0; i < items.length; i++) {
       let item = items[i]
-      console.log(item.clientWidth)
       if (arr.length === 0) {
         arr.push({
           left: 0,
@@ -41,8 +40,16 @@ export default {
         })
       }
     }
-    console.log(arr)
     this.arr = arr
+    let path = this.$route.path
+    let { navList } = this
+    for (let i = 0; i < navList.length; ++i) {
+      if (navList[i].path === path) {
+        this.lineLeft = this.arr[i].left
+        this.lineWidth = this.arr[i].width
+        break
+      }
+    }
   },
   methods: {
     handleClick(i) {
@@ -73,6 +80,7 @@ export default {
         flex 1
         padding 0 40rem
         font-size 30rem
+        color #cfcfd3
         .router-link-active
           color #fff
     .bottom-line

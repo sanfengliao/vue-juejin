@@ -1,0 +1,126 @@
+<template>
+  <div ref="list-con" class="list-con">
+      <div class="list-content">
+        <slot></slot>
+        <div v-if="isLoading" class="loading-con">
+          <loading size="80rem"></loading>
+        </div>
+      </div>
+      <div v-if="refreshing"  class="refresh-con">
+        <refresh size="80rem"></refresh>
+      </div>
+  </div>
+</template>
+
+<script>
+import Loading from '../loading'
+import Refresh from '../refresh'
+
+import BScroll from 'better-scroll'
+export default {
+  props: {
+    click: {
+      type: Boolean,
+      default: true
+    },
+    pullUpLoad: {
+      type: Object,
+      default: () => ({threshold: 50})
+    },
+    pullDownRefresh: {
+      type: Object,
+      default: () => ({
+        threshold: 50,
+        stop: 20
+      })
+    },
+    probeType: {
+      type: Number,
+      default: 1
+    },
+    refreshing: {
+      type: Boolean,
+      default: false
+    },
+    onPullingUp: Function,
+    onPullingDown: Function,
+    onScroll: Function,
+  },
+  data() {
+    return {
+      isRefresh: this.refreshing,
+      isLoading: false
+    }
+  },
+  components: {
+    Loading,
+    Refresh,
+  },
+  mounted() {
+    this.initBScroll()
+  },
+  updated() {
+    this.scroll.finishPullDown()
+    this.$nextTick(() => {
+      this.scroll.refresh()
+    })
+  },
+  methods: {
+    initBScroll() {
+      this.scroll = new BScroll(
+        this.$refs['list-con'],
+        {
+          click: true, 
+          pullUpLoad: this.pullUpLoad || {},
+          pullDownRefresh: this.pullDownRefresh || {},
+          probeType: this.probeType
+        }
+      )
+      if (this.onPullingUp && typeof this.onPullingUp === 'function') {
+        this.scroll.on('pullingUp', async () => {
+          this.isLoading = true
+          let result = this.onPullingUp()
+          if (this.isPromise(result)) {
+            result.then(() => {
+              this.scroll.finishPullUp()
+              this.isLoading = false
+            })
+          } else {
+            this.bScroll.finishPullUp()
+            this.isLoading = false
+          }
+        })
+      }
+      if (this.onPullingDown && typeof this.onPullingDown === 'function') {
+        this.scroll.on('pullingDown', async () => {
+          this.onPullingDown() 
+        })
+      }
+      if (this.onScroll && typeof this.onScroll === 'function') {
+        this.scroll.on('scroll', this.onScroll)
+      }
+    },
+    isPromise(x) {
+      return x instanceof Promise || (typeof x === 'object' && typeof x.then === 'function')
+    }
+  },
+}
+</script>
+
+<style lang="stylus" scoped>
+.list-con
+  position relative
+  width 100%
+  height 100%
+  overflow hidden
+  .loading-con
+    width 100%
+    display flex
+    justify-content center
+  .refresh-con
+    width 80rem
+    position absolute
+    top 50rem
+    left 50%
+    transform translateX(-50%)
+</style>

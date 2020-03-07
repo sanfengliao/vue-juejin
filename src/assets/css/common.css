@@ -1,0 +1,36 @@
+.border-bottom-1px {
+  position: relative;
+}
+
+.border-bottom-1px::after {
+  content: ' ';
+  width: 100%;
+  height: 0;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  overflow: hidden;
+  border-bottom: 1px solid #71777c;
+  transform-origin: left bottom;
+}
+
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min-device-pixel-ratio: 1.5) {
+  .border-bottom-1px::after {
+    -webkit-transform: scaleY(.7);
+    transform: scaleY(.7);
+  }
+}
+
+@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min-device-pixel-ratio: 2) {
+  .border-bottom-1px::after {
+    -webkit-transform: scaleY(.5);
+    transform: scaleY(.5);
+  }
+}
+
+@media only screen and (-webkit-min-device-pixel-ratio: 3), only screen and (min-device-pixel-ratio: 3) {
+  .border-bottom-1px ::after {
+    -webkit-transform: scaleY(.33);
+    transform: scaleY(.33);
+  }
+}

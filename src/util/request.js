@@ -6,9 +6,18 @@ const service = axios.create({
 
 service.interceptors.request.use(
   config => {
+    config.headers['X-Agent'] = 'Juejin/Android'
     return config
   }
 )
 
+service.interceptors.response.use(
+  res => {
+    let code = res.status
+    if (/^20\d+/.test(code) || code === 304) {
+      return res.data
+    }
+  }
+)
 
 export default service

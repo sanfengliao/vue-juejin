@@ -358,7 +358,7 @@ li {
 }
 a {
   text-decoration: none;
-  color: #cfcfd3;
+  color: inherit;
 }
 
 /*正常的未被访问过的链接*/

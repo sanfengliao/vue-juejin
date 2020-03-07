@@ -4,6 +4,7 @@ import router from "./router"
 import store from "./store"
 
 import './assets/css/normalize.css'
+import './assets/css/common.css'
 window.addEventListener('resize', () => {
   document.documentElement.style.fontSize = document.documentElement.clientWidth / 375 * 0.5 + 'px'
 })
