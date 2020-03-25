@@ -25,9 +25,7 @@
       </ul>
     </list>
         
-    <div class="icon-add-con">
-      <i class="iconfont icon-Add"></i>
-    </div>
+    
   </div>
 </template>
 
@@ -41,7 +39,6 @@ export default {
   props: {
     queryId: String,
     categoryId: String,
-    sort: String,
     sortTags: {
       type: Array,
       default: () => []
@@ -64,7 +61,7 @@ export default {
       tags: this.sortTags || [],
       showAllTag: false,
       tagId: '',
-      showMoreTagOp: false
+      showMoreTagOp: false,
     }
   },
   created() {
@@ -74,12 +71,12 @@ export default {
     if(this.tags.length) {
       this.tagId = this.tags[0].tagId
     }
-    this.refresh()
+    
   },
   mounted() {
     this.$tagsCon = this.$refs['tags-con']
-    console.log(this.$tagsCon.clientWidth)
     this.initScroll()
+    this.refresh()
   },
   updated() {
     if (this.tagsChange) {
@@ -99,34 +96,42 @@ export default {
      * @param {true} isRefresh
      */
     async query(isRefresh) {
-      let data = await query(this.assembleQueryData())
-      let items = data.data.articleFeed.items
+      let items = await this.requestData()
       if (isRefresh) {
         this.edges = []
-      } 
+      }
+
       for (let item of items.edges) {
-        this.edges.push(item.node)
+        this.edges.push(item.node)   
       }
       this.hasNextPage = items.pageInfo.hasNextPage
       this.endCursor = items.pageInfo.endCursor
     },
+    async requestData() {
+      let data = await query(this.assembleQueryData())
+      return data.data.articleFeed.items
+    },
     async queryTag() {
-      
-      const data = {
+      let requestTags = await this.requestTag()
+      let tags = [{
+        tagId: '',
+        title: '全部'
+      }]
+      tags.push(...requestTags)
+      this.tags = tags
+      this.tagId = this.tags[0].tagId
+    },
+
+    async requestTag() {
+       const data = {
         operationName: "",
         query: "",
         variables: {category: this.categoryId, limit: 15},
         extensions: {query: {id: "801e22bdc908798e1c828ba6b71a9fd9"}}
       }
       let result = await query(data)
-      this.tags = [{
-        tagId: '',
-        title: '全部'
-      }]
-      this.tags.push(...result.data.tagNav.items)
-      this.tagId = this.tags[0].tagId
+      return result.data.tagNav.items
     },
-    
     async refresh() {
       this.isRefresh = true
       this.endCursor = ''
@@ -250,18 +255,6 @@ export default {
   .article-pre-item
     margin-bottom 20rem
 
-.icon-add-con
-  position fixed
-  right 30rem
-  bottom 120rem
-  border-radius 50%
-  width 110rem
-  height 110rem
-  background $primary-color
-  text-align center
-  line-height 110rem
-  z-index 12
-  .iconfont
-    font-size 30rem
+
 
 </style>

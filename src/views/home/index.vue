@@ -1,6 +1,5 @@
 <template>
     <div class="home">
-      <transition name="header">
         <header class="header con">
           <div class="header-top">
             <div class="search-con">
@@ -13,44 +12,63 @@
           </div>
           <div class="header-bottom">
             <div class="nav-tab-con">
-              <nav-tab :nav-list="navList"></nav-tab>
+              <nav-tab :nav-list="routeList"></nav-tab>
             </div>
             <div class="triangle-con">
-              <div class="triangle"></div>
+              <div @click="goSpecialEdit" class="triangle"></div>
             </div>
           </div>
         </header>
-      </transition>
-      <transition name="main">
         <section class="main">
-          <router-view :key="$route.path"></router-view>
+          <router-transition prefix="/home">
+            <keep-alive>
+              <router-view class="router" :key="$route.path"></router-view>
+            </keep-alive>
+          </router-transition>
+          <div class="icon-add-con">
+            <i class="iconfont icon-Add"></i>
+          </div>
         </section>
-      </transition>
     </div>
 </template>
 
 <script>
 import SearchBox from '../../components/search-box'
 import NavTab from '../../components/nav-tab'
-import { homePathText } from '../../router/home'
-
+import { defaultHomeRoutes } from '../../common/config'
+import { mapState } from 'vuex'
 export default {
   components: {
     SearchBox,
-    NavTab
+    NavTab,
   },
   data() {
     return {
-      navList: homePathText
+      
     }
   },
+  computed: {
+    ...mapState({
+      routeList(state) {
+        return defaultHomeRoutes.concat(state.homeRoutes.filter(item => item.show))
+      }
+    })
+  },
   created() {
-    
+   
   },
   methods: {
     handleFocus(e) {
       e.target.blur()
       this.$router.push('/search')
+    },
+    goSpecialEdit() {
+      this.$router.push({
+        name: 'specialShowEdit',
+        params: {
+          stateKey: 'homeRoutes'
+        }
+      })
     }
   },
 }
@@ -105,12 +123,17 @@ export default {
   top 148rem
   bottom 0
   width 100%
-.header-enter
-  transform translateY(-75rem)
-.header-enter-active
-  transform all .5s
-.main-enter
-  transform translateY(-75rem)
-.main-enter-active
-  transform all .5s
+  .icon-add-con
+    position fixed
+    right 30rem
+    bottom 120rem
+    border-radius 50%
+    width 110rem
+    height 110rem
+    background $primary-color
+    text-align center
+    line-height 110rem
+    z-index 12
+    .iconfont
+      font-size 30rem
 </style>

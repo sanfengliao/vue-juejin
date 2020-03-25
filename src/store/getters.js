@@ -1,0 +1,1 @@
+export const routeTransition = state => state.routeTransition

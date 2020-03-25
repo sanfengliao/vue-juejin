@@ -1,12 +1,12 @@
-import ArticleList from '../views/article-list'
-
+import HomeArticleList from '../views/home-article-list'
+import { ROUTE_WEIGHT } from '../common/const'
 export const homeRoutes = [{
     props: {
       queryId: '21207e9ddb1de777adeaca7a2fb38030'
     },
     text: '推荐',
     path: '/home/recommended',
-    component: ArticleList
+    component: HomeArticleList,
   },{
     props: {
       queryId: '21207e9ddb1de777adeaca7a2fb38030',
@@ -27,7 +27,8 @@ export const homeRoutes = [{
     },
     text: '热榜',
     path: '/home/hot',
-    component: ArticleList
+    component: HomeArticleList,
+    
   },{
     props: {
       queryId: '653b587c5c7c8a00ddf67fc66f989d42',
@@ -36,7 +37,8 @@ export const homeRoutes = [{
     },
     path: '/home/backend',
     text: '后端',
-    component: ArticleList,
+    component: HomeArticleList,
+    
   },{
     props: {
       queryId: '653b587c5c7c8a00ddf67fc66f989d42',
@@ -45,7 +47,8 @@ export const homeRoutes = [{
     },
     path: '/home/frontend',
     text: '前端',
-    component: ArticleList,
+    component: HomeArticleList,
+    
   }, {
     props: {
       queryId: '653b587c5c7c8a00ddf67fc66f989d42',
@@ -54,7 +57,8 @@ export const homeRoutes = [{
     },
     path: '/home/android',
     text: 'Android',
-    component: ArticleList,
+    component: HomeArticleList,
+    
   }, {
     props: {
       queryId: '653b587c5c7c8a00ddf67fc66f989d42',
@@ -63,7 +67,8 @@ export const homeRoutes = [{
     },
     path: '/home/ios',
     text: 'IOS',
-    component: ArticleList,
+    component: HomeArticleList,
+    
   }, {
     props: {
       queryId: '653b587c5c7c8a00ddf67fc66f989d42',
@@ -72,7 +77,8 @@ export const homeRoutes = [{
     },
     path: '/home/ai',
     text: '人工智能',
-    component: ArticleList
+    component: HomeArticleList,
+    
   }, {
     props: {
       queryId: '653b587c5c7c8a00ddf67fc66f989d42',
@@ -81,7 +87,8 @@ export const homeRoutes = [{
     },
     path: '/home/freebie',
     text: '开发工具',
-    component: ArticleList
+    component: HomeArticleList,
+    
   }, {
     props: {
       queryId: '653b587c5c7c8a00ddf67fc66f989d42',
@@ -90,7 +97,8 @@ export const homeRoutes = [{
     },
     path: '/home/career',
     text: '代码人生',
-    component: ArticleList
+    component: HomeArticleList,
+    
   }, {
     props: {
       queryId: '653b587c5c7c8a00ddf67fc66f989d42',
@@ -99,15 +107,7 @@ export const homeRoutes = [{
     },
     path: '/home/article',
     text: '阅读',
-    component: ArticleList
+    component: HomeArticleList,
+    
   }
 ]
-
-export const homePathText = []
-
-for (let i = 0; i < homeRoutes.length; ++i) {
-  homePathText.push({
-    path: homeRoutes[i].path,
-    text: homeRoutes[i].text
-  })
-}

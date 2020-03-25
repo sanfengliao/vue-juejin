@@ -3,7 +3,7 @@
     <div class="nav-content">
       <ul class="nav-list">
         <li @click="handleClick(i)" ref="nav-item" class="nav-item" v-for="(item, i) in navList" :key="item.path">
-          <router-link :to="item.path"><span class="text">{{item.text}}</span></router-link>
+          <router-link :to="item.path"><span class="text">{{item.title}}</span></router-link>
         </li>
       </ul>
       <div class="bottom-line" :style="{width: `${lineWidth}px`, transform: `translateX(${lineLeft}px)`}"></div>
@@ -23,38 +23,51 @@ export default {
     }
   },
   mounted() {
-    let items = this.$refs["nav-item"]
-    let arr = []
-    for (let i = 0; i < items.length; i++) {
-      let item = items[i]
-      if (arr.length === 0) {
-        arr.push({
-          left: 0,
-          width: item.clientWidth
-        })
-        this.lineWidth = arr[0].width
-      } else {
-        arr.push({
-          left: arr[i-1].left + arr[i-1].width,
-          width: item.clientWidth
-        })
-      }
-    }
-    this.arr = arr
-    let path = this.$route.path
-    let { navList } = this
-    for (let i = 0; i < navList.length; ++i) {
-      if (navList[i].path === path) {
-        this.lineLeft = this.arr[i].left
-        this.lineWidth = this.arr[i].width
-        break
-      }
-    }
+    this.init()
   },
   methods: {
     handleClick(i) {
      this.lineLeft = this.arr[i].left
      this.lineWidth = this.arr[i].width
+    },
+    initArr() {
+      let items = this.$refs["nav-item"]
+      let arr = []
+      for (let i = 0; i < items.length; i++) {
+        let item = items[i]
+        if (arr.length === 0) {
+          arr.push({
+            left: 0,
+            width: item.clientWidth
+          })
+          this.lineWidth = arr[0].width
+        } else {
+          arr.push({
+            left: arr[i-1].left + arr[i-1].width,
+            width: item.clientWidth
+          })
+        }
+      }
+      this.arr = arr
+    },
+    init() {
+      this.initArr()
+      let path = this.$route.path
+      let { navList } = this
+      for (let i = 0; i < navList.length; ++i) {
+        if (navList[i].path === path) {
+          this.lineLeft = this.arr[i].left
+          this.lineWidth = this.arr[i].width
+          break
+        }
+      }
+    }
+  },
+  watch: {
+    navList() {
+      this.$nextTick(() => {
+        this.init()
+      })
     }
   }
 }
@@ -77,7 +90,6 @@ export default {
       padding-bottom 20rem
       min-width  710rem
       .nav-item
-        flex 1
         padding 0 40rem
         font-size 30rem
         color #cfcfd3

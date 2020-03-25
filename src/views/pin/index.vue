@@ -1,6 +1,6 @@
 <template>
-  <div>
-
+  <div class="pin">
+    pin
   </div>
 </template>
 

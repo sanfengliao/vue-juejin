@@ -48,7 +48,6 @@ export default {
   },
   data() {
     return {
-      isRefresh: this.refreshing,
       isLoading: false
     }
   },
