@@ -1,6 +1,6 @@
 <template>
   <div :style="style" class="loading">
-    
+    <i class="iconfont icon-refresh"></i>
   </div>
 </template>
 
@@ -14,17 +14,34 @@
        style: {
          width: this.size,
          height: this.size,
-         backgroundImage: `url(${require('./image/refresh.gif')})`
        }
       }
     }
   }
 </script>
 
-<style lang="stylus" scoped>
-.loading
-  background-size cover
-  background-repeat no-repeat
-  background-position 50%
-  border-radius 50%
+<style>
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  background: #f4f5f5;
+  animation: rotation .8s linear 0s infinite;
+  
+}
+
+.loading .iconfont{
+  color: #d61515
+}
+  
+
+@keyframes rotation {
+  from {
+    transform:rotate(0);
+  }
+  to {
+    transform:rotate(360deg);
+  }
+}
 </style>

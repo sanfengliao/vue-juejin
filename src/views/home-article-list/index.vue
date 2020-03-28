@@ -1,6 +1,6 @@
 <template>
   <div class="article-list-con">
-    <div ref="tags-con" :style="{height: tags.length ? '85rem' : 0, overflow: showAllTag ? 'visible' : 'hidden'}" class="tags-con border-bottom-1px">
+    <div ref="tags-con" :style="{height: tags.length ? '90rem' : 0, overflow: showAllTag ? 'visible' : 'hidden'}" class="tags-con border-bottom-1px">
       <!-- <div class="tag-list-con" ref="tags-con"> -->
         <ul ref="tags-list" class="tag-list" :style="{flexWrap: showAllTag? 'wrap' : 'nowrap'}">
           <li @click="handleTagClick(item.tagId, $event)" class="tag-item" v-for="item in tags" :key="item.tagId">
@@ -18,11 +18,33 @@
     </div>
 
     <list :on-pulling-up="loadMore" :refreshing="isRefresh" :on-pulling-down="refresh">
-      <ul class="article-pre-list">
-        <li class="article-pre-item" v-for="item in edges" :key="item.id">
-          <router-link to="/search"><article-preview :article="item"></article-preview></router-link>
-        </li>
-      </ul>
+      <div class="article-con">
+        <div v-if="recommendedHotArticleFeed.length>0" class="recommended-article-con">
+          <div class="recommended-article-header border-bottom-1px con">
+            <div class="title">
+              <i class="iconfont icon-hot"></i>
+              <span>热门文章</span>
+            </div>
+            <div class="delete-con">
+              <i class="iconfont icon-chuyidong1-copy"></i>
+            </div>
+          </div>
+          <ul class="recommended-article-list">
+            <li v-for="item in recommendedHotArticleFeed" :key="item.objectId || item.id" class="recommended-artile-item border-bottom-1px con">
+              <router-link :to="`/post/${item.objectId || item.id}`">
+                <article-entry :article="item"></article-entry>
+              </router-link>
+            </li>
+          </ul>
+        </div>
+        <div class="aricle-list-con">
+          <ul class="article-pre-list">
+            <li class="article-pre-item" v-for="item in edges" :key="item.id">
+              <router-link :to="`/post/${item.id}`"><article-preview :article="item"></article-preview></router-link>
+            </li>
+          </ul>
+        </div>
+      </div>
     </list>
         
     
@@ -30,10 +52,13 @@
 </template>
 
 <script>
-import { query } from '../../api/home'
+import { query, queryTag, getEntryByPeriod } from '../../api/home'
 import ArticlePreview from '../../components/article-preview'
 import Tag from '../../components/tag'
 import List from '../../components/list'
+import ArticleEntry from '../../components/article-entry'
+import { routeTypes } from '../../common/config'
+import { randomSelect } from '../../util'
 import BScroll from 'better-scroll'
 export default {
   props: {
@@ -51,7 +76,8 @@ export default {
   components: {
     ArticlePreview,
     Tag,
-    List
+    List,
+    ArticleEntry
   },
   data() {
     return {
@@ -62,6 +88,7 @@ export default {
       showAllTag: false,
       tagId: '',
       showMoreTagOp: false,
+      recommendedHotArticleFeed:[]
     }
   },
   created() {
@@ -71,7 +98,6 @@ export default {
     if(this.tags.length) {
       this.tagId = this.tags[0].tagId
     }
-    
   },
   mounted() {
     this.$tagsCon = this.$refs['tags-con']
@@ -96,20 +122,43 @@ export default {
      * @param {true} isRefresh
      */
     async query(isRefresh) {
-      let items = await this.requestData()
+      let result = await this.requestData()
+      let items = result.articleFeed.items
       if (isRefresh) {
         this.edges = []
+        this.recommendedHotArticleFeed = []
+        // 获取推荐文章
+        if (result.recommendedHotArticleFeed) {
+          let edges = result.recommendedHotArticleFeed.items.edges
+          this._recommendedHotArticleFeed = edges.map(item => item.entry)
+          // this.recommendedHotArticleFeed = randomSelect(this._recommendedHotArticleFeed, 3)
+          this.recommendedHotArticleFeed = this._recommendedHotArticleFeed.slice(0, 3)
+        }
+        else if (this.categoryId && this.tagId === '') {
+          let data = await getEntryByPeriod(this.categoryId)
+          this._recommendedHotArticleFeed = data.d.entrylist
+          // this.recommendedHotArticleFeed = randomSelect(this._recommendedHotArticleFeed, 3)
+          this.recommendedHotArticleFeed = this._recommendedHotArticleFeed.slice(0, 3)
+        }
       }
-
       for (let item of items.edges) {
-        this.edges.push(item.node)   
+        this.edges.push(item.node || item.entry)   
       }
+      
       this.hasNextPage = items.pageInfo.hasNextPage
       this.endCursor = items.pageInfo.endCursor
     },
     async requestData() {
-      let data = await query(this.assembleQueryData())
-      return data.data.articleFeed.items
+      let { routeType } = this.$route.meta
+      let data = await query(this.assembleQueryData(routeType))
+      // if (routeType === routeTypes.HOME_RECOMMEND) {
+      //   data = await getRecommendedArticle(this.endCursor)
+      // } else if (routeType === routeTypes.HOME_HOT) {
+      //   data = await getHotArticle(this.endCursor, this.tagId)
+      // } else if (routeType == routeTypes.HOME_CATEGORY) {
+      //   data = await getEntryByTimeline(this.categoryId, [this.tagId], this.endCursor)
+      // }
+      return data.data
     },
     async queryTag() {
       let requestTags = await this.requestTag()
@@ -123,13 +172,7 @@ export default {
     },
 
     async requestTag() {
-       const data = {
-        operationName: "",
-        query: "",
-        variables: {category: this.categoryId, limit: 15},
-        extensions: {query: {id: "801e22bdc908798e1c828ba6b71a9fd9"}}
-      }
-      let result = await query(data)
+      let result = await queryTag(this.categoryId)
       return result.data.tagNav.items
     },
     async refresh() {
@@ -141,27 +184,26 @@ export default {
     async loadMore() {
       await this.query()
     },
-    assembleQueryData() {
+    assembleQueryData(routeType) {
       const data = {
-        operationName: '',
-        query: '',
-        variables: {first: 20, after: '', order: 'POPULAR'},
-        extensions: {query: {id: '21207e9ddb1de777adeaca7a2fb38030'}}
+        variables: {after:''},
+        extensions: {query: {id: this.queryId}}
       }
-      data.extensions.query.id = this.queryId
-      if (this.categoryId) {
+      if (routeType === routeTypes.HOME_RECOMMEND) {
+        data.variables.platformCode = '2',
+        data.variables.positionCodes = [2, 3]
+      }
+      if (routeType === routeTypes.HOME_CATEGORY) {
         data.variables.category = this.categoryId
+        data.variables.tags = [this.tagId]
       }
+      
+      if (routeType === routeTypes.HOME_HOT) {
+        data.variables.order = this.tagId
+      }
+
       if (this.hasNextPage && this.endCursor) {
         data.variables.after = this.endCursor
-      }
-      console.log(this.categoryId)
-      if (this.tagId) {
-        if (this.categoryId){
-          data.variables.tags = [this.tagId]
-        } else {
-          data.variables.order = this.tagId
-        }
       }
       return data
     },
@@ -255,6 +297,44 @@ export default {
   .article-pre-item
     margin-bottom 20rem
 
-
-
-</style>
+.recommended-article-con
+  background: #fff
+  margin-bottom 18rem
+  .recommended-article-header
+    display flex
+    justify-content space-between
+    align-items center
+    height 75rem
+    .title
+      .iconfont
+        margin-right 10rem
+        color $primary-color
+        font-size 30rem
+      color $primary-color
+      font-size 30rem
+    .delete-con
+      .iconfont
+        color $text-color
+  .recommend-article
+    display flex
+    height 155rem
+    padding-top 20rem
+    .left
+      flex 1
+      .article-title
+        margin-bottom 25rem
+        font-size 25rem
+        color $title-color
+      .footer-content
+        font-size 18rem
+        color $text-color
+    .screenshot
+      margin-left 35rem
+      border-radius 8rem
+      flex 0 0 100rem
+      height 100rem
+      background $primary-color
+      background-size cover
+      background-position 50%
+      background-repeat no-repeat
+</style>i

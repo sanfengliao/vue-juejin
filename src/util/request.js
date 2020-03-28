@@ -6,7 +6,8 @@ const service = axios.create({
 
 service.interceptors.request.use(
   config => {
-    config.headers['X-Agent'] = 'Juejin/Android'
+    config.headers['X-Agent'] = 'Juejin/xiaomi/Redmi Note 7 Pro Android/9 Juejin/Android/5.9.3',
+    config.headers['X-Juejin-Src'] = 'android'
     return config
   }
 )
@@ -15,9 +16,10 @@ service.interceptors.response.use(
   res => {
     let code = res.status
     if (/^20\d+/.test(code) || code === 304) {
-      return res.data
+      return res
     }
   }
 )
+
 
 export default service

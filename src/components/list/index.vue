@@ -19,6 +19,9 @@ import Refresh from '../refresh'
 import BScroll from 'better-scroll'
 export default {
   props: {
+    data: {
+      type: [Object, String, Array]
+    },
     click: {
       type: Boolean,
       default: true
@@ -92,12 +95,16 @@ export default {
       }
       if (this.onPullingDown && typeof this.onPullingDown === 'function') {
         this.scroll.on('pullingDown', async () => {
+          console.log('pullingdown')
           this.onPullingDown() 
         })
       }
       if (this.onScroll && typeof this.onScroll === 'function') {
         this.scroll.on('scroll', this.onScroll)
       }
+    },
+    refresh() {
+      this.scroll && this.scroll.refresh()
     },
     isPromise(x) {
       return x instanceof Promise || (typeof x === 'object' && typeof x.then === 'function')

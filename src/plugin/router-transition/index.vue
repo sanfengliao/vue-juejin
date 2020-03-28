@@ -22,7 +22,31 @@ export default {
       let toPath = to.path
       let fromPath = from.path
       if (toPath.startsWith(this.prefix) && fromPath.startsWith(this.prefix) || !this.prefix) {
-        if (this.$routeWeight[toPath][ROUTE_WEIGHT] > this.$routeWeight[fromPath][ROUTE_WEIGHT]) {
+        let routeWeight = this.$routeWeight
+        let toWeight, fromWeight
+        if (routeWeight[toPath]) {
+          toWeight = routeWeight[toPath][ROUTE_WEIGHT]
+        } else {
+          for (let item of to.matched)
+          if (routeWeight[item.path]) {
+            toWeight = routeWeight[item.path][ROUTE_WEIGHT]
+          }
+        }
+
+        if (routeWeight[fromPath]) {
+          fromWeight = routeWeight[fromPath][ROUTE_WEIGHT]
+        } else {
+          for (let item of from.matched){
+            if (routeWeight[item.path]) {
+              fromWeight = routeWeight[item.path][ROUTE_WEIGHT]
+            }
+          }
+        }
+        if (this.$router.isBack) {
+          this.transitionName = "slide-right"
+          this.$router.isBack = false
+        }
+        else if (toWeight >= fromWeight  && !this.$route.meta.isGoBack) {
           this.transitionName = "slide-left"
         } else {
           this.transitionName = "slide-right"

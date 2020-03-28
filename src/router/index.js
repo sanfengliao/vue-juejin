@@ -8,13 +8,20 @@ import User from '../views/user'
 import Pin from '../views/pin'
 import Search from '../views/search'
 import Book from '../views/book'
+import Post from '../views/post'
 import SpecialShowEdit from '../views/special-show-edit'
 
 import { ROUTE_WEIGHT } from '../common/const'
 
 import { homeRoutes } from './home'
 
+VueRouter.prototype.goBack = function() {
+  this.isBack = true
+  this.go(-1)
+}
+
 Vue.use(VueRouter)
+
 
 const router = new VueRouter({
   mode: "history",
@@ -25,11 +32,25 @@ const router = new VueRouter({
     component: SpecialShowEdit,
     meta: {
       [ROUTE_WEIGHT]: 120,
+      isFirstLevel: true
     },
   }, {
+    name: 'post',
+    path: '/post/:id',
+    component: Post,
+    meta: {
+      [ROUTE_WEIGHT]: 130,
+      isFirstLevel: true
+    }
+  },
+  
+  {
     path: '/',
     component: Layout,
     redirect: '/home',
+    meta: {
+      isFirstLevel: true
+    },
     children: [{
       name: 'home',
       path: '/home',

@@ -22,7 +22,7 @@
         <section class="main">
           <router-transition prefix="/home">
             <keep-alive>
-              <router-view class="router" :key="$route.path"></router-view>
+              <router-view v-if="$route.path.startsWith('/home')" class="router" :key="$route.path"></router-view>
             </keep-alive>
           </router-transition>
           <div class="icon-add-con">
@@ -55,7 +55,6 @@ export default {
     })
   },
   created() {
-   
   },
   methods: {
     handleFocus(e) {

@@ -1,5 +1,5 @@
 <template>
-  <div :style="style" class="loading">
+  <div :style="style" class="j-loading">
     
   </div>
 </template>
@@ -22,7 +22,7 @@
 </script>
 
 <style lang="stylus" scoped>
-.loading
+.j-loading
   background-size cover
   background-repeat no-repeat
   background-position 50%

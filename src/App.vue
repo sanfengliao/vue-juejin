@@ -1,8 +1,8 @@
 <template>
   <div id="app">
     <router-transition name="slide" @before-enter="beforeEnter" @after-enter="afterEnter">
-      <keep-alive>
-        <router-view class="router"></router-view>
+      <keep-alive exclude="post">
+        <router-view :key="routeKey" class="router"></router-view>
       </keep-alive>
     </router-transition>
   </div>
@@ -10,6 +10,17 @@
 
 <script>
 export default {
+  created() {
+    
+  },
+  computed: {
+    routeKey() {
+      if (this.$route.name === 'post') {
+        return this.$route.path
+      }
+      return ''
+    }
+  },
   methods: {
     beforeEnter() {
       this.$store.dispatch('setRouteTransition', false)
@@ -39,10 +50,4 @@ html,body,#app
   transition: all .5s;
 }
 
-.slide-enter .slide-leave-active {
-  transform translateY(100%)
-}
-.router {
-  transition all .5s
-}
 </style>

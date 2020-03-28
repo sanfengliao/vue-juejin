@@ -13,6 +13,7 @@ export default {
       return 
     }
     Vue.component('router-transition', RouterTransition)
+    Vue.prototype.$isGoBack = false
     let routes = options.router.options.routes
     let routeWeight = options.routeWeight || {}
     let $routeWeight = Vue.prototype.$routeWeight = {}

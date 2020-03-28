@@ -8,15 +8,17 @@ import RouterTransition from './components/router-transition'
 
 import './assets/css/normalize.css'
 import './assets/css/common.css'
-window.addEventListener('resize', () => {
-  document.documentElement.style.fontSize = document.documentElement.clientWidth / 375 * 0.5 + 'px'
-})
-document.documentElement.style.fontSize = document.documentElement.clientWidth / 375 * 0.5 + 'px'
+import { dateDis, levelImage } from './fliter'
+
+
 Vue.config.productionTip = false
 
 Vue.use(routerTransition, {
   router
 })
+
+Vue.filter('dateDis', dateDis)
+Vue.filter('levelImage', levelImage)
 
 console.log(Vue.prototype.$routeWeight)
 

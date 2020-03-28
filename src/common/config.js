@@ -42,3 +42,15 @@ export let homeRoutes = store.get(HOME_ROUTE_KEY, [{
     show: false
   }
 ])
+
+export const apiUrl = {
+  ANDROID_HOME_REQUEST_URL: 'https://android-api.juejin.im/graphql',
+  WEB_HOME_REQUEST_URL: 'https://web-api.juejin.im/query'
+}
+
+export const routeTypes = {
+  HOME_CATEGORY: 'home_category',
+  HOME_RECOMMEND: 'home_recommend',
+  HOME_HOT: 'home_hot',
+
+}
