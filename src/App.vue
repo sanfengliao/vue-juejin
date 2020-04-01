@@ -17,8 +17,11 @@ export default {
     routeKey() {
       if (this.$route.name === 'post') {
         return this.$route.path
+      } else if (this.$route.name === 'pin') {
+        return this.$route.path
+      } else if (this.$route.name === 'book') {
+        return this.$route.path
       }
-      return ''
     }
   },
   methods: {
@@ -33,7 +36,7 @@ export default {
 </script>
 
 <style lang="stylus">
-@import "./assets/css/common.styl"
+@import "./assets/css/variable.styl"
 html,body,#app
   width 100%
   height 100%

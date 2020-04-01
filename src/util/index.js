@@ -20,3 +20,23 @@ export const randomSelect = (arr, n) => {
   }
   return result
 }
+
+/**
+ * 
+ * @param {string} url 
+ */
+export const getUrlParams = (url) => {
+  let queryString = url.split('?')[1]
+  if (queryString) {
+    let kvs = queryString.split('&')
+    if (kvs.length > 0) {
+      let params = {}
+      for (let item of kvs) {
+        let [k, v] = item.split('=')
+        params[k] = v
+      }
+      return params
+    }
+  }
+  
+}

@@ -5,7 +5,7 @@
         <router-link to='/home'><i class="iconfont icon-home"></i></router-link>
       </li>
       <li class="nav-item">
-        <router-link to='/pin'><i class="iconfont icon-pin"></i></router-link>
+        <router-link to='/pins'><i class="iconfont icon-pin"></i></router-link>
       </li>
       <li class="nav-item">
        <router-link to='/search'><i class="iconfont icon-sousuo"></i></router-link>
@@ -29,7 +29,7 @@
 </script>
 
 <style lang="stylus" scoped>
-@import "../../assets/css/common.styl";
+@import "../../assets/css/variable.styl";
 .footer
   box-shadow 0 1px 2px 0 rgba(0,0,0,.05)
   height 100%
@@ -44,6 +44,7 @@
     .nav-item
       .iconfont
         color $text-color
+        font-size 55rem
       .router-link-active
         .iconfont
           color $primary-color

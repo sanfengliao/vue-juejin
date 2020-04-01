@@ -1,14 +1,14 @@
 <template>
-  <div ref="list-con" class="list-con">
-      <div class="list-content">
-        <slot></slot>
-        <div v-if="isLoading" class="loading-con">
-          <loading size="80rem"></loading>
-        </div>
+  <div ref="scroll-con" class="scroll-con">
+    <div :style="{display: scrollX ? 'inline-flex' : 'block'}" class="scroll-content">
+      <slot></slot>
+      <div v-if="isLoading" class="loading-con">
+        <loading size="80rem"></loading>
       </div>
-      <div v-if="refreshing"  class="refresh-con">
-        <refresh size="80rem"></refresh>
-      </div>
+    </div>
+    <div v-if="refreshing"  class="refresh-con">
+      <refresh size="80rem"></refresh>
+    </div>
   </div>
 </template>
 
@@ -48,6 +48,22 @@ export default {
     onPullingUp: Function,
     onPullingDown: Function,
     onScroll: Function,
+    scrollX: {
+      type: Boolean,
+      default: false
+    },
+    scrollY: {
+      type: Boolean,
+      default: true
+    },
+    stopPropagation: {
+      type: Boolean,
+      default: false
+    },
+    config: {
+      type: Object,
+      default: () => ({})
+    }
   },
   data() {
     return {
@@ -62,7 +78,7 @@ export default {
     this.initBScroll()
   },
   updated() {
-    this.scroll.finishPullDown()
+    this.refreshing && this.scroll.finishPullDown()
     this.$nextTick(() => {
       this.scroll.refresh()
     })
@@ -70,12 +86,16 @@ export default {
   methods: {
     initBScroll() {
       this.scroll = new BScroll(
-        this.$refs['list-con'],
+        this.$refs['scroll-con'],
         {
+          scrollX: this.scrollX,
+          scrollY: this.scrollY,
           click: true, 
           pullUpLoad: this.pullUpLoad || {},
           pullDownRefresh: this.pullDownRefresh || {},
-          probeType: this.probeType
+          probeType: this.probeType,
+          stopPropagation: this.stopPropagation,
+          ...this.config
         }
       )
       if (this.onPullingUp && typeof this.onPullingUp === 'function') {
@@ -88,7 +108,7 @@ export default {
               this.isLoading = false
             })
           } else {
-            this.bScroll.finishPullUp()
+            this.scroll.finishPullUp()
             this.isLoading = false
           }
         })
@@ -114,11 +134,12 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-.list-con
+.scroll-con
   position relative
   width 100%
   height 100%
   overflow hidden
+  white-space nowrap
   .loading-con
     width 100%
     display flex

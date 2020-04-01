@@ -56,16 +56,19 @@
   align-items center
   border-radius 5rem
   padding 0 10rem
+  width 100%
   height 60rem
   background #3399fe
   .search-input
+    display block
     flex 1
     border none
-    padding 15rem 
-    height 100%
+    padding-left 15rem
+    height 60rem
     background transparent
     color white
     outline none
+    font-size 25rem
     &::placeholder
       color #88ccfb
       font-size 25rem

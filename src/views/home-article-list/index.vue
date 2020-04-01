@@ -17,7 +17,7 @@
       </div>
     </div>
 
-    <list :on-pulling-up="loadMore" :refreshing="isRefresh" :on-pulling-down="refresh">
+    <scroll :on-pulling-up="loadMore" :refreshing="isRefresh" :on-pulling-down="refresh">
       <div class="article-con">
         <div v-if="recommendedHotArticleFeed.length>0" class="recommended-article-con">
           <div class="recommended-article-header border-bottom-1px con">
@@ -32,7 +32,7 @@
           <ul class="recommended-article-list">
             <li v-for="item in recommendedHotArticleFeed" :key="item.objectId || item.id" class="recommended-artile-item border-bottom-1px con">
               <router-link :to="`/post/${item.objectId || item.id}`">
-                <article-entry :article="item"></article-entry>
+                <article-s-entry :article="item"></article-s-entry>
               </router-link>
             </li>
           </ul>
@@ -40,12 +40,12 @@
         <div class="aricle-list-con">
           <ul class="article-pre-list">
             <li class="article-pre-item" v-for="item in edges" :key="item.id">
-              <router-link :to="`/post/${item.id}`"><article-preview :article="item"></article-preview></router-link>
+              <router-link :to="`/post/${item.id}`"><article-m-entry :article="item"></article-m-entry></router-link>
             </li>
           </ul>
         </div>
       </div>
-    </list>
+    </scroll>
         
     
   </div>
@@ -53,10 +53,10 @@
 
 <script>
 import { query, queryTag, getEntryByPeriod } from '../../api/home'
-import ArticlePreview from '../../components/article-preview'
+import ArticleMEntry from '../../components/article-m-entry'
 import Tag from '../../components/tag'
-import List from '../../components/list'
-import ArticleEntry from '../../components/article-entry'
+import Scroll from '../../components/scroll'
+import ArticleSEntry from '../../components/article-s-entry'
 import { routeTypes } from '../../common/config'
 import { randomSelect } from '../../util'
 import BScroll from 'better-scroll'
@@ -74,10 +74,10 @@ export default {
     }
   },
   components: {
-    ArticlePreview,
+    ArticleMEntry,
     Tag,
-    List,
-    ArticleEntry
+    Scroll,
+    ArticleSEntry
   },
   data() {
     return {
@@ -244,7 +244,7 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-@import "../../assets/css/common.styl"
+@import "../../assets/css/variable.styl"
 .article-list-con
   display flex
   flex-direction column
@@ -283,6 +283,7 @@ export default {
       transform translateY(-50%)
       z-index 25
       .iconfont
+        font-size 55rem
         color $text-color
     .mask
       position fixed

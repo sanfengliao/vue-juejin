@@ -12,9 +12,7 @@
             <div class="username">
               <router-link :to="`/user/${comment.userInfo.objectId}`">
                 <span class="name">{{comment.userInfo.username}}</span>
-              </router-link>
-              <router-link :to="`/book`" v-if="comment.userInfo.level > 0">
-                <img class="level" :src="comment.userInfo.level | levelImage" alt="">
+                <img  class="level" :src="comment.userInfo.level | levelImage" alt="">
               </router-link>
             </div>
             <div class="job">
@@ -24,7 +22,7 @@
         </div>
         <div class="op">
           <div class="like-con" :class="{'like': comment.isLike}">
-            <i @click="toggleLike" class="iconfont" :class="{'icon-zan1': comment.isLike, 'icon-dianzan': !comment.isLike}">
+            <i @click="toggleLike" class="iconfont" :class="{'icon-dianzan1': comment.isLike, 'icon-dianzan': !comment.isLike}">
             </i>
             <span class="likes-count" v-if="comment.likesCount">{{comment.likesCount}}</span>
           </div>
@@ -34,7 +32,7 @@
       </div>
       <div class="content">
         <div class="main-content">{{comment.content}}</div>
-        <div v-if="comment.topComment.length>0" class="reply-con">
+        <div v-if="comment.topComment && comment.topComment.length>0" class="reply-con">
           <ul class="top-comment-list">
             <li v-for="(item, index) in comment.topComment" :key="item.id" class="top-comment-item">
               <span class="username">{{item.userInfo.username}}{{item.userInfo.objectId === authorId ? '(作者)': ''}}</span>
@@ -46,7 +44,7 @@
             
           </ul>
           <!-- TODO -->
-          <router-link v-if="comment.topComment.length <  comment.replyCount" :to="`/`">
+          <router-link v-if="comment.topComment && comment.topComment.length <  comment.replyCount" :to="`/`">
             <span class="total-comment">全部{{comment.replyCount}}条评论&gt;</span>
           </router-link>
         </div>
@@ -94,6 +92,7 @@ export default {
       background-size cover
       background-position 50%
 .content-con
+  width 0
   flex 1
 .header
   display flex
@@ -112,13 +111,16 @@ export default {
       line-height 25rem
       .username
         margin-bottom 10rem
+        display flex
+        align-items center
         .name
           font-size 25rem
           color #6a8ba3
         .level
-          vertical-align middle
+          height 20rem
       .job
         color #909090
+        font-size 20rem
   .op
     display flex
     justify-content space-between
@@ -137,8 +139,6 @@ export default {
         color #0cbb0a
         .iconfont
           color #0cbb0a
-      .icon-zan1
-        transform scale(1.2)
       .iconfont
         margin-right  20rem
 .content
@@ -146,6 +146,7 @@ export default {
     margin-bottom 20rem
     font-size 28rem
     color black
+    word-break break-all
   .reply-con
     padding 26rem
     background #f4f8f7

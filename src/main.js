@@ -9,8 +9,13 @@ import RouterTransition from './components/router-transition'
 import './assets/css/normalize.css'
 import './assets/css/common.css'
 import { dateDis, levelImage } from './fliter'
+import VueAwesomeSwiper from 'vue-awesome-swiper'
 
+// import style
+import 'swiper/css/swiper.css'
+import './assets/css/article.styl'
 
+Vue.use(VueAwesomeSwiper)
 Vue.config.productionTip = false
 
 Vue.use(routerTransition, {

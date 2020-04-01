@@ -4,24 +4,24 @@
       <router-link to="">
         <div class="user">
           <div class="avator-con">
-            <img class="avator" width="100%" height="100%" src="https://b-gold-cdn.xitu.io/v3/static/img/default-avatar.e30559a.svg" alt="头像">
+            <img class="avator" width="100%" height="100%" :src="article.user.avatarLarge || 'https://b-gold-cdn.xitu.io/v3/static/img/default-avatar.e30559a.svg'" alt="头像">
           </div>
           <span class="username">{{article.user.username}}</span>
         </div>
       </router-link>
       <ul class="tag-list">
-        <li class="tag-item" v-for="(item, i) in article.tags" :key="item.id">
+        <li class="tag-item" v-for="(item, i) in tags" :key="item.id">
           <router-link to=""><span class="tag">{{item.title}}</span></router-link> 
-          <span v-if="i !== article.tags.length-1">/</span>
+          <span v-if="i !== tags.length - 1">/</span>
         </li>
       </ul>
     </div>
     <div class="pre-content">
-      <div class="article">
-        <div class="article-title">
+      <div class="article" :style="{marginRight: article.screenshot ? '20rem' : '0'}">
+        <div class="pre-article-title">
           {{article.title}}
         </div>
-        <div class="article-content">
+        <div class="pre-article-content">
           {{article.content}}
         </div>
       </div>
@@ -46,6 +46,11 @@ export default {
   props: {
     article: Object,
   },
+  computed: {
+    tags() {
+      return this.article.tags.slice(0, 2)
+    }
+  },
   created() {
    
   },
@@ -58,7 +63,7 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-@import "../../assets/css/common.styl";
+@import "../../assets/css/variable.styl";
 .article-pre
   padding: 30rem 20rem
   background #fff
@@ -82,6 +87,8 @@ export default {
     display flex
     .tag-item
       color $text-color
+      font-size 25rem
+      line-height 25rem
 
 .pre-content
   display flex
@@ -89,14 +96,19 @@ export default {
   padding-bottom 10rem
   .article
     flex 1
-    padding-right 15rem
-    .article-title
-      padding-bottom 15rem
+    width 0
+    .pre-article-title
+      width 100%
+      padding-bottom 5rem
       color $title-color
+      white-space normal
       font-size 30rem
       font-weight bold
-    .article-content
+    .pre-article-content
+      width 100%
+      font-size 25rem
       color $text-color
+      white-space normal
       overflow : hidden;
       text-overflow: ellipsis;
       display: -webkit-box;

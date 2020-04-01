@@ -5,7 +5,7 @@
         {{article.title}}
       </h3>
       <div class="footer-content">
-        <span>{{article.likeCount || article.collectionCount}}人赞·{{article.user.username}}</span>
+        <span>{{article.likeCount || article.collectionCount}}人赞·{{article.user.username}} · {{article.createdAt | dateDis }}</span>
       </div>
     </div>
     <div v-if="article.screenshot" class="screenshot" :style="{backgroundImage: `url(${article.screenshot})`}"></div>
@@ -23,7 +23,7 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-@import "../../assets/css/common.styl"
+@import "../../assets/css/variable.styl"
 .article-entry
   display flex
   min-height 155rem

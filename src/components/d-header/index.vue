@@ -39,7 +39,7 @@
 </script>
 
 <style lang="stylus" scoped>
-@import "../../assets/css/common.styl"
+@import "../../assets/css/variable.styl"
 .d-header
   height 105rem
   display flex
@@ -53,12 +53,15 @@
   .center
     display flex
     align-items center
+    width 0
     flex 1
     height 100%
     .title
       font-size 40rem
       font-weight 500
-      color $title-color
+      text-overflow ellipsis
+      overflow hidden
+      white-space nowrap
   .right
     display flex
     align-items center
@@ -66,7 +69,6 @@
     height 100%
     margin-left 30rem
   .iconfont
-      color $title-color
       border-radius 50%
       padding: 15rem
       font-size 35rem

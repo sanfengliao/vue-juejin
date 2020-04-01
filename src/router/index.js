@@ -5,15 +5,19 @@ import Layout from '../layout'
 
 import Home from '../views/home'
 import User from '../views/user'
-import Pin from '../views/pin'
+import Pins from '../views/pins'
 import Search from '../views/search'
-import Book from '../views/book'
+import Books from '../views/books'
 import Post from '../views/post'
+import Pin from '../views/pin'
 import SpecialShowEdit from '../views/special-show-edit'
+import BookEntryList from '../views/book-entry-list'
+import Book from '../views/book'
 
 import { ROUTE_WEIGHT } from '../common/const'
 
 import { homeRoutes } from './home'
+import { pinsRoutes } from './pins'
 
 VueRouter.prototype.goBack = function() {
   this.isBack = true
@@ -42,8 +46,21 @@ const router = new VueRouter({
       [ROUTE_WEIGHT]: 130,
       isFirstLevel: true
     }
+  },{
+    name: 'pin',
+    path: '/pin/:id',
+    component: Pin,
+    meta: {
+      [ROUTE_WEIGHT]: 140
+    }
+  },{
+    name: 'book',
+    path: '/book/:id',
+    component: Book,
+    meta: {
+      [ROUTE_WEIGHT]: 150,
+    }
   },
-  
   {
     path: '/',
     component: Layout,
@@ -57,9 +74,10 @@ const router = new VueRouter({
       component: Home,
       children: homeRoutes,
     }, {
-      name: 'pin',
-      path: '/pin',
-      component: Pin,
+      name: 'pins',
+      path: '/pins',
+      component: Pins,
+      children: pinsRoutes
     },{
       name: 'search',
       path: '/search',
@@ -67,7 +85,15 @@ const router = new VueRouter({
     }, {
       name: 'books',
       path: '/books',
-      component: Book,
+      component: Books,
+      redirect: '/books/all',
+      children: [{
+        path: '/books/all',
+        component: BookEntryList
+      }, {
+        path: '/books/my',
+        component: BookEntryList
+      }]
     }, {
       name: 'user',
       path: '/user',

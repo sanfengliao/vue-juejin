@@ -33,11 +33,13 @@ export default {
     initArr() {
       let items = this.$refs["nav-item"]
       let arr = []
+      let left = items[0].offsetLeft
+      console.log(left)
       for (let i = 0; i < items.length; i++) {
         let item = items[i]
         if (arr.length === 0) {
           arr.push({
-            left: 0,
+            left: left,
             width: item.clientWidth
           })
           this.lineWidth = arr[0].width
@@ -78,17 +80,21 @@ export default {
   background transparent
   width 100%
   overflow-x scroll
+  height 100%
   &::-webkit-scrollbar {
     display: none;
   }
   .nav-content
     position relative
     display inline-block
+    height 100%
     .nav-list
       display inline-flex
+      align-items center
+      justify-content center
       white-space: nowrap
-      padding-bottom 20rem
       min-width  710rem
+      height 100%
       .nav-item
         padding 0 40rem
         font-size 30rem

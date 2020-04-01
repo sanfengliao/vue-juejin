@@ -38,6 +38,7 @@ export default {
   },
   created() {
     let { stateKey = 'homeRoutes', title= '首页特别展示' } = this.$route.params
+    this.stateKey = stateKey
     this.routeObjs = this.$store.state[stateKey]
     this.title= title
   },
@@ -67,7 +68,8 @@ export default {
         let path2 = this.routeObjs[i].path
         this.$routeWeight[path1] = routeWeight[path2]
       }
-      this.$store.dispatch('setHomeRoutes', newRouteObjs)
+      let name = this.stateKey.charAt(0).toUpperCase() + this.stateKey.slice(1)
+      this.$store.dispatch(`set${name}`, newRouteObjs)
       this.$router.go(-1)
     },
     handleClick(item) {
@@ -136,7 +138,7 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-@import "../../assets/css/common.styl";
+@import "../../assets/css/variable.styl";
 .header
   position relative
   z-index 20

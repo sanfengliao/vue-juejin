@@ -1,0 +1,58 @@
+<template>
+  <div class="books-con">
+    <header class="books-header">
+      <nav-tab :nav-list="navList"></nav-tab>
+    </header>
+    <section class="books-section">
+      <keep-alive>
+        <router-view :key="routeKey"></router-view>
+      </keep-alive>
+    </section>
+  </div>
+</template>
+
+<script>
+import { getBooks } from '../../api/book'
+import NavTab from '../../components/nav-tab'
+export default {
+  data() {
+    return {
+      navList: [{
+        title: '全部',
+        path: '/books/all'
+      },{
+        title: '已购',
+        path: '/books/my'
+      }]
+    }
+  },
+  computed: {
+    routeKey() {
+      if (this.$route.path.startsWith('/books/')) {
+        return this.$route.path
+      }
+    }
+  },
+  components: {
+    NavTab
+  },
+  created() {
+    
+  }
+}
+</script>
+
+<style lang="stylus" scoped>
+@import "../../assets/css/variable.styl"
+.books
+  position relative
+.books-header
+  height 85rem
+  background $primary-color
+.books-section
+  position absolute
+  top 85rem
+  bottom 0
+  width 100%
+  
+</style>

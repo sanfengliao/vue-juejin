@@ -58,8 +58,8 @@ export default {
   },
   methods: {
     handleFocus(e) {
-      e.target.blur()
-      this.$router.push('/search')
+      // e.target.blur()
+      // this.$router.push('/search')
     },
     goSpecialEdit() {
       this.$router.push({
@@ -74,7 +74,7 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-@import "../../assets/css/common.styl"
+@import "../../assets/css/variable.styl"
 .home
   height 100%
   position relative
@@ -109,6 +109,7 @@ export default {
     .nav-tab-con
       flex 1
       overflow hidden
+      height 75rem
     .triangle-con
       padding-left: 30rem
       flex 0 0 30rem

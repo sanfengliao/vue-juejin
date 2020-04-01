@@ -16,7 +16,7 @@ export default {
 .tag {
   border-radius: 27.5rem
   padding 10rem 27.5rem
-  font-size 16rem
+  font-size 20rem
   text-align center
   background #f3f7fa
 }

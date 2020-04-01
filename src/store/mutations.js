@@ -5,7 +5,10 @@ const mutations = {
   },
   [types.SET_HOME_ROUTES](state, homeRoutes) {
     state.homeRoutes = homeRoutes
-  }
+  },
+  [types.SET_PINS_ROUTES](state, pinsRoutes) {
+    state.pinsRoutes = pinsRoutes
+  },
 }
 
 export default mutations
