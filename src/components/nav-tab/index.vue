@@ -91,9 +91,7 @@ export default {
     .nav-list
       display inline-flex
       align-items center
-      justify-content center
       white-space: nowrap
-      min-width  710rem
       height 100%
       .nav-item
         padding 0 40rem

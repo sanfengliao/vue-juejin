@@ -72,6 +72,7 @@ import Comment from '../../components/comment'
 import PinSEntry from '../../components/pin-s-entry'
 import { getPinById, getTopicList, getPinComments } from '../../api/pins'
 export default {
+  name: 'me',
   data() {
     return {
       pin: {},

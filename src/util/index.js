@@ -40,3 +40,18 @@ export const getUrlParams = (url) => {
   }
   
 }
+
+/**
+ * 
+ * @param {Function} fn 
+ * @param {number} delay 
+ */
+export const throttle = function(fn, delay=500) {
+  let last = 0
+  return function(...args) {
+    if (Date.now() - last >= delay) {
+      fn.apply(this, args)
+      last = Date.now()
+    }
+  }
+}

@@ -38,7 +38,7 @@
         <div class="book-sections-con">
           <div class="book-sections-head">小册内容</div>
           <div class="book-sections-content">
-            <book-section-list :book-sections="bookSections"></book-section-list>
+            <book-section-list :book-id="bookId" :book-sections="bookSections"></book-section-list>
           </div>
         </div>
         <div class="book-summary-con">
@@ -49,7 +49,7 @@
       </section>
       <footer class="book-footer border-top-1px">
         <div class="operate">
-          <button class="btn button-read">试读</button>
+          <button class="btn button-read" @click="toRead">试读</button>
           <button class="btn button-buy">购买 ￥{{book.price}}</button>
         </div>
       </footer>
@@ -64,6 +64,7 @@ import { getBookDetail, getListBuy, getBookSections } from '../../api/book'
 export default {
   data() {
     return {
+      bookId: '',
       book: null,
       buyUsers: [],
       bookSections: []
@@ -79,14 +80,24 @@ export default {
     }
   },
   created() {
+    console.log(this.$options.name)
     this.init()
   },
   methods: {
     init() {
-      let {id} = this.$route.params
+      let { id } = this.$route.params
+      this.bookId = id
       this.getBookDetail(id)
       this.getBuyUsers(id)
       this.getBookSections(id)
+    },
+    toRead() {
+      for (let item of this.bookSections) {
+        if (item.isFree) {
+          this.$router.push(`/book/m/${this.bookId}/section/${item._id}`)
+          return
+        }
+      }
     },
     async getBookDetail(id) {
       let data = await getBookDetail(id)

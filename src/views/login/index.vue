@@ -1,15 +1,15 @@
 <template>
   <div>
-    user
+
   </div>
 </template>
 
 <script>
-  export default {
-    
-  }
+export default {
+  name: 'login'
+}
 </script>
 
-<style lang="stylus" scoped>
+<style lang="scss" scoped>
 
 </style>

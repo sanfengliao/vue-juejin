@@ -1,23 +1,27 @@
 <template>
   <div class="book-section-list-con">
     <ul class="book-section-list">
-      <li class="book-section-item border-bottom-1px" v-for="(item, index) in bookSections" :key="item._id">
-        <div class="step">{{index}}</div>
-        <div class="center">
-          <div class="title">{{item.title}}</div>
-          <div class="info">
-            <span class="time">阅读时长: {{item.contentSize | readTime }}</span>
-            <span class="view-count">{{item.pv}}次学习</span>
+      <li @click="sectionClick(item._id)" class="book-section-item border-bottom-1px" v-for="(item, index) in bookSections" :key="item._id">
+        <router-link :to="`/book/m/${bookId || item.metaId}/section/${item._id}`">
+          <div class="section">
+            <div class="step">{{index}}</div>
+            <div class="center">
+              <div class="title">{{item.title}}</div>
+              <div class="info">
+                <span class="time">阅读时长: {{item.contentSize | readTime }}</span>
+                <span class="view-count">{{item.pv}}次学习</span>
+              </div>
+            </div>
+            <div class="aside">
+              <div v-if="item.isFree" class="to-read">
+                试读
+              </div>
+              <div v-else class="lock">
+                <img class="img" src="https://b-gold-cdn.xitu.io/v3/static/img/lock.45f0927.svg" alt="">
+              </div>
+            </div>
           </div>
-        </div>
-        <div class="aside">
-          <div v-if="item.isFree" class="to-read">
-            试读
-          </div>
-          <div v-else class="lock">
-            <img class="img" src="https://b-gold-cdn.xitu.io/v3/static/img/lock.45f0927.svg" alt="">
-          </div>
-        </div>
+        </router-link>
       </li>
     </ul>
   </div>
@@ -29,6 +33,15 @@ export default {
     bookSections: {
       type: Array,
       default: () => []
+    },
+    bookId: {
+      type: String,
+      default: ''
+    },
+  },
+  methods: {
+    sectionClick(id) {
+      this.$emit('sectionClick', id)
     }
   },
   filters: {
@@ -51,10 +64,11 @@ export default {
   background #fff
 
 .book-section-item
-  padding 30rem 20rem
-  display flex
-  align-items center
-  justify-content space-between
+  .section
+    padding 30rem 20rem
+    display flex
+    align-items center
+    justify-content space-between
   .step
     flex 0 0 40rem
     display flex

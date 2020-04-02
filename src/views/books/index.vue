@@ -1,7 +1,9 @@
 <template>
   <div class="books-con">
     <header class="books-header">
-      <nav-tab :nav-list="navList"></nav-tab>
+      <div class="nav-tab-con">
+        <nav-tab :nav-list="navList"></nav-tab>
+      </div>
     </header>
     <section class="books-section">
       <keep-alive>
@@ -49,6 +51,11 @@ export default {
 .books-header
   height 85rem
   background $primary-color
+  display flex
+  justify-content center
+  .nav-tab-con
+    height 100%
+    display inline-block
 .books-section
   position absolute
   top 85rem

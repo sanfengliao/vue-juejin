@@ -37,7 +37,7 @@ export default {
       font-weight 500
     .footer-content
       font-size 18rem
-      color $text-color
+      color $gray-text-color
   .screenshot
     margin-left 35rem
     border-radius 8rem

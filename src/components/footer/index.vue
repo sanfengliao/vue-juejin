@@ -2,19 +2,19 @@
   <div class="footer">
     <ul class="nav-list">
       <li class="nav-item">
-        <router-link to='/home'><i class="iconfont icon-home"></i></router-link>
+        <router-link to='/home' replace><i class="iconfont icon-home"></i></router-link>
       </li>
       <li class="nav-item">
-        <router-link to='/pins'><i class="iconfont icon-pin"></i></router-link>
+        <router-link to='/pins' replace><i class="iconfont icon-pin"></i></router-link>
       </li>
       <li class="nav-item">
-       <router-link to='/search'><i class="iconfont icon-sousuo"></i></router-link>
+       <router-link to='/search' replace><i class="iconfont icon-sousuo"></i></router-link>
       </li>
       <li class="nav-item">
-        <router-link to='/books'><i class="iconfont icon-taizhangguanli-copy-copy"></i></router-link>
+        <router-link to='/books' replace><i class="iconfont icon-taizhangguanli-copy-copy"></i></router-link>
       </li>
       <li class="nav-item">
-        <router-link to='/user'><i class="iconfont icon-yonghu"></i></router-link>
+        <router-link to='/me' replace><i class="iconfont icon-yonghu"></i></router-link>
       </li>
     </ul>
   </div>

@@ -49,17 +49,17 @@ export const getBookDetail = (id) => {
  *  
  * @param {string} id 
  */
-// export const getBookDetail = (id) => {
-//   // TODO 添加token
-//   return request({
-//     method: 'GET',
-//     url: '/v1/xiaoce/get',
-//     params: {
-//       id,
-//       src: 'android'
-//     }
-//   }).then(res => res.data)
-// }
+export const getBookSectionDetail = (sectionId) => {
+  // TODO 添加token
+  return request({
+    method: 'GET',
+    url: '/v1/xiaoce/cache/getSection',
+    params: {
+      sectionId,
+      src: 'android'
+    }
+  }).then(res => res.data)
+}
 
 /**
  *  

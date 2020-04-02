@@ -4,7 +4,7 @@ import VueRouter from 'vue-router'
 import Layout from '../layout'
 
 import Home from '../views/home'
-import User from '../views/user'
+import Me from '../views/me'
 import Pins from '../views/pins'
 import Search from '../views/search'
 import Books from '../views/books'
@@ -13,6 +13,8 @@ import Pin from '../views/pin'
 import SpecialShowEdit from '../views/special-show-edit'
 import BookEntryList from '../views/book-entry-list'
 import Book from '../views/book'
+import BookSection from '../views/book-section'
+import SectionContent from '../views/section-content'
 
 import { ROUTE_WEIGHT } from '../common/const'
 
@@ -52,6 +54,18 @@ const router = new VueRouter({
     component: Pin,
     meta: {
       [ROUTE_WEIGHT]: 140
+    }
+  },{
+    name: 'book-section',
+    path: '/book/m/:bookId/section',
+    component: BookSection,
+    children: [{
+      name: 'book-section',
+      path: ':sectionId',
+      component: SectionContent
+    }],
+    meta: {
+      [ROUTE_WEIGHT]: 160
     }
   },{
     name: 'book',
@@ -96,8 +110,8 @@ const router = new VueRouter({
       }]
     }, {
       name: 'user',
-      path: '/user',
-      component: User,
+      path: '/me',
+      component: Me,
     }, ]
   }]
 })

@@ -1,34 +1,34 @@
 <template>
     <div class="home">
-        <header class="header con">
-          <div class="header-top">
-            <div class="search-con">
-              <search-box @focus="handleFocus" />
-            </div>
-            <div class="tag-setting-con">
-              <i class="iconfont icon-shezhi"></i>
-              <span>标签</span>
-            </div>
+      <header class="header con">
+        <div class="header-top">
+          <div class="search-con">
+            <search-box @focus="handleFocus" />
           </div>
-          <div class="header-bottom">
-            <div class="nav-tab-con">
-              <nav-tab :nav-list="routeList"></nav-tab>
-            </div>
-            <div class="triangle-con">
-              <div @click="goSpecialEdit" class="triangle"></div>
-            </div>
+          <div class="tag-setting-con">
+            <i class="iconfont icon-shezhi"></i>
+            <span>标签</span>
           </div>
-        </header>
-        <section class="main">
-          <router-transition prefix="/home">
-            <keep-alive>
-              <router-view v-if="$route.path.startsWith('/home')" class="router" :key="$route.path"></router-view>
-            </keep-alive>
-          </router-transition>
-          <div class="icon-add-con">
-            <i class="iconfont icon-Add"></i>
+        </div>
+        <div class="header-bottom">
+          <div class="nav-tab-con">
+            <nav-tab :nav-list="routeList"></nav-tab>
           </div>
-        </section>
+          <div class="triangle-con">
+            <div @click="goSpecialEdit" class="triangle"></div>
+          </div>
+        </div>
+      </header>
+      <section class="main">
+        <router-transition prefix="/home">
+          <keep-alive>
+            <router-view v-if="$route.path.startsWith('/home')" class="router" :key="$route.path"></router-view>
+          </keep-alive>
+        </router-transition>
+        <div class="icon-add-con">
+          <i class="iconfont icon-Add"></i>
+        </div>
+      </section>
     </div>
 </template>
 
@@ -55,6 +55,14 @@ export default {
     })
   },
   created() {
+    this.$router.replace('/home/recommended')
+  },
+  activated() {
+    //  this.$router.replace(this.currentRoutePath)
+  },
+  deactivated() {
+    console.log(this.$route.path)
+    // this.currentRoutePath = this.$route.path
   },
   methods: {
     handleFocus(e) {
