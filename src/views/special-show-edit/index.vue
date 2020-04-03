@@ -153,6 +153,7 @@ export default {
       border-radius 50%
       padding: 15rem
       font-size 35rem
+      color #fff
       &:active
         background #046bd2
   .title

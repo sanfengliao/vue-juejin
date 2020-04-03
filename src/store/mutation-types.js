@@ -1,3 +1,5 @@
 export const SET_ROUTE_TRANSITION = 'set_route_transition'
-export const SET_HOME_ROUTES = 'SET_HOME_ROUTES'
-export const SET_PINS_ROUTES = 'SET_PINS_ROUTES'
+export const SET_HOME_ROUTES = 'set_home_routes'
+export const SET_PINS_ROUTES = 'set_pins_routes'
+export const SET_TOKEN = 'set_token'
+export const SET_UID = 'set_uid'

@@ -1,3 +1,5 @@
 export const ROUTE_WEIGHT = 'RouteWeight'
 export const HOME_ROUTE_KEY = '__HOME_ROUTES__'
 export const PIN_ROUTE_KEY = '__PIN_ROUTE_KEY__'
+export const TOKEN_KEY = '__TOKEN__'
+export const UID_KEY = '__UID_KEY__'

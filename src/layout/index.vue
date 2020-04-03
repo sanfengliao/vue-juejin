@@ -15,6 +15,7 @@
 <script>
 import JFooter from '../components/footer'
 export default {
+  name: 'layout',
   components: {
     JFooter,
   }

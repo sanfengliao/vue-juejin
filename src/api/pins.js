@@ -1,23 +1,27 @@
 import request from '../util/request'
 import { apiUrl } from '../common/config'
+import store from '../store'
+import { commonParams } from './common'
 
-// TODO 添加token
+const state = store.state
+
 /**
  * 获取沸点推荐
  */
 export const getHotRecommendList = () => {
   return request({
     method: 'GET',
-    url: '/v1/pin/getHotRecommendList',
+    url: '/short-msg/v1/getHotRecommendList',
     params: {
-      src: 'android'
+      token: state.token,
+      uid: state.uid,
+      ...commonParams
     }
   }).then(res => {
     return res.data
   })
 }
 
-// TODO 添加token
 /**
  * 获取主题
  * @param {string} topicId 
@@ -28,13 +32,15 @@ export const getHotRecommendList = () => {
 export const getTopicList = (topicId, page=0, pageSize=20, sortType='rank') => {
   return request({
     method: 'GET',
-    url: '/v1/pin/pinList/topic',
+    url: '/short-msg/v1/pinList/topic',
     params: {
       topicId,
       page,
       pageSize,
       sortType,
-      src: 'android'
+      token: state.token,
+      uid: state.uid,
+      ...commonParams
     }
   }).then(res => {
     return res.data
@@ -87,11 +93,15 @@ export const getPopularPinList = (after='') => {
 export const getPinComments = (id, pageNum=0, pageSize=20, rankType='new') => {
   return request({
     method: 'GET',
-    url: `/v1/pin/comments/${id}`,
+    url: `/hot-topic-comment-wrapper/v1/comments/${id}`,
     params: {
       pageNum,
       pageSize,
-      rankType
+      rankType,
+      token: state.token,
+      uid: state.uid,
+      ...commonParams
+      
     }
   }).then(res => res.data)
 }
@@ -104,10 +114,12 @@ export const getPinComments = (id, pageNum=0, pageSize=20, rankType='new') => {
 export const getPinById = (id) => {
   return request({
     method: 'GET',
-    url: '/v1/pin/getByID',
+    url: '/short-msg/v1/getByID',
     params: {
       msgId: id,
-      src: 'android'
+      token: state.token,
+      uid: state.uid,
+      ...commonParams
     }
   }).then(res => res.data)
 }

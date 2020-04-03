@@ -10,10 +10,11 @@ import Search from '../views/search'
 import Books from '../views/books'
 import Post from '../views/post'
 import Pin from '../views/pin'
+import Login from '../views/login'
 import SpecialShowEdit from '../views/special-show-edit'
 import BookEntryList from '../views/book-entry-list'
 import Book from '../views/book'
-import BookSection from '../views/book-section'
+import SectionRead from '../views/section-read'
 import SectionContent from '../views/section-content'
 
 import { ROUTE_WEIGHT } from '../common/const'
@@ -58,7 +59,7 @@ const router = new VueRouter({
   },{
     name: 'book-section',
     path: '/book/m/:bookId/section',
-    component: BookSection,
+    component: SectionRead,
     children: [{
       name: 'book-section',
       path: ':sectionId',
@@ -74,6 +75,10 @@ const router = new VueRouter({
     meta: {
       [ROUTE_WEIGHT]: 150,
     }
+  },{
+    name: 'login',
+    path: '/login',
+    component: Login
   },
   {
     path: '/',

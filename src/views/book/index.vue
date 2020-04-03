@@ -38,7 +38,13 @@
         <div class="book-sections-con">
           <div class="book-sections-head">小册内容</div>
           <div class="book-sections-content">
-            <book-section-list :book-id="bookId" :book-sections="bookSections"></book-section-list>
+            <ul class="book-section-list">
+              <li class="book-section-item border-bottom-1px" v-for="(item, index) in bookSections" :key="item._id">
+                <router-link :to="`/book/m/${bookId || item.metaId}/section/${item._id}`">
+                  <b-section :section="item" :index="index"></b-section>
+                </router-link>
+              </li>
+            </ul>
           </div>
         </div>
         <div class="book-summary-con">
@@ -59,7 +65,7 @@
 
 <script>
 import DHeader from '../../components/d-header'
-import BookSectionList from '../../components/book-section-list'
+import BSection from '../../components/b-section'
 import { getBookDetail, getListBuy, getBookSections } from '../../api/book'
 export default {
   data() {
@@ -72,7 +78,7 @@ export default {
   },
   components: {
     DHeader,
-    BookSectionList
+    BSection
   },
   computed: {
     boughtUsers() {

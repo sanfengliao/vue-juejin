@@ -19,8 +19,14 @@
               </div>
             </div>
           </div>
-          <div class="book-section-list">
-            <book-section-list @sectionClick="sectionClick" :book-id="book._id" :book-sections="sections"></book-section-list>
+          <div class="book-section-list-con">
+            <ul class="book-section-list">
+              <li @click="sectionClick" class="book-section-item border-bottom-1px" v-for="(item, index) in sections" :key="item._id">
+                <router-link :to="`/book/m/${bookId || item.metaId}/section/${item._id}`">
+                  <b-section :section="item" :index="index"></b-section>
+                </router-link>
+              </li>
+            </ul>
           </div>
         </div>
       </aside>
@@ -46,7 +52,7 @@
         <div class="iconfont-con"><i class="iconfont icon-mulu" @click="showBar"></i></div>
         <div class="iconfont-con">
           <i class="iconfont icon-pinglun1">
-            <span class="count">{{}}</span>
+            <!-- <span class="count">{{18}}</span> -->
           </i>
         </div>
         <div class="iconfont-con">
@@ -62,9 +68,9 @@
 import { getBookDetail, getBookSections, getBooks } from '../../api/book'
 import { throttle } from '../../util'
 import DHeader from '../../components/d-header'
-import BookSectionList from '../../components/book-section-list'
+import BSection from '../../components/b-section'
 export default {
-  name: 'book-section',
+  name: 'section-read',
   data() {
     return {
       sectionIds: [],
@@ -89,7 +95,7 @@ export default {
   },
   components: {
     DHeader,
-    BookSectionList
+    BSection
   },
   created() {
     this.init()
@@ -242,7 +248,7 @@ export default {
           font-size 28rem
           .author-level
             height 23rem
-    .book-section-list
+    .book-section-list-con
       flex 1
       overflow scroll
       &::-webkit-scrollbar

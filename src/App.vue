@@ -1,10 +1,11 @@
 <template>
   <div id="app">
     <router-transition name="slide" @before-enter="beforeEnter" @after-enter="afterEnter">
-      <keep-alive :exclude="['post', 'book-section', 'book','pin', 'login']">
+      <keep-alive :include="['layout']">
         <router-view :key="routeKey" class="router"></router-view>
       </keep-alive>
     </router-transition>
+   
   </div>
 </template>
 

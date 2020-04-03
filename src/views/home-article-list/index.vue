@@ -125,8 +125,7 @@ export default {
       let result = await this.requestData()
       let items = result.articleFeed.items
       if (isRefresh) {
-        this.edges = []
-        this.recommendedHotArticleFeed = []
+        
         // 获取推荐文章
         if (result.recommendedHotArticleFeed) {
           let edges = result.recommendedHotArticleFeed.items.edges
@@ -137,9 +136,11 @@ export default {
         else if (this.categoryId && this.tagId === '') {
           let data = await getEntryByPeriod(this.categoryId)
           this._recommendedHotArticleFeed = data.d.entrylist
+          console.log(this._recommendedHotArticleFeed)
           // this.recommendedHotArticleFeed = randomSelect(this._recommendedHotArticleFeed, 3)
           this.recommendedHotArticleFeed = this._recommendedHotArticleFeed.slice(0, 3)
         }
+         this.edges = []
       }
       for (let item of items.edges) {
         this.edges.push(item.node || item.entry)   

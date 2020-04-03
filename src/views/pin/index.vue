@@ -46,7 +46,7 @@
             </div>
           </section>
           <section class="comment-list-con con" v-if="comments.length>0">
-            <ul v-if="pin.user && commments.length>0" class="pin-comment-list">
+            <ul v-if="pin.user && comments.length>0" class="pin-comment-list">
               <li v-for="item in comments" class="pin-comment-item border-bottom-1px" :key="item.id">
                 <comment :authorId="pin.user.id" :comment="item"></comment>
               </li>

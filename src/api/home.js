@@ -1,5 +1,9 @@
 import request from '../util/request'
-import { apiUrl } from '../common/config'
+import { apiUrl, } from '../common/config'
+
+import { commonParams } from './common'
+import store from '../store'
+const state = store.state
 
 /**
  * 获取文章列表
@@ -102,12 +106,14 @@ export const getEntryByTimeline = (category, tags=[], after='', limit=20) => {
 export const getEntryByPeriod = (category, limit=20, period='3day') => {
   return request({
     method: 'get',
-    url: '/v1/get_entry_by_period',
+    url: '/timeline-merger/v1/get_entry_by_period',
     params: {
       category,
       limit,
       period,
-      src: 'android'
+      token: state.token,
+      uid: state.uid,
+      ...commonParams
     }
   }).then(res => {
       return res.data

@@ -1,68 +1,73 @@
+const events = require('events')
+events.EventEmitter.defaultMaxListeners = 50
 module.exports = {
   lintOnSave: false,
   devServer: {
     proxy: {
-      '/v1/home': {
+      '/timeline-merger': {
         target: 'http://timeline-merger-ms.juejin.im',
         changeOrigin: true,
         pathRewrite: {
-          '/home': '/'
+          '/timeline-merger': '/'
         }
       },
-      '/v1/post': {
+      '/entry-view': {
         target: 'https://entry-view-storage-api-ms.juejin.im',
         changeOrigin: true,
         pathRewrite: {
-          '/post': '/'
+          '/entry-view': '/'
         }
       },
-      '/v1/pin/comments': {
+      '/hot-topic-comment-wrapper': {
         target: 'https://hot-topic-comment-wrapper-ms.juejin.im',
         changeOrigin: true,
         pathRewrite: {
-          '/pin': '/'
+          '/hot-topic-comment-wrapper': '/'
         }
       },
-      '/v1/pin': {
+      '/short-msg': {
         target: 'https://short-msg-ms.juejin.im',
         changeOrigin: true,
         pathRewrite: {
-          '/pin': '/'
+          '/short-msg': '/'
         }
       },
-      '/v1/xiaoce/cache': {
+      '/xiaoce-cache': {
         target: 'https://xiaoce-cache-api-ms.juejin.im',
         changeOrigin: true,
         pathRewrite: {
-          '/xiaoce/cache': '/'
+          '/xiaoce-cache': '/'
         }
       },
-      '/v1/xiaoce': {
+      '/xiaoce-timeline': {
         target: 'https://xiaoce-timeline-api-ms.juejin.im',
         changeOrigin: true,
         pathRewrite: {
-          '/xiaoce': '/'
+          '/xiaoce-timeline': '/'
         }
       },
-      
-      '/v1': {
-        target: 'http://timeline-merger-ms.juejin.im',
-        changeOrigin: true,
-      },
-      '/v2/comment': {
+
+      '/comment-wrapper-ms': {
         target: 'https://comment-wrapper-ms.juejin.im',
         changeOrigin: true,
         pathRewrite: {
-          '/v2/comment': '/v2'
+          '/comment-wrapper-ms': '/'
         }
       },
-      '/v2/event': {
+      '/event-storage': {
         target: 'https://event-storage-api-ms.juejin.im',
         changeOrigin: true,
         pathRewrite: {
-          '/v2/event': '/v2'
+          '/event-storage': '/'
+        }
+      },
+      '/auth-center': {
+        target: 'https://auth-center-ms.juejin.im',
+        changeOrigin: true,
+        pathRewrite: {
+          '/auth-center': '/'
         }
       }
-    }
+    },
   }
 }

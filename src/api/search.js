@@ -1,5 +1,9 @@
 import request from '../util/request'
 import { apiUrl } from '../common/config'
+import { commonParams } from './common'
+import store from '../store'
+const state = store.state
+
 
 // TODO 添加token
 /**
@@ -27,12 +31,13 @@ export const getEventBanner = () => {
 export const getEntryByRank = (before) => {
   return request({
     method: 'GET',
-    url: '/v1/get_entry_by_rank',
+    url: '/timeline-merger/v1/get_entry_by_rank',
     params: {
-      uid: 'unlogin',
-      src: 'android',
       before,
-      limit: 30
+      limit: 30,
+      token: state.token,
+      uid: state.uid,
+      ...commonParams
     }
   }).then(res => res.data)
 }

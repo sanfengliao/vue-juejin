@@ -55,7 +55,7 @@ export default {
     })
   },
   created() {
-    this.$router.replace('/home/recommended')
+    
   },
   activated() {
     //  this.$router.replace(this.currentRoutePath)
@@ -140,6 +140,7 @@ export default {
     height 110rem
     background $primary-color
     text-align center
+    color #fff
     line-height 110rem
     z-index 12
     .iconfont

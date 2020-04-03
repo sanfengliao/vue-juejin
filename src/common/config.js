@@ -101,5 +101,7 @@ export const routeTypes = {
   HOME_CATEGORY: 'home_category',
   HOME_RECOMMEND: 'home_recommend',
   HOME_HOT: 'home_hot',
-
 }
+
+export const client_id = 'client_id'
+export const device_id = 'client_id'
