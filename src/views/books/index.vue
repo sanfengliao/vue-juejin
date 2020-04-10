@@ -6,9 +6,11 @@
       </div>
     </header>
     <section class="books-section">
-      <keep-alive>
-        <router-view :key="routeKey"></router-view>
-      </keep-alive>
+      <router-transition prefix="/books">
+        <keep-alive>
+          <router-view v-if="routeKey" :key="routeKey"></router-view>
+        </keep-alive>
+      </router-transition>
     </section>
   </div>
 </template>

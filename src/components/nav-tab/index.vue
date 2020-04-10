@@ -2,11 +2,11 @@
   <div class="nav-tab" ref="nav-tab">
     <div class="nav-content">
       <ul class="nav-list">
-        <li @click="handleClick(i)" ref="nav-item" class="nav-item" v-for="(item, i) in navList" :key="item.path">
-          <router-link :to="item.path"><span class="text">{{item.title}}</span></router-link>
+        <li @click="handleClick(i, $event)" ref="nav-item" class="nav-item" v-for="(item, i) in navList" :key="item.path.path || item.path">
+          <router-link :to="item.path"><span class="text" :style="{color: getTitleColor(item.path)}">{{item.title}}</span></router-link>
         </li>
       </ul>
-      <div class="bottom-line" :style="{width: `${lineWidth}px`, transform: `translateX(${lineLeft}px)`}"></div>
+      <div class="bottom-line" :style="{width: `${lineWidth}px`, transform: `translateX(${lineLeft}px)`, backgroundColor: lineColor}"></div>
     </div>
   </div>
 </template>
@@ -15,6 +15,9 @@
 export default {
   props: {
     navList: Array,
+    titleColor: String,
+    lineColor: String,
+    activeTitleColor: String
   },
   data() {
     return {
@@ -26,7 +29,10 @@ export default {
     this.init()
   },
   methods: {
-    handleClick(i) {
+    getTitleColor(path) {
+      return path === this.$route.path ? this.activeTitleColor : this.titleColor
+    },
+    handleClick(i, e) {
      this.lineLeft = this.arr[i].left
      this.lineWidth = this.arr[i].width
     },
@@ -57,7 +63,8 @@ export default {
       let path = this.$route.path
       let { navList } = this
       for (let i = 0; i < navList.length; ++i) {
-        if (navList[i].path === path) {
+        if (navList[i].path === path || navList[i].path.path === path) {
+          
           this.lineLeft = this.arr[i].left
           this.lineWidth = this.arr[i].width
           break
@@ -70,6 +77,18 @@ export default {
       this.$nextTick(() => {
         this.init()
       })
+    },
+    $route() {
+      let path = this.$route.path
+      let { navList } = this
+      for (let i = 0; i < navList.length; ++i) {
+        if (navList[i].path === path || navList[i].path.path === path) {
+          
+          this.lineLeft = this.arr[i].left
+          this.lineWidth = this.arr[i].width
+          break
+        }
+      }
     }
   }
 }
@@ -103,7 +122,7 @@ export default {
       position absolute
       border-radius 2rem
       bottom 0
-      height 8rem
+      height 6rem
       background #fff
       transition all 100ms
 </style>

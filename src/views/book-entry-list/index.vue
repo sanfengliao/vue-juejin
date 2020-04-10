@@ -1,6 +1,6 @@
 <template>
   <div class="book-entry-list-con">
-    <scroll :on-pulling-down="refresh" :refreshing="refreshing" :on-pulling-up="loadMore">
+    <scroll :on-pulling-down="refresh" :refreshing="refreshing" :on-pulling-up="loadMore" :loading="loading">
       <div class="book-entry-list">
         <ul class="book-list">
           <li class="book-item border-bottom-1px" v-for="item in books" :key="item.id">
@@ -22,11 +22,13 @@ export default {
   data() {
     return {
       books: [],
-      refreshing: false
+      refreshing: false,
+      loading: false
     }
   },
   created() {
     this.init()
+    console.log(this.$options.name)
   },
   components: {
     BookEntry,
@@ -44,8 +46,10 @@ export default {
       this.refreshing = false
     },
     async loadMore() {
+      this.loading = true
       this.page += 1
       await this.query()
+      this.loading = false
     },
     async query(isRefresh) {
       let data = []
@@ -67,6 +71,7 @@ export default {
     },
     async getMyBooks() {
       let data = await getMyBooks(this.page)
+      data.d.forEach(item => item.isBuy = true)
       return data.d
     }, 
   }

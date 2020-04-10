@@ -13,7 +13,7 @@ export default {
       return {
         visible: false, // 控制 DOM 显示隐藏
         message: 'juejin:请输入正确的手机号', // 默认的 message 为空, 由外部传入
-        duration: 2000 // 默认显示时间为 2000ms
+        duration: 1500 // 默认显示时间为 2000ms
       }
     }
 }
@@ -40,7 +40,7 @@ export default {
     transform: translateX(-50%) scale(0)
     opacity 0
   &.fade-enter-active
-    animation bounceIn .5s
+    animation bounceIn .4s
   &.fade-leave-active
     transition all .3s
 

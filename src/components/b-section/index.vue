@@ -8,7 +8,7 @@
         <span class="view-count">{{section.pv}}次学习</span>
       </div>
     </div>
-    <div class="aside">
+    <div v-if="!isBuy" class="aside">
       <div v-if="section.isFree" class="to-read">
         试读
       </div>
@@ -23,7 +23,11 @@
 export default {
   props: {
     section: Object,
-    index: Number
+    index: Number,
+    isBuy: {
+      type: Boolean,
+      default: false
+    }
   },
   filters: {
     readTime(value) {

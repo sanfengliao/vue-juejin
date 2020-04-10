@@ -22,7 +22,7 @@
       <section class="main">
         <router-transition prefix="/home">
           <keep-alive>
-            <router-view v-if="$route.path.startsWith('/home')" class="router" :key="$route.path"></router-view>
+            <router-view v-if="routeKey" :key="routeKey" class="router"></router-view>
           </keep-alive>
         </router-transition>
         <div class="icon-add-con">
@@ -48,6 +48,11 @@ export default {
     }
   },
   computed: {
+    routeKey() {
+      if (this.$route.path.startsWith('/home/')) {
+        return this.$route.path
+      }
+    },
     ...mapState({
       routeList(state) {
         return defaultHomeRoutes.concat(state.homeRoutes.filter(item => item.show))

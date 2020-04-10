@@ -46,7 +46,8 @@ export default {
 .pin-content
   background #fff
 .content
-  white-space pre-line
+  white-space pre-wrap  
+  word-wrap break-word
   font-size 28rem
   margin-bottom 20rem
 .pictures

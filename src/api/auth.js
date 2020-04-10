@@ -1,6 +1,5 @@
 import request from '../util/request'
 import { client_id, device_id } from '../common/config'
-
 /**
  * 登录功能
  * @param {string} username 
@@ -15,3 +14,4 @@ export const login = (username, password, loginType) => {
     }
   }).then(res => res.data)
 }
+

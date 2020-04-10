@@ -2,7 +2,7 @@
   <div class="d-header con">
     <div class="left">
       <slot name="left">
-        <i @click="goBack" class="iconfont icon-fanhui"></i>
+        <i @click="back" class="iconfont icon-fanhui"></i>
       </slot>
     </div>
     <div class="center">
@@ -28,11 +28,16 @@
       onShare: {
         type: Function,
         default: () => () =>{}
-      }
+      },
+      goBack: Function
     },
     methods: {
-      goBack() {
-        return this.$router.goBack()
+      back() {
+        if (this.goBack) {
+          this.goBack()
+        } else {
+          this.$router.goBack()
+        }
       }
     }
   }
@@ -73,6 +78,6 @@
       padding: 15rem
       font-size 35rem
       &:active
-        background #bfbebe
+        background #d6d4d4
     
 </style>

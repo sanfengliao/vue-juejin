@@ -26,6 +26,13 @@ html {
   }
 }
 
+a {
+	-webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+	-webkit-user-select: none;
+	-moz-user-focus: none;
+    -moz-user-select: none;
+}
+
 h1, h2, h3, h4, h5, h6 {
   margin-block-start: 0;
   margin-block-end: 0;

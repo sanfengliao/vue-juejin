@@ -1,6 +1,6 @@
 import RouterTransition from './index.vue'
 let routeW  = 1
-export const ROUTE_WEIGHT = 'RouteWeight'
+export const ROUTE_INDEX = '$$RouteIndex$$'
 export default {
   /**
    * 
@@ -23,13 +23,13 @@ export default {
     for (let route of routes) {
       let path = route.path
       $routeWeight[path] = {
-        [ROUTE_WEIGHT]: routeW++
+        [ROUTE_INDEX]: routeW++
       }
-      if (typeof route.meta === 'object' && typeof route.meta[ROUTE_WEIGHT] === 'number') {
-        $routeWeight[path][ROUTE_WEIGHT] = route.meta[ROUTE_WEIGHT]
+      if (typeof route.meta === 'object' && typeof route.meta[ROUTE_INDEX] === 'number') {
+        $routeWeight[path][ROUTE_INDEX] = route.meta[ROUTE_INDEX]
       }
       if (typeof routeWeight[path] === 'number') {
-        $routeWeight[path][ROUTE_WEIGHT] = routeWeight[ROUTE_WEIGHT]
+        $routeWeight[path][ROUTE_INDEX] = routeWeight[ROUTE_INDEX]
       }
       if (Array.isArray(route.children) && route.children.length > 0) {
         this.attachWeightToRoute(route.children, routeWeight, $routeWeight)

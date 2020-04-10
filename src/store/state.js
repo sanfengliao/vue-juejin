@@ -6,7 +6,9 @@ const state = {
   homeRoutes: homeRoutes,
   pinsRoutes,
   token: localStorage.getItem(TOKEN_KEY) || '',
-  uid: localStorage.getItem(UID_KEY) || ''
+  uid: localStorage.getItem(UID_KEY) || '',
+  isLogin: !!localStorage.getItem(TOKEN_KEY),
+  keepAliveArr: ['layout']
 }
 
 export default state

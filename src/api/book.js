@@ -81,7 +81,7 @@ export const getBookSections = (id) => {
     params: {
       id,
       token: state.token,
-      uid: token.uid,
+      uid: state.uid,
       ...commonParams
     }
   }).then(res => res.data)

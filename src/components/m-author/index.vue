@@ -1,7 +1,7 @@
 <template>
   <div class="author-con">
     <div class="avatar-con">
-      <router-link :to="`/user/${author.id}`">
+      <router-link :to="`/user/${author.id || author.objectId}`">
         <div class="avatar" :style="{backgroundImage: `url(${author.avatarLarge})`}"></div>
       </router-link>
     </div>
@@ -16,7 +16,7 @@
         <span v-if="dateDis"> · {{dateDis}}</span>
       </div>
     </div>
-    <div v-if="!author.viewerIsFollowing" @click="follow" class="follow">
+    <div v-if="!author.viewerIsFollowing" @click.stop.prevent="follow" class="follow">
       <i class="iconfont icon-Add1"></i>
       <span class="text">关注</span>
     </div>
@@ -78,11 +78,7 @@ export default {
       text-overflow ellipsis
       white-space nowrap
   .follow
-    display flex
-    justify-content center
-    align-items center
-    flex 0 0 140rem
-    height 60rem
+    padding 12rem 20rem
     border 1px #6cbd45 solid
     color #6cbd45
     font-size 26rem

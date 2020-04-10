@@ -67,7 +67,12 @@ export default {
       }
       let success = await this.$store.dispatch('userLogin',{username, password, loginType})
       if (success) {
-        this.$router.replace('/')
+        let { from } = this.$route.query
+        if (from) {
+          this.$router.goBack()
+        } else {
+          this.$router.replace('/')
+        }
       }
     }
   }

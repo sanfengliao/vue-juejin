@@ -5,7 +5,7 @@
         {{article.title}}
       </h3>
       <div class="footer-content">
-        <span>{{article.likeCount || article.collectionCount}}人赞·{{article.user.username}} · {{article.createdAt | dateDis }}</span>
+        <span>{{article.likeCount || article.collectionCount}}人赞 · {{article.user.username}} · {{article.createdAt | dateDis }}</span>
       </div>
     </div>
     <div v-if="article.screenshot" class="screenshot" :style="{backgroundImage: `url(${article.screenshot})`}"></div>
@@ -27,7 +27,8 @@ export default {
 .article-entry
   display flex
   min-height 155rem
-  padding 20rem 0
+  padding 20rem
+  background #fff
   .left
     flex 1
     .article-title
@@ -35,6 +36,7 @@ export default {
       font-size 25rem
       color $title-color
       font-weight 500
+      white-space normal
     .footer-content
       font-size 18rem
       color $gray-text-color

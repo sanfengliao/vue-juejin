@@ -14,6 +14,12 @@ const mutations = {
   },
   [types.SET_UID](state, uid) {
     state.uid = uid
+  },
+  [types.SET_IS_LOGIN](state, isLogin) {
+    state.isLogin = isLogin
+  },
+  [types.SET_KEEP_ALIVE_ARR](state, arr) {
+    state.keepAliveArr = arr
   }
 }
 

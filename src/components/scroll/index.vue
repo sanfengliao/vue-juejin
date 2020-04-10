@@ -1,12 +1,12 @@
 <template>
-  <div ref="scroll-con" class="scroll-con">
+  <div ref="scroll-con" class="scroll-wrapper">
     <div :style="{display: scrollX ? 'inline-flex' : 'block'}" class="scroll-content">
       <slot></slot>
-      <div v-if="isLoading" class="loading-con">
+      <div v-show="loading && !loadFinish" class="loading-con">
         <loading size="80rem"></loading>
       </div>
     </div>
-    <div v-if="refreshing"  class="refresh-con">
+    <div v-show="refreshing"  class="refresh-con">
       <refresh size="80rem"></refresh>
     </div>
   </div>
@@ -26,22 +26,19 @@ export default {
       type: Boolean,
       default: true
     },
-    pullUpLoad: {
-      type: Object,
-      default: () => ({threshold: 50})
-    },
-    pullDownRefresh: {
-      type: Object,
-      default: () => ({
-        threshold: 50,
-        stop: 20
-      })
-    },
     probeType: {
       type: Number,
       default: 1
     },
     refreshing: {
+      type: Boolean,
+      default: false
+    },
+    loading: {
+      type: Boolean,
+      default: false
+    },
+    loadFinish: {
       type: Boolean,
       default: false
     },
@@ -60,16 +57,12 @@ export default {
       type: Boolean,
       default: false
     },
-    config: {
+    options: {
       type: Object,
       default: () => ({})
     }
   },
-  data() {
-    return {
-      isLoading: false
-    }
-  },
+
   components: {
     Loading,
     Refresh,
@@ -78,50 +71,54 @@ export default {
     this.initBScroll()
   },
   updated() {
-    this.refreshing && this.scroll.finishPullDown()
+    this.scroll.finishPullDown()
+    this.scroll.finishPullUp()
     this.$nextTick(() => {
       this.scroll.refresh()
     })
   },
+  beforeDestroy() {
+    if (this.onScroll) {
+      this.scroll.off('scroll')
+    }
+  },
   methods: {
     initBScroll() {
+      const { scrollX, scrollY, click, probeType, stopPropagation, options, onPullingUp, onPullingDown } = this
+      let pullUpload = !!onPullingUp
+      let pullDownRefresh = !!onPullingDown
       this.scroll = new BScroll(
         this.$refs['scroll-con'],
         {
-          scrollX: this.scrollX,
-          scrollY: this.scrollY,
-          click: true, 
-          pullUpLoad: this.pullUpLoad || {},
-          pullDownRefresh: this.pullDownRefresh || {},
-          probeType: this.probeType,
-          stopPropagation: this.stopPropagation,
-          ...this.config
+          pullUpload,
+          pullDownRefresh,
+          ...options,
+          scrollX,
+          scrollY,
+          click,
+          probeType,
+          stopPropagation
         }
       )
-      if (this.onPullingUp && typeof this.onPullingUp === 'function') {
-        this.scroll.on('pullingUp', async () => {
-          this.isLoading = true
-          let result = this.onPullingUp()
-          if (this.isPromise(result)) {
-            result.then(() => {
-              this.scroll.finishPullUp()
-              this.isLoading = false
-            })
-          } else {
-            this.scroll.finishPullUp()
-            this.isLoading = false
+      if (onPullingUp) {
+        this.scroll.on('pullingUp',  () => {
+          if (!this.loading && !this.loadFinish) {
+            onPullingUp()
           }
         })
       }
-      if (this.onPullingDown && typeof this.onPullingDown === 'function') {
-        this.scroll.on('pullingDown', async () => {
-          console.log('pullingdown')
-          this.onPullingDown() 
+      if (onPullingDown) {
+        this.scroll.on('pullingDown',  () => {
+          if (!this.refreshing) {
+            onPullingDown() 
+          }
         })
       }
-      if (this.onScroll && typeof this.onScroll === 'function') {
-        this.scroll.on('scroll', this.onScroll)
-      }
+      // if (this.onScroll) {
+        this.scroll.on('scroll', (pos) => {
+          this.$emit('scroll', pos)
+        })
+      // }
     },
     refresh() {
       this.scroll && this.scroll.refresh()
@@ -134,7 +131,7 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-.scroll-con
+.scroll-wrapper
   position relative
   width 100%
   height 100%

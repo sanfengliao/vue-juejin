@@ -1,7 +1,10 @@
 <template>
   <div class="pin-entry">
     <div class="header con">
-      <author :author="pin.user" :dateDis="pin.createdAt | dateDis"></author>
+      <m-author class="author" :author="pin.user" :dateDis="pin.createdAt | dateDis"></m-author>
+      <div class="iconfont-con">
+        <i class="iconfont icon-unie644"></i>
+      </div>
     </div>
     <div class="section con border-bottom-1px">
       <pin-info :pin="pin"></pin-info>
@@ -13,7 +16,7 @@
 </template>
 
 <script>
-import Author from '../author'
+import MAuthor from '../m-author'
 import ThreeOp from '../three-op'
 import LinkView from '../link-view'
 import PinInfo from '../pin-info'
@@ -22,7 +25,7 @@ export default {
     pin: Object
   },
   components: {
-    Author,
+    MAuthor,
     ThreeOp,
     LinkView,
     PinInfo
@@ -32,7 +35,15 @@ export default {
 
 <style lang="stylus" scoped>
 .pin-entry
+  padding-top 20rem
   background #fff
+  .header
+    display flex
+    align-items center
+    .author
+      margin-right 20rem
+    .iconfont
+      color #909090
   .section
     padding 30rem 20rem
 

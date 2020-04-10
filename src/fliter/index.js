@@ -2,6 +2,10 @@ export const dateDis = date => {
   let stime = new Date(date).getTime()
   let etime = Date.now()
   let dtime = etime - stime
+  let year = Math.floor(dtime / (24 * 3600 * 1000 * 365))
+  if (year > 0) {
+    return year + '年前'
+  }
   let days = Math.floor(dtime / (24 * 3600 * 1000))
   if (days > 0) {
     return days + '天前'

@@ -7,9 +7,49 @@ body {
   background: #fff;
 }
 
+* {
+  background: inherit;
+}
+
+.slide-enter, .slide-leave-to{
+
+  transform: translateY(100%);
+  z-index: 1;
+}
 
 .border-top-1px {
   position: relative;
+}
+
+.touch-active:active {
+  background: #dcdbdb !important;
+}
+
+.follow {
+  padding: 14rem 20rem;
+  /* width: 140rem; */
+  border: 1px #6cbd45 solid;
+  color: #6cbd45;
+  font-size: 26rem;
+  border-radius: 5rem;
+}
+.edit-btn {
+  padding: 14rem 35rem;
+  /* width: 140rem; */
+  border: 1px #007fff solid;
+  color: #007fff;
+  font-size: 26rem;
+  border-radius: 5rem;
+}
+.follow.active {
+  background: #6cbd45;
+  border: none;
+  color: #fff;
+}
+.follow .iconfont{
+  padding: 0;
+  margin-right: 10rem;
+  font-size: 26rem;
 }
 
 .border-top-1px::after {

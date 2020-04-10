@@ -1,4 +1,5 @@
 <template>
+<!-- <transition name="slide"> -->
   <div class="post" >
     <header class="header">
       <d-header title="文章详情页">
@@ -19,7 +20,7 @@
         <section class="article">
           <div v-if="entry" class="summary">
             <div class="author-container">
-              <author :author="entry.user"></author>
+              <m-author :author="entry.user"></m-author>
             </div>
             <h1 class="title">{{entry.title}}</h1>
             <a class="origin-url" target="_blank" :href="entry.originalUrl">原文链接</a>
@@ -42,7 +43,7 @@
           <ul class="related-article-list">
             <li class="related-article-item border-bottom-1px" v-for="item in relatedEntry" :key="item.objectId">
               <router-link :to="`/post/${item.id || item.objectId}`">
-                <article-s-entry :article="item"></article-s-entry>
+                <s-article-entry :article="item"></s-article-entry>
               </router-link>
             </li>
           </ul>
@@ -61,16 +62,17 @@
       </div>
     </load-scroll>
   </div>
+<!-- </transition> -->
 </template>
 
 <script>
 import { getEntryView, getEntryByEntryIds, getRelatedEntry, getComments } from '../../api/post'
 
 import DHeader from '../../components/d-header'
-import ArticleSEntry from '../../components/article-s-entry'
+import SArticleEntry from '../../components/s-article-entry'
 import Comment from '../../components/comment'
 import Loading from '../../components/loading'
-import Author from '../../components/author'
+import MAuthor from '../../components/m-author'
 import SAuthor from '../../components/s-author'
 import LoadScroll from '../../components/load-scroll'
 
@@ -88,10 +90,10 @@ export default {
   },
   components: {
     DHeader,
-    ArticleSEntry,
+    SArticleEntry,
     Comment,
     Loading,
-    Author,
+    MAuthor,
     LoadScroll,
     SAuthor
   },
@@ -194,8 +196,10 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
+
 .post
   background #f4f8fb
+  transition all .5s
   .header
     position fixed
     width 100%

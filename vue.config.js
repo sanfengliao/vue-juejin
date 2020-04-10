@@ -67,7 +67,49 @@ module.exports = {
         pathRewrite: {
           '/auth-center': '/'
         }
-      }
+      },
+      '/user-storage': {
+        target: 'https://user-storage-api-ms.juejin.im',
+        changeOrigin: true,
+        pathRewrite: {
+          '/user-storage': '/'
+        }
+      },
+      '/gold-tag': {
+        target: 'https://gold-tag-ms.juejin.im',
+        changeOrigin: true,
+        pathRewrite: {
+          '/gold-tag': '/'
+        }
+      },
+      '/user-like': {
+        target: 'https://user-like-wrapper-ms.juejin.im',
+        changeOrigin: true,
+        pathRewrite: {
+          '/user-like': '/'
+        }
+      },
+      '/collection-set': {
+        target: 'https://collection-set-ms.juejin.im',
+        changeOrigin: true,
+        pathRewrite: {
+          '/collection-set': '/'
+        }
+      },
+      '/lccro': {
+        target: 'https://lccro-api-ms.juejin.im',
+        changeOrigin: true,
+        pathRewrite: {
+          '/lccro': '/'
+        }
+      },
+      '/follow-api': {
+        target: 'https://follow-api-ms.juejin.im',
+        changeOrigin: true,
+        pathRewrite: {
+          '/follow-api': '/'
+        }
+      },
     },
   }
 }

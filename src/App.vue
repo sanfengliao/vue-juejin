@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <router-transition name="slide" @before-enter="beforeEnter" @after-enter="afterEnter">
-      <keep-alive :include="['layout']">
+    <router-transition type="cover" direction="bottom-to-top" @before-enter="beforeEnter" @after-enter="afterEnter">
+      <keep-alive :include="keepAliveArr">
         <router-view :key="routeKey" class="router"></router-view>
       </keep-alive>
     </router-transition>
@@ -22,15 +22,20 @@ export default {
         return this.$route.path
       } else if (this.$route.name === 'book') {
         return this.$route.path
+      } else if (this.$route.name === 'user') {
+        return this.$route.path
       }
+    },
+    keepAliveArr() {
+      return this.$store.state.keepAliveArr
     }
   },
   methods: {
     beforeEnter() {
-      this.$store.dispatch('setRouteTransition', false)
+      // this.$store.dispatch('setRouteTransition', false)
     },
     afterEnter() {
-      this.$store.dispatch('setRouteTransition', true)
+      // this.$store.dispatch('setRouteTransition', true)
     }
   }
 }
@@ -43,15 +48,6 @@ html,body,#app
   height 100%
   background $gray-color
   overflow hidden
-#app
-  position relative
-.router {
-  left 0
-  right 0
-  top 0
-  bottom 0
-  position absolute
-  transition: all .5s;
-}
-
+// .router
+//   background $gray-color
 </style>

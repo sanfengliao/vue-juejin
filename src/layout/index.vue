@@ -1,4 +1,6 @@
 <template>
+<transition name="test">
+
   <div class="layout">
       <div class="main-con">
         <keep-alive>
@@ -10,6 +12,7 @@
       <j-footer></j-footer>
     </div>
   </div>
+</transition>
 </template>
 
 <script>
@@ -26,6 +29,7 @@ export default {
 .layout
   height 100%
   position relative
+  transition all .6s
   .main-con
     position absolute
     left 0

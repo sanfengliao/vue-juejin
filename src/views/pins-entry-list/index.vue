@@ -1,12 +1,12 @@
 <template>
   <div class="pin-entry-list">
-    <scroll :on-pulling-up="loadMore" :on-pulling-down="refresh" :refreshing="refreshing">
+    <scroll :on-pulling-up="loadMore" :on-pulling-down="refresh" :refreshing="refreshing" :loading="loading">
       <div class="pins-con">
         <div v-if="recommendPins.length>0" class="recommend-pins-con">
           <swiper :options="swiperOptions">
             <swiper-slide v-for="item in recommendPins" :key="item.objectId">
-              <router-link :to="`/pin/${item.objectId}`" class="pin-s-entry">
-                <pin-s-entry :pin="item"></pin-s-entry>
+              <router-link :to="`/pin/${item.objectId}`" class="s-pin-entry">
+                <s-pin-entry :pin="item"></s-pin-entry>
               </router-link>
             </swiper-slide>
           </swiper>
@@ -15,7 +15,7 @@
           <ul class="pin-entry-list">
             <li class="pin-entry-item" v-for="item in pins" :key="item.id || item.objectId">
               <router-link :to="`/pin/${item.id || item.objectId}`">
-                <pin-entry :pin="item"></pin-entry>
+                <l-pin-entry :pin="item"></l-pin-entry>
               </router-link>
             </li>
           </ul>
@@ -27,8 +27,8 @@
 
 <script>
 import Scroll from '../../components/scroll'
-import PinEntry from '../../components/pin-entry'
-import PinSEntry from '../../components/pin-s-entry'
+import LPinEntry from '../../components/l-pin-entry'
+import SPinEntry from '../../components/s-pin-entry'
 import { getHotRecommendList, getTopicList, getPopularPinList, getRecommendedFeed } from '../../api/pins'
 import { pinsRouteType } from '../../common/config'
 
@@ -43,13 +43,14 @@ export default {
         centeredSlides: true,
         spaceBetween: 10,
         loop: true
-      }
+      },
+      loading: false
     }
   },
   components: {
     Scroll,
-    PinEntry,
-    PinSEntry
+    LPinEntry,
+    SPinEntry
   },
   created() {
     this.init()
@@ -70,8 +71,10 @@ export default {
       await this.query(true)
       this.refreshing = false
     },
-    loadMore() {
-      this.query()
+    async loadMore() {
+      this.loading = true
+      await this.query()
+      this.loading = false
     },
     async query(isRefresh) {
       const { type } = this.$route.meta
@@ -145,8 +148,6 @@ export default {
     background #fff
 
 .pin-entry-item
-  padding-top 20rem
-
   margin-bottom 20rem
   background #fff
 

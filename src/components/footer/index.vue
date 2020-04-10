@@ -2,19 +2,19 @@
   <div class="footer">
     <ul class="nav-list">
       <li class="nav-item">
-        <router-link to='/home' replace><i class="iconfont icon-home"></i></router-link>
+        <router-link class="link-item" to='/home' replace><i class="iconfont icon-home"></i></router-link>
       </li>
       <li class="nav-item">
-        <router-link to='/pins' replace><i class="iconfont icon-pin"></i></router-link>
+        <router-link class="link-item" to='/pins' replace><i class="iconfont icon-pin"></i></router-link>
       </li>
       <li class="nav-item">
-       <router-link to='/search' replace><i class="iconfont icon-sousuo"></i></router-link>
+       <router-link class="link-item" to='/sousou' replace><i class="iconfont icon-sousuo"></i></router-link>
       </li>
       <li class="nav-item">
-        <router-link to='/books' replace><i class="iconfont icon-taizhangguanli-copy-copy"></i></router-link>
+        <router-link class="link-item" to='/books' replace><i class="iconfont icon-taizhangguanli-copy-copy"></i></router-link>
       </li>
       <li class="nav-item">
-        <router-link to='/me' replace><i class="iconfont icon-yonghu"></i></router-link>
+        <router-link class="link-item" to='/me' replace><i class="iconfont icon-yonghu"></i></router-link>
       </li>
     </ul>
   </div>
@@ -35,13 +35,19 @@
   height 100%
   background #fff
   border-top 1rem solid $border-color
-  padding: 0 40rem
   .nav-list
     height 100%
     display flex
     justify-content space-between
     align-items center
     .nav-item
+      flex 1
+      display flex
+      align-items center
+      justify-content center
+      height 100%
+      $:active
+        background #dcdbdb
       .iconfont
         color $text-color
         font-size 55rem

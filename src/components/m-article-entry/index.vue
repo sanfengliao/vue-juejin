@@ -1,7 +1,7 @@
 <template>
   <div class="article-pre">
     <div class="pre-header">
-      <router-link to="">
+      <router-link :to="`/user/${article.user.id || article.user.objectId}`">
         <div class="user">
           <div class="avator-con">
             <img class="avator" width="100%" height="100%" :src="article.user.avatarLarge || 'https://b-gold-cdn.xitu.io/v3/static/img/default-avatar.e30559a.svg'" alt="头像">
@@ -31,7 +31,7 @@
     <div class="pre-footer">
       <span class="like">
         <i @click.stop.prevent="handleLikeClick" class="iconfont icon-dianzan"></i>
-        {{article.likeCount || '点赞'}}
+        {{article.likedCount || article.collectionCount ||  '点赞'}}
       </span>
       <span class="comment">
         <i class="iconfont icon-pinglun"></i>
@@ -109,11 +109,11 @@ export default {
       font-size 25rem
       color $text-color
       white-space normal
-      overflow : hidden;
-      text-overflow: ellipsis;
-      display: -webkit-box;
-      -webkit-line-clamp: 3;
-      -webkit-box-orient: vertical;
+      overflow hidden
+      text-overflow ellipsis
+      display -webkit-box
+      -webkit-line-clamp 3
+      -webkit-box-orient vertical
   .screenshot
     border-radius 8rem
     flex 0 0 145rem

@@ -1,8 +1,8 @@
 <template>
   <div class="book-con">
-    <div v-if="book" class="book-content">
+    <div class="book-content">
       <header class="book-header">
-        <d-header :title="book.title"></d-header>
+        <d-header :title="book.title || '掘金'"></d-header>
       </header>
       <section class="book-section">
         <div class="book-info border-bottom-1px">
@@ -12,7 +12,7 @@
           <div class="info">
             <div class="book-title">{{book.title}}</div>
             <div class="book-desc">{{book.desc}}</div>
-            <div class="author">
+            <div class="author" v-if="book.userData">
               <router-link class="author-info" :to="`/user/${book.userData.uid}`">
                 <div class="avatar" :style="{backgroundImage: `url(${book.userData.avatarLarge})`}"></div>
                 <div class="username">
@@ -41,7 +41,7 @@
             <ul class="book-section-list">
               <li class="book-section-item border-bottom-1px" v-for="(item, index) in bookSections" :key="item._id">
                 <router-link :to="`/book/m/${bookId || item.metaId}/section/${item._id}`">
-                  <b-section :section="item" :index="index"></b-section>
+                  <b-section :isBuy="book.isBuy" :section="item" :index="index"></b-section>
                 </router-link>
               </li>
             </ul>
@@ -71,7 +71,7 @@ export default {
   data() {
     return {
       bookId: '',
-      book: null,
+      book: {},
       buyUsers: [],
       bookSections: []
     }

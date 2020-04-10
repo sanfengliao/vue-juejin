@@ -1,15 +1,20 @@
 <template>
-  <div class="me">
+  <div class="me-con">
     <header class="me-header">我</header>
     <section class="me-section">
-      <div class="user-info">
+      <div class="user-info" @click="goUserInfo">
         <div class="left">
-          <div class="avatar" :style="{backgroundImage: `url(${$store.state.defaultAvatar})`}"></div>
+          <div class="avatar" :style="{backgroundImage: `url(${user.avatarLarge || $store.state.defaultAvatar})`}"></div>
         </div>
         <div class="center">
-          <div class="username">登录/注册</div>
+          <div class="username">{{user.username}}</div>
           <div class="job-info">
-            <div>添加职位 @ 添加公司</div>
+            <div v-if="user.jobTitle || user.company">
+              <span>{{user.jobTitle}}</span>
+              <span v-if="user.jobTitle && user.company"> @ </span>
+              <span>{{user.company}}</span>
+            </div>
+            <span v-else>添加职位 @ 添加公司</span>
           </div>
         </div>
         <div class="right">
@@ -24,67 +29,140 @@
           <div class="center">消息中心</div>
           <div class="right"></div>
         </div>
-        <div class="user-track border-bottom-1px">
-          <div class="left">
-            <i class="iconfont icon-good"></i>
+        <router-link to="/my-like">
+          <div class="user-track border-bottom-1px">
+            <div class="left">
+              <i class="iconfont icon-good"></i>
+            </div>
+            <div class="center">我赞过的</div>
+            <div class="right">{{user.collectedEntriesCount}}篇</div>
           </div>
-          <div class="center">我赞过的</div>
-          <div class="right"></div>
-        </div>
-        <div class="user-track border-bottom-1px">
+        </router-link>
+        <div class="user-track border-bottom-1px" @click="goCollectionSet">
           <div class="left">
             <i class="iconfont icon-star"></i>
           </div>
           <div class="center">收藏集</div>
-          <div class="right"></div>
+          <div class="right">{{user.collectionSetCount}}个</div>
         </div>
-        <div class="user-track border-bottom-1px">
-          <div class="left">
-            <i class="iconfont icon-gouwudai"></i>
+        <router-link to="/my-purchased-book">
+          <div class="user-track border-bottom-1px">
+            <div class="left">
+              <i class="iconfont icon-gouwudai"></i>
+            </div>
+            <div class="center">已购小册</div>
+            <div class="right">{{user.purchasedBookletCount}} 本</div>
           </div>
-          <div class="center">已购小册</div>
-          <div class="right"></div>
-        </div>
-        <div class="user-track border-bottom-1px">
-          <div class="left">
-            <i class="iconfont icon-see"></i>
+        </router-link>
+        <router-link to="/read-history">
+          <div class="user-track border-bottom-1px">
+            <div class="left">
+              <i class="iconfont icon-see"></i>
+            </div>
+            <div class="center">阅读过的文章</div>
+            <div class="right">{{user.viewedEntriesCount}}篇</div>
           </div>
-          <div class="center">阅读过的文章</div>
-          <div class="right"></div>
-        </div>
-        <div class="user-track border-bottom-1px">
-          <div class="left">
-            <i class="iconfont icon-xlcameraCenterLabel"></i>
+        </router-link>
+        <router-link to="/tag-manage">
+          <div class="user-track border-bottom-1px">
+            <div class="left">
+              <i class="iconfont icon-xlcameraCenterLabel"></i>
+            </div>
+            <div class="center">标签管理</div>
+            <div class="right">{{user.subscribedTagsCount}}个</div>
           </div>
-          <div class="center">标签管理</div>
-          <div class="right"></div>
-        </div>
+        </router-link>
       </div>
       <div class="user-track-con">
-        <div class="user-track border-bottom-1px">
-          <div class="left">
-            <i class="iconfont icon-yijianfankui"></i>
+        <router-link to="/feedback">
+          <div class="user-track border-bottom-1px">
+            <div class="left">
+              <i class="iconfont icon-yijianfankui"></i>
+            </div>
+            <div class="center">意见反馈</div>
+            <div class="right"></div>
           </div>
-          <div class="center">意见反馈</div>
-          <div class="right"></div>
-        </div>
-        <div class="user-track border-bottom-1px">
-          <div class="left">
-            <i class="iconfont icon-shezhi1"></i>
+        </router-link>
+        <router-link :to="{name: 'setting', params: user}">
+          <div class="user-track border-bottom-1px">
+            <div class="left">
+              <i class="iconfont icon-shezhi1"></i>
+            </div>
+            <div class="center">设置</div>
+            <div class="right"></div>
           </div>
-          <div class="center">设置</div>
-          <div class="right"></div>
-        </div>
+        </router-link>
       </div>
     </section>
   </div>
 </template>
 
 <script>
+import { mapState } from 'vuex'
+import { getUserInfo } from '../../api/user'
+const initUser = {
+  avatarLarge: '',
+  username: '登录/注册',
+  jobTitle: '',
+  company: '',
+  subscribedTagsCount: 0,
+  purchasedBookletCount: 0,
+  viewedEntriesCount: 0,
+  collectionSetCount: 0,
+  collectedEntriesCount: 0
+}
 export default {
   data() {
     return {
-      
+      user: initUser
+    }
+  },
+  computed: {
+    ...mapState({
+      token: state => state.token,
+      uid: state => state.uid
+    })
+  },
+  created() {
+    this.init()
+  },
+  methods: {
+    goUserInfo() {
+      if (this.token) {
+        this.$router.push(`/user/${this.uid}`)
+      } else {
+        this.$router.push({
+          path: '/login',
+          query: {
+            from: this.$route.path
+          }
+        })
+      }
+    },
+    goCollectionSet() {
+      if (this.token) {
+        this.$router.push(`/user/${this.uid}/collections`)
+      } else {
+        this.$router.push({
+          path: '/login',
+          query: {
+            from: this.$route.path
+          }
+        })
+      }
+    },
+    async init() {
+      if (this.token) {
+        let data = await getUserInfo()
+        this.user = data.d
+      } else {
+        this.user = initUser
+      }
+    }
+  },
+  watch: {
+    token() {
+      this.init()
     }
   }
 }
@@ -107,6 +185,8 @@ export default {
     padding 25rem
     background #fff
     margin-bottom 20rem
+    &:active
+      background $active-color
     .left
       flex 0 0 90rem
       margin-right 20rem
@@ -137,6 +217,8 @@ export default {
     height 90rem
     background #fff
     font-size 30rem
+    &:active
+      background #d6d4d4
     .left
       margin-right 30rem
       width 50rem
@@ -151,5 +233,8 @@ export default {
         color #febc4a
     .center
       flex 1
+    .right
+      color $gray-text-color
+      font-size 20rem
   
 </style>

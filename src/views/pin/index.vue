@@ -1,7 +1,7 @@
 <template>
   <div class="pin-con">
     <header class="pin-header border-bottom-1px">
-      <d-header>
+      <d-header :go-back="goBackAndRemoveKeepAlive">
         <div class="pin-header-con" ref="header-con">
           <div class="pin-header-content" ref="header-content">
             <div class="author-con">
@@ -35,8 +35,8 @@
             <div class="recommend-pin-list-con">
               <swiper :options="swiperOptions">
                 <swiper-slide v-for="item in recommendPins" :key="item.objectId">
-                  <router-link :to="`/pin/${item.objectId}`" class="pin-s-entry">
-                    <pin-s-entry :pin="item"></pin-s-entry>
+                  <router-link :to="`/pin/${item.objectId}`" class="s-pin-entry">
+                    <s-pin-entry :pin="item"></s-pin-entry>
                   </router-link>
                 </swiper-slide>
               </swiper>
@@ -65,14 +65,16 @@
 <script>
 import DHeader from '../../components/d-header'
 import SAuthor from '../../components/s-author'
-import Author from '../../components/author'
+import Author from '../../components/m-author'
 import LoadScroll from '../../components/load-scroll'
 import PinInfo from '../../components/pin-info'
 import Comment from '../../components/comment'
-import PinSEntry from '../../components/pin-s-entry'
+import SPinEntry from '../../components/s-pin-entry'
 import { getPinById, getTopicList, getPinComments } from '../../api/pins'
+import { keepAliveMixin } from '../../mixins'
 export default {
-  name: 'me',
+  // mixins: [keepAliveMixin],
+  name: 'pin',
   data() {
     return {
       pin: {},
@@ -95,7 +97,7 @@ export default {
     Author,
     PinInfo,
     Comment,
-    PinSEntry
+    SPinEntry
   },
   created() {
     this.init()
@@ -187,7 +189,7 @@ export default {
     display block
   .recommend-pin-list-con
     margin-bottom 8rem
-    .pin-s-entry
+    .s-pin-entry
       display block
       // margin 0 10rem
       height 210rem

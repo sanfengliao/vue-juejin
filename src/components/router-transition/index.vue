@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import { ROUTE_WEIGHT } from '../../common/const'
+import { ROUTE_INDEX } from '../../common/const'
 let comIndex = 1
 export default {
   props: {
@@ -21,7 +21,7 @@ export default {
   },
   watch: {
     $route(to, from) {
-      if (to.meta[ROUTE_WEIGHT] > from.meta[ROUTE_WEIGHT]) {
+      if (to.meta[ROUTE_INDEX] > from.meta[ROUTE_INDEX]) {
           this.transitionName = `slide-left`
       } else {
           this.transitionName = `slide-right`

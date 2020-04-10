@@ -17,7 +17,7 @@
       </div>
     </div>
 
-    <scroll :on-pulling-up="loadMore" :refreshing="isRefresh" :on-pulling-down="refresh">
+    <scroll :on-pulling-up="loadMore" :refreshing="refreshing" :on-pulling-down="refresh" :loading="loading">
       <div class="article-con">
         <div v-if="recommendedHotArticleFeed.length>0" class="recommended-article-con">
           <div class="recommended-article-header border-bottom-1px con">
@@ -30,9 +30,9 @@
             </div>
           </div>
           <ul class="recommended-article-list">
-            <li v-for="item in recommendedHotArticleFeed" :key="item.objectId || item.id" class="recommended-artile-item border-bottom-1px con">
+            <li v-for="item in recommendedHotArticleFeed" :key="item.objectId || item.id" class="recommended-artile-item border-bottom-1px">
               <router-link :to="`/post/${item.objectId || item.id}`">
-                <article-s-entry :article="item"></article-s-entry>
+                <s-article-entry :article="item"></s-article-entry>
               </router-link>
             </li>
           </ul>
@@ -40,7 +40,7 @@
         <div class="aricle-list-con">
           <ul class="article-pre-list">
             <li class="article-pre-item" v-for="item in edges" :key="item.id">
-              <router-link :to="`/post/${item.id}`"><article-m-entry :article="item"></article-m-entry></router-link>
+              <router-link :to="`/post/${item.id}`"><m-article-entry :article="item"></m-article-entry></router-link>
             </li>
           </ul>
         </div>
@@ -53,10 +53,10 @@
 
 <script>
 import { query, queryTag, getEntryByPeriod } from '../../api/home'
-import ArticleMEntry from '../../components/article-m-entry'
+import MArticleEntry from '../../components/m-article-entry'
 import Tag from '../../components/tag'
 import Scroll from '../../components/scroll'
-import ArticleSEntry from '../../components/article-s-entry'
+import SArticleEntry from '../../components/s-article-entry'
 import { routeTypes } from '../../common/config'
 import { randomSelect } from '../../util'
 import BScroll from 'better-scroll'
@@ -74,16 +74,16 @@ export default {
     }
   },
   components: {
-    ArticleMEntry,
+    MArticleEntry,
     Tag,
     Scroll,
-    ArticleSEntry
+    SArticleEntry
   },
   data() {
     return {
       edges: [],
-      isLoading: false,
-      isRefresh: true,
+      loading: false,
+      refreshing: true,
       tags: this.sortTags || [],
       showAllTag: false,
       tagId: '',
@@ -124,30 +124,28 @@ export default {
     async query(isRefresh) {
       let result = await this.requestData()
       let items = result.articleFeed.items
+      let recommendArticles = []
       if (isRefresh) {
-        
-        // 获取推荐文章
         if (result.recommendedHotArticleFeed) {
           let edges = result.recommendedHotArticleFeed.items.edges
-          this._recommendedHotArticleFeed = edges.map(item => item.entry)
-          // this.recommendedHotArticleFeed = randomSelect(this._recommendedHotArticleFeed, 3)
-          this.recommendedHotArticleFeed = this._recommendedHotArticleFeed.slice(0, 3)
+          recommendArticles = edges.map(item => item.entry)
         }
         else if (this.categoryId && this.tagId === '') {
           let data = await getEntryByPeriod(this.categoryId)
-          this._recommendedHotArticleFeed = data.d.entrylist
-          console.log(this._recommendedHotArticleFeed)
-          // this.recommendedHotArticleFeed = randomSelect(this._recommendedHotArticleFeed, 3)
-          this.recommendedHotArticleFeed = this._recommendedHotArticleFeed.slice(0, 3)
+          recommendArticles = data.d.entrylist
         }
-         this.edges = []
-      }
+        this.recommendedHotArticleFeed = []
+        this.edges = []
+      }      
       for (let item of items.edges) {
         this.edges.push(item.node || item.entry)   
       }
-      
       this.hasNextPage = items.pageInfo.hasNextPage
       this.endCursor = items.pageInfo.endCursor
+      if (recommendArticles) {
+        // this.recommendedHotArticleFeed = randomSelect(this._recommendedHotArticleFeed, 3)
+        this.recommendedHotArticleFeed = recommendArticles.slice(0, 3)
+      }
     },
     async requestData() {
       let { routeType } = this.$route.meta
@@ -177,13 +175,15 @@ export default {
       return result.data.tagNav.items
     },
     async refresh() {
-      this.isRefresh = true
+      this.refreshing = true
       this.endCursor = ''
       await this.query(true)
-      this.isRefresh = false
+      this.refreshing = false
     },
     async loadMore() {
+      this.loading = true
       await this.query()
+      this.loading = false
     },
     assembleQueryData(routeType) {
       const data = {
