@@ -49,7 +49,12 @@ export let homeRoutes = store.get(HOME_ROUTE_KEY, [{
 ])
 
 
-export let defaultPinsRoutes = [{
+export let defaultPinsRoutes = [
+  {
+    path: '/pins/following',
+    title: '关注'
+  },
+  {
     path: '/pins/recommended',
     title: '推荐'
   },{

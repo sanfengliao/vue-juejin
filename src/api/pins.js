@@ -123,3 +123,35 @@ export const getPinById = (id) => {
     }
   }).then(res => res.data)
 }
+
+export const getFollowingUserActivities = (after) => {
+  return request.post(apiUrl.ANDROID_HOME_REQUEST_URL, {
+    variables: {
+      after,
+      feedType: "MAIN"
+    },
+    extensions: {
+      query: {
+        id: "05d2b2b04536aceb593531ec832d6b22"
+      }
+    }
+  }).then(res => res.data)
+}
+
+/**
+ * 
+ * @param {string[]} exclude 
+ */
+export const getRecommendedUser = (exclude=[], limit=8) => {
+  return request.post(apiUrl.ANDROID_HOME_REQUEST_URL, {
+    variables: {
+      excluded: JSON.stringify(exclude),
+      limit,
+    },
+    extensions: {
+      query: {
+        id: "038909ed3577b0925031b01b445819a0"
+      }
+    }
+  }).then(res => res.data)
+}

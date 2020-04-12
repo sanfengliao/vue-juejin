@@ -11,14 +11,14 @@ service.interceptors.request.use(
   config => {
     config.headers['X-Agent'] = 'Juejin/xiaomi/Redmi Note 7 Pro Android/9 Juejin/Android/5.9.3',
     config.headers['X-Juejin-Src'] = 'android'
-    let { token, uid } = store.state
+    // let { token, uid } = store.state
     // config.headers['X-Juejin-Uid'] = state.uid
     // config.headers['X-Juejin-Token'] = state.token
     // config.headers['X-Token'] = state.token
-    // config.headers['X-Legacy-Token'] = state.token
-    // config.headers['X-Legacy-Uid'] = state.uid
-    // config.headers['X-Juejin-Client'] = client_id
-    // config.headers['X-Legacy-Device-Id'] = client_id
+    config.headers['X-Legacy-Token'] = state.token
+    config.headers['X-Legacy-Uid'] = state.uid
+    config.headers['X-Juejin-Client'] = client_id
+    config.headers['X-Legacy-Device-Id'] = device_id
     return config
   }
 )

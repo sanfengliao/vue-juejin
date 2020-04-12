@@ -1,5 +1,5 @@
 <template>
-  <div class="user-con" @scroll="scroll" :style="{overflowY: contentScroll ? 'hidden':'scroll'}">
+  <div class="user-con">
     <header ref="header" class="user-header" :style="{backgroundColor: headerBackgroundColor}">
       <d-header :go-back="goBackAndRemoveKeepAlive">
         <transition name="username-slide">
@@ -10,76 +10,77 @@
         </transition>
       </d-header>
     </header>
-    <div class="mask" ref="mask"></div>
-    <div class="user-info">
-      <div class="avatar" :style="{backgroundImage: `url(${user.avatarLarge || $store.state.defaultAvatar})`}"></div>
-      <div class="info">
-        <div class="info-box">
-          <div class="top">
-            <div class="left">
-              <h1 class="username-con">
-                {{user.username}}
-                <router-link to="/book/m/5c90640c5188252d7941f5bb/section/5c9065385188252da6320022">
-                  <img :src="user.level | levelImage" alt="">
-                </router-link>
-              </h1>
-              <div class="job-info">
-                <span v-if="user.jobTitle">{{user.jobTitle}}</span> 
-                <span v-if="user.jobTitle && user.company"> @ </span>
-                <span v-if="user.company">{{user.company}}</span>
+    <load-scroll @scroll="scroll">
+
+      <div class="mask" ref="mask"></div>
+      <div class="user-info">
+        <div class="avatar" :style="{backgroundImage: `url(${user.avatarLarge || $store.state.defaultAvatar})`}"></div>
+        <div class="info">
+          <div class="info-box">
+            <div class="top">
+              <div class="left">
+                <h1 class="username-con">
+                  {{user.username}}
+                  <router-link to="/book/m/5c90640c5188252d7941f5bb/section/5c9065385188252da6320022">
+                    <img :src="user.level | levelImage" alt="">
+                  </router-link>
+                </h1>
+                <div class="job-info">
+                  <span v-if="user.jobTitle">{{user.jobTitle}}</span> 
+                  <span v-if="user.jobTitle && user.company"> @ </span>
+                  <span v-if="user.company">{{user.company}}</span>
+                </div>
+                <div v-if="user.roles && user.roles.favorableAuthor.isGranted" class="favorable-author">掘金优秀作者</div>
               </div>
-              <div v-if="user.roles && user.roles.favorableAuthor.isGranted" class="favorable-author">掘金优秀作者</div>
+              <div class="right">
+                <div v-if="isMe" class="edit-btn">
+                  编辑
+                </div>
+                <div @click="unfollow" v-else-if="user.isFollowed" class="follow active">
+                  <i class="iconfont icon-dui"></i>
+                  <span class="text">已关注</span>
+                </div>
+                <div @click="follow" v-else class="follow">
+                  <i class="iconfont icon-Add1"></i>
+                  <span class="text">关注</span>
+                </div>
+              </div>
             </div>
-            <div class="right">
-              <div v-if="isMe" class="edit-btn">
-                编辑
+            <div class="bottom">
+              <div class="self-desc">
+                {{user.selfDescription}}
               </div>
-              <div @click="unfollow" v-else-if="user.isFollowed" class="follow active">
-                <i class="iconfont icon-dui"></i>
-                <span class="text">已关注</span>
-              </div>
-              <div @click="follow" v-else class="follow">
-                <i class="iconfont icon-Add1"></i>
-                <span class="text">关注</span>
-              </div>
-            </div>
-          </div>
-          <div class="bottom">
-            <div class="self-desc">
-              {{user.selfDescription}}
-            </div>
-            <div class="stat-items">
-              <div class="stat-item">
-                <div class="number">{{user.followeesCount}}</div>
-                <div class="text">关注</div>
-              </div>
-              <div class="stat-item">
-                <div class="number">{{user.followersCount}}</div>
-                <div class="text">关注者</div>
-              </div>
-              <div class="stat-item">
-                <div class="number">{{user.juejinPower}}</div>
-                <div class="text">掘力值</div>
+              <div class="stat-items">
+                <div class="stat-item">
+                  <div class="number">{{user.followeesCount}}</div>
+                  <div class="text">关注</div>
+                </div>
+                <div class="stat-item">
+                  <div class="number">{{user.followersCount}}</div>
+                  <div class="text">关注者</div>
+                </div>
+                <div class="stat-item">
+                  <div class="number">{{user.juejinPower}}</div>
+                  <div class="text">掘力值</div>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-    <section class="user-section">
-      <div ref="nav" class="nav-tab-con border-bottom-1px">
-        <nav-tab :nav-list="navList" active-title-color="#333" title-color="#666" line-color="#0180ff"></nav-tab>
-      </div>
-      <div ref="content" @scroll="routeScroll" class="main-content" :style="{height: contentHeight + 'px', overflowY: contentScroll? 'scroll' : 'hidden'}">
-        <div ref="router-view">
-        <!-- <router-transition> -->
+      <section class="user-section">
+        <div ref="nav" class="nav-tab-con border-bottom-1px">
+          <div :style="{position: isNavFixed ? 'fixed': 'static'}" class="nav-con">
+            <nav-tab ref="nav-tab" :nav-list="navList" active-title-color="#333" title-color="#666" line-color="#0180ff"></nav-tab>
+          </div>
+        </div>
+        <div ref="content">
           <keep-alive>
             <router-view ref="routerChild"></router-view> 
           </keep-alive>
-        <!-- </router-transition> -->
         </div>
-      </div>
-    </section>
+      </section>
+    </load-scroll>
   </div>
 </template>
 
@@ -99,7 +100,7 @@ export default {
       contentHeight: 0,
       headerBackgroundColor: 'transparent',
       showUser: false,
-      contentScroll: false
+      isNavFixed: false
     }
   },
   components: {
@@ -148,17 +149,12 @@ export default {
     this.init()
   },
   mounted() {
-   
     this.headerHeight = this.$refs['header'].clientHeight
-    this.contentHeight = document.documentElement.clientHeight - this.headerHeight - this.$refs['nav'].clientHeight
     this.contentScrollTop = this.$refs['nav'].offsetTop - this.headerHeight
     this.maskHeight = this.$refs['mask'].clientHeight
     this.$routerView = this.$refs['router-view']
-    
   },
   updated() {
-    this.headerHeight = this.$refs['header'].clientHeight
-    this.contentHeight = document.documentElement.clientHeight - this.headerHeight - this.$refs['nav'].clientHeight
     this.contentScrollTop = this.$refs['nav'].offsetTop - this.headerHeight
   },
   methods: {
@@ -171,17 +167,10 @@ export default {
         this.headerBackgroundColor = 'transparent'
         this.showUser = false
       }
-      if (scrollTop >= this.contentScrollTop - 2 && this.contentHeight < this.$routerView.clientHeight) {
-        this.contentScroll = true
-      }
-    },
-    routeScroll(e) {
-      let { scrollTop } = e.target
-      if (scrollTop <= 1 && this.contentScroll === true) {
-        this.contentScroll = false
-      }
-      if (scrollTop >= this.$routerView.clientHeight - this.contentHeight - 10) {
-        
+      if (scrollTop >= this.contentScrollTop) {
+        this.isNavFixed = true
+      } else {
+        this.isNavFixed = false
       }
     },
     init() {
@@ -230,10 +219,7 @@ export default {
 .username-slide-enter, .username-slide-leave-to
   transform translateY(100%)
 .username-slide-enter-active, .username-slide-leave-to-active
-  transition transform .5s
-.user-con, .main-content
-  &::-webkit-scrollbar
-    display none
+  transition transform .5s  
 .user-header
   position fixed
   width 100%
@@ -314,11 +300,12 @@ export default {
           color $gray-text-color
 .user-section
   .nav-tab-con
-    background #fff
     height 80rem
-    .nav-item
-      color #333 !important
-    .nav-tab
-        .bottom-line
-          color red
+    width 100%
+    .nav-con
+      width 100%
+      height 80rem
+      z-index 10
+      top 105rem
+      background #fff
 </style>

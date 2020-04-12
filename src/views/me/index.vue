@@ -119,7 +119,7 @@ export default {
   },
   computed: {
     ...mapState({
-      token: state => state.token,
+      isLogin: state => state.isLogin,
       uid: state => state.uid
     })
   },
@@ -128,7 +128,7 @@ export default {
   },
   methods: {
     goUserInfo() {
-      if (this.token) {
+      if (this.isLogin) {
         this.$router.push(`/user/${this.uid}`)
       } else {
         this.$router.push({
@@ -140,7 +140,7 @@ export default {
       }
     },
     goCollectionSet() {
-      if (this.token) {
+      if (this.isLogin) {
         this.$router.push(`/user/${this.uid}/collections`)
       } else {
         this.$router.push({
@@ -152,7 +152,7 @@ export default {
       }
     },
     async init() {
-      if (this.token) {
+      if (this.isLogin) {
         let data = await getUserInfo()
         this.user = data.d
       } else {
@@ -161,7 +161,7 @@ export default {
     }
   },
   watch: {
-    token() {
+    isLogin() {
       this.init()
     }
   }

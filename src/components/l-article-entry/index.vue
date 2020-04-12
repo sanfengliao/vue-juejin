@@ -73,6 +73,7 @@ export default {
         font-size 34rem
         display inline
         color #17181a
+        white-space normal
     
     .art-content
       display flex
@@ -82,6 +83,7 @@ export default {
         font-size 30rem
         color $article-content-color
         line-height 1.5
+        white-space normal
         overflow hidden
         text-overflow ellipsis
         display -webkit-box

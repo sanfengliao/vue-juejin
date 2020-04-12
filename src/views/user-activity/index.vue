@@ -105,14 +105,22 @@ export default {
     async init() {
       this.after = ''
       this.userId = this.$route.params.id
+      this.loadFinish = false
       this.getUserActivity()
     },
     async getUserActivity() {
-      let data = await getUserActivity(this.userId, this.after)
-      for (let item of data.data.ownActivityFeed.items.userActivities) {
-        this.activies.push(item.userActivity) 
+      if (!this.loadFinish) {
+        let data = await getUserActivity(this.userId, this.after)
+        let { userActivities } = data.data.ownActivityFeed.items
+        if (userActivities.length !== 0) {
+          for (let item of userActivities) {
+            this.activies.push(item.userActivity) 
+          }
+        } else {
+          this.loadFinish = true
+        }
       }
-      console.log(this.activies)
+      return this.loadFinish
     }
   }
 }

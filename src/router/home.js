@@ -1,4 +1,5 @@
 import HomeArticleList from '../views/home-article-list'
+import HomeFollowing from '../views/home-following'
 import { homeRoutes as _homeRoutes, routeTypes} from '../common/config'
 const routeMap = {
   '/home/backend': {
@@ -109,7 +110,8 @@ const routeMap = {
 
 export const homeRoutes = [{
   name: '关注',
-  path: '/home/following'
+  path: '/home/following',
+  component: HomeFollowing
 },
   {
     props: {

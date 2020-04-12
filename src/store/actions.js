@@ -1,7 +1,7 @@
 import * as types from './mutation-types'
 
 import store from '../common/store'
-import { HOME_ROUTE_KEY, PIN_ROUTE_KEY, TOKEN_KEY, UID_KEY } from '../common/const'
+import { HOME_ROUTE_KEY, PIN_ROUTE_KEY, TOKEN_KEY, UID_KEY, IS_LOGIN_KEY } from '../common/const'
 import { login } from '../api/auth'
 
 import Message from '../components/message'
@@ -33,15 +33,13 @@ export const userLogin = async ({ commit },{username, password, loginType}) => {
   commit(types.SET_IS_LOGIN, true)
   localStorage.setItem(TOKEN_KEY, token)
   localStorage.setItem(UID_KEY, user_id)
+  localStorage.setItem(IS_LOGIN_KEY, true)
   return true
 }
 
 export const userLogout = ({ commit }) => {
-  commit(types.SET_TOKEN, '')
-  commit(types.SET_UID, '')
   commit(types.SET_IS_LOGIN, false)
-  localStorage.removeItem(TOKEN_KEY)
-  localStorage.removeItem(UID_KEY)
+  localStorage.setItem(IS_LOGIN_KEY, false)
 }
 
 export const addKeepAlive = ({commit,state}, componentName) => {

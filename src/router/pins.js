@@ -1,7 +1,12 @@
 import PinsEntryList from '../views/pins-entry-list'
+import PinFollowing from '../views/pin-following'
 import { pinsRouteType } from '../common/config'
 
 export const pinsRoutes = [{
+  name: 'pins-following',
+  path: '/pins/following',
+  component: PinFollowing
+},{
   name: 'pins-recommended',
   path: '/pins/recommended',
   component: PinsEntryList,

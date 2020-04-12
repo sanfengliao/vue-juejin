@@ -7,9 +7,6 @@ body {
   background: #fff;
 }
 
-* {
-  background: inherit;
-}
 
 .slide-enter, .slide-leave-to{
 

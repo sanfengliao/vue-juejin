@@ -48,6 +48,6 @@ html,body,#app
   height 100%
   background $gray-color
   overflow hidden
-// .router
-//   background $gray-color
+.router
+  background $gray-color
 </style>

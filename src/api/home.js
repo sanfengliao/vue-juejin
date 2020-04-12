@@ -103,7 +103,7 @@ export const getEntryByTimeline = (category, tags=[], after='', limit=20) => {
  * @param {number} limit 
  * @param {string} period 
  */
-export const getEntryByPeriod = (category, limit=20, period='3day') => {
+export const getEntryByPeriod = (category, before='', limit=20, period='3day') => {
   return request({
     method: 'get',
     url: '/timeline-merger/v1/get_entry_by_period',
@@ -111,6 +111,7 @@ export const getEntryByPeriod = (category, limit=20, period='3day') => {
       category,
       limit,
       period,
+      before,
       token: state.token,
       uid: state.uid,
       ...commonParams
@@ -118,4 +119,38 @@ export const getEntryByPeriod = (category, limit=20, period='3day') => {
   }).then(res => {
       return res.data
   })
+}
+
+
+export const getFollowingUserArticle = (after) => {
+  return request.post(apiUrl.ANDROID_HOME_REQUEST_URL, {
+    variables: {
+      after,
+      feedType: "ARTICLE",
+      afterPosition: "5e8fba2cef23ab3a04e4ee2b"
+    },
+    extensions: {
+      query: {
+        id: "05d2b2b04536aceb593531ec832d6b22"
+      }
+    },
+    
+  }).then(res => res.data)
+}
+
+/**
+ * 
+ * @param {string[]} exclude 
+ */
+export const getRecommendedUser = (exclude=[]) => {
+  return request.post(apiUrl.ANDROID_HOME_REQUEST_URL, {
+    variables: {
+      excluded: []
+    },
+    extensions: {
+      query: {
+        id: "dc4406d13ccf186ca585b47f14e902b4"
+      }
+    }
+  }).then(res => res.data)
 }

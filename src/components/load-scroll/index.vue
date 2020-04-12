@@ -68,6 +68,8 @@ export default {
 .load-scroll
   height 100%
   overflow scroll
+  &::-webkit-scrollbar
+    display none
   .loading-con
     display flex
     justify-content center
