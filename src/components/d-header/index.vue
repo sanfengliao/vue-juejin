@@ -72,7 +72,6 @@
     align-items center
     flex 0 0 35rem
     height 100%
-    margin-left 30rem
   .iconfont
       border-radius 50%
       padding: 15rem

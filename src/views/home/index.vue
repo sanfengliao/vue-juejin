@@ -71,8 +71,8 @@ export default {
   },
   methods: {
     handleFocus(e) {
-      // e.target.blur()
-      // this.$router.push('/search')
+      e.target.blur()
+      this.$router.push('/search')
     },
     goSpecialEdit() {
       this.$router.push({

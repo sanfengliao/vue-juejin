@@ -46,9 +46,11 @@ export default {
 
 <style lang="stylus" scoped>
 .author-con
+  padding 20rem
   display flex
   width 100%
   align-items center
+  background #fff
   .avatar-con
     margin-right 20rem
   .avatar

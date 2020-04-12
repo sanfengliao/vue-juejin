@@ -34,6 +34,8 @@ import UserShare from '../views/user-share'
 import UserMore from '../views/user-more'
 import UserLike from '../views/user-like'
 import UserTag from '../views/user-tag'
+import Search from '../views/search'
+import SearchResult from '../views/search-result'
 
 import { ROUTE_INDEX } from '../common/const'
 
@@ -240,6 +242,15 @@ const router = new VueRouter({
     meta: {
       [ROUTE_INDEX]: 120
     }
+  },{
+    name: 'search',
+    path: '/search',
+    component: Search,
+    redirect: '/search/all',
+    children:[{
+      path: ':type',
+      component: SearchResult
+    }]
   },
   {
     path: '/',

@@ -1,7 +1,7 @@
 <template>
   <div class="sousou-con">
     <header class="sousou-header con">
-      <search-box></search-box>
+      <search-box @focus="handleFocus"></search-box>
     </header>
     <section class="sousou-section">
       <load-scroll :load-more="loadMore" :load-finish="loadFinish" :is-loading="isLoading">
@@ -50,7 +50,7 @@
             </div>
             <div class="hot-articles-con">
               <ul class="hot-article-list">
-                <li class="hot-aritcle-item con border-bottom-1px" v-for="item in hotArticles" :key="item.objectId">
+                <li class="hot-aritcle-item con border-bottom-1px" v-for="(item, i) in hotArticles" :key="i">
                   <router-link :to="`/post/${item.objectId}`">
                     <s-article-entry :article="item"></s-article-entry>
                   </router-link>
@@ -92,6 +92,10 @@ export default {
       this.getBanner()
       this.getEntryByRank()
     },
+    handleFocus(e) {
+      e.target.blur()
+      this.$router.push('/search')
+    },
     async getBanner() {
       let data = await getEventBanner()
       for (let item of data.data.advertisementCard.items) {
@@ -110,7 +114,10 @@ export default {
       this.before = this.hotArticles[this.hotArticles.length - 1].rankIndex
     },
     async loadMore() {
-      await this.getEntryByRank()
+      if (!this.isLoading) {
+        
+        await this.getEntryByRank()
+      }
     },
   }
 }

@@ -11,13 +11,13 @@ const state = store.state
  */
 export const getEventBanner = () => {
   return request.post(apiUrl.ANDROID_HOME_REQUEST_URL, {
-    "variables": {
-      "platformCode": 2,
-      "positionCodes": [4]
+    variables: {
+      platformCode: 2,
+      positionCodes: [4]
     },
-    "extensions": {
-      "query": {
-        "id": "1623ab25980fadf6bae12e10fc0af1e8"
+    extensions: {
+      query: {
+        id: "1623ab25980fadf6bae12e10fc0af1e8"
       }
     }
   }).then(res => res.data)
@@ -35,9 +35,31 @@ export const getEntryByRank = (before) => {
     params: {
       before,
       limit: 30,
+      src: commonParams.src,
       token: state.token,
       uid: state.uid,
       ...commonParams
+    }
+  }).then(res => res.data)
+}
+
+/**
+ * 
+ * @param {string} query 
+ * @param {string} type 
+ * @param {string} after 
+ */
+export const search = (query, type, after='') => {
+  return request.post(apiUrl.ANDROID_HOME_REQUEST_URL, {
+    variables: {
+      after,
+      type: type.toUpperCase(),
+      query
+    },
+    extensions: {
+      query: {
+        id: "caee4ea8b64f5860b8867564230e905f"
+      }
     }
   }).then(res => res.data)
 }

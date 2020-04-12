@@ -60,3 +60,7 @@ export const removeKeepAlive = ({commit, state}, componentName) => {
     commit(types.SET_KEEP_ALIVE_ARR, keepAliveArr)
   }
 }
+
+export const setQuery = ({ commit }, query) => {
+  commit(types.SET_QUERY, query)
+}

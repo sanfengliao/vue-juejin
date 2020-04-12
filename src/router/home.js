@@ -108,6 +108,10 @@ const routeMap = {
 }
 
 export const homeRoutes = [{
+  name: '关注',
+  path: '/home/following'
+},
+  {
     props: {
       queryId: 'f948b4528c56f0d2ceaff0be67b0809d'
     },

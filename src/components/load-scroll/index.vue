@@ -48,7 +48,7 @@ export default {
       if (scrollTop >= this.$content.clientHeight - this.containerHeight - 20) {
         this.$emit('scrollEnd', e)
         if (!this.loadFinish) {
-          if (this.loadMore) {
+          if (this.loadMore && !this.isLoading && !this.loading) {
             this.loading = true
             let result = this.loadMore()
             if (result instanceof Promise) {

@@ -8,7 +8,8 @@ const state = {
   token: localStorage.getItem(TOKEN_KEY) || '',
   uid: localStorage.getItem(UID_KEY) || '',
   isLogin: !!localStorage.getItem(TOKEN_KEY),
-  keepAliveArr: ['layout']
+  keepAliveArr: ['layout'],
+  query: ''
 }
 
 export default state

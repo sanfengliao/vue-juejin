@@ -2,6 +2,9 @@ import store from './store'
 import { HOME_ROUTE_KEY, PIN_ROUTE_KEY } from './const'
 
 export let defaultHomeRoutes = [{
+    path: '/home/following',
+    title: '关注'
+  },{
     path: '/home/recommended',
     title: '推荐',
   },{

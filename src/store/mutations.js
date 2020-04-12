@@ -20,6 +20,9 @@ const mutations = {
   },
   [types.SET_KEEP_ALIVE_ARR](state, arr) {
     state.keepAliveArr = arr
+  },
+  [types.SET_QUERY](state, query) {
+    state.query = query
   }
 }
 

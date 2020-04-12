@@ -1,5 +1,5 @@
 <template>
-  <div class="nav-tab" ref="nav-tab">
+  <div  class="nav-tab" ref="nav-tab">
     <div class="nav-content">
       <ul class="nav-list">
         <li @click="handleClick(i, $event)" ref="nav-item" class="nav-item" v-for="(item, i) in navList" :key="item.path.path || item.path">
@@ -27,20 +27,27 @@ export default {
   },
   mounted() {
     this.init()
+    // let dom = this.$refs['nav-tab']
+    // let observer = new MutationObserver(() => {
+    //   console.log('change')
+    // })
+    // observer.observe(dom, {attributes: true})
+  },
+  updated() {
+    
   },
   methods: {
     getTitleColor(path) {
       return path === this.$route.path ? this.activeTitleColor : this.titleColor
     },
     handleClick(i, e) {
-     this.lineLeft = this.arr[i].left
-     this.lineWidth = this.arr[i].width
+      this.lineLeft = this.arr[i].left || e.currentTarget.offsetLeft
+      this.lineWidth = this.arr[i].width || e.currentTarget.clientWidth
     },
     initArr() {
       let items = this.$refs["nav-item"]
       let arr = []
       let left = items[0].offsetLeft
-      console.log(left)
       for (let i = 0; i < items.length; i++) {
         let item = items[i]
         if (arr.length === 0) {
@@ -112,6 +119,7 @@ export default {
       align-items center
       white-space: nowrap
       height 100%
+      min-height 75rem
       .nav-item
         padding 0 40rem
         font-size 30rem
