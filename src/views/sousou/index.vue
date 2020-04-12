@@ -4,7 +4,7 @@
       <search-box @focus="handleFocus"></search-box>
     </header>
     <section class="sousou-section">
-      <load-scroll :load-more="loadMore" :load-finish="loadFinish" :is-loading="isLoading">
+      <load-scroll @load="loadMore" :finished="loadFinish" :is-loading="isLoading">
         <div class="sousou-content">
           <div class="activity-con">
             <div v-if="banner.length>0" class="banner-con">

@@ -1,6 +1,6 @@
 <template>
   <div class="book-entry-list-con">
-    <scroll :on-pulling-down="refresh" :refreshing="refreshing" :on-pulling-up="loadMore" :loading="loading">
+    <scroll @refresh="refresh" :refreshing="refreshing" @load="loadMore" :loading="loading">
       <div class="book-entry-list">
         <ul class="book-list">
           <li class="book-item border-bottom-1px" v-for="item in books" :key="item.id">

@@ -15,7 +15,7 @@
       </d-header>
     </header>
     <section class="pin-section">
-      <load-scroll @scroll="scroll" :load-more="loadMore" :load-finish="loadFinish" :is-loading="isLoading">
+      <load-scroll @scroll="scroll" @load="loadMore" :finished="loadFinish" :is-loading="isLoading">
         <div class="main-con">
           <section class="pin-content-con con">
             <div class="pin-author-con">

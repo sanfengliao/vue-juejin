@@ -21,7 +21,7 @@
             </scroll>
           </swiper-slide>
           <swiper-slide>
-            <scroll :on-pulling-up="loadMore" :loading="loading" :options="{bounce:{top: false}}">
+            <scroll @load="loadMore" :loading="loading" :options="{bounce:{top: false}}">
               <div class="all-tags">
                 <div class="recommend-tags">
                   <div class="title">推荐标签</div>

@@ -1,6 +1,6 @@
 <template>
   <div class="pin-entry-list">
-    <scroll :on-pulling-up="loadMore" :on-pulling-down="refresh" :refreshing="refreshing" :loading="loading">
+    <scroll @load="loadMore" @refresh="refresh" :refreshing="refreshing" :loading="loading">
       <div class="pins-con">
         <div v-if="recommendPins.length>0" class="recommend-pins-con">
           <swiper :options="swiperOptions">

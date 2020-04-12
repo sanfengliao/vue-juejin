@@ -15,7 +15,7 @@
         </div>
       </d-header>
     </header>
-    <load-scroll @scroll="postScroll" :load-more="loadMore" :load-finish="loadFinish" :is-loading="isLoading">
+    <load-scroll @scroll="postScroll" @load="loadMore" :finished="loadFinish" :is-loading="isLoading">
       <div>
         <section class="article">
           <div v-if="entry" class="summary">
@@ -136,9 +136,7 @@ export default {
         let data = await getComments(this.postId, createdAt)
         if(data.d.comments.length === 0) {
           this.loadFinish = true
-          setTimeout(() => {
-            this.isLoading = false
-          }, 500)
+          this.isLoading = false
           return 
         }
         data.d.comments.forEach(item => {

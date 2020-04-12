@@ -17,7 +17,7 @@
       </div>
     </div>
 
-    <scroll :on-pulling-up="loadMore" :refreshing="refreshing" :on-pulling-down="refresh" :loading="loading">
+    <scroll @load="loadMore" :refreshing="refreshing" @refresh="refresh" :loading="loading">
       <div class="article-con">
         <div v-if="recommendedHotArticleFeed.length>0" class="recommended-article-con">
           <div class="recommended-article-header border-bottom-1px con">

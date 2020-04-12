@@ -3,10 +3,10 @@
     <div class="content" ref="content">
       <slot></slot>
     </div>
-    <div v-if="loading || isLoading" class="loading-con">
-      <span v-if="loadFinish">没有更多了</span>
-      <loading v-else size="80rem"></loading>
+    <div v-if="loading" class="text-con">
+      <loading size="80rem"></loading>
     </div>
+    <div v-if="showText" class="text-con">没有更多了</div>
   </div>
 </template>
 
@@ -14,11 +14,11 @@
 import Loading from '../loading'
 export default {
   props: {
-    isLoading: {
+    loading: {
       type: Boolean,
       default: false
     },
-    loadFinish: {
+    finished: {
       type: Boolean,
       default: true
     },
@@ -26,7 +26,7 @@ export default {
   },
   data() {
     return {
-      loading: this.isLoading
+      showText: false
     }
   },
   components: {
@@ -47,17 +47,19 @@ export default {
       let { scrollTop } = e.target
       if (scrollTop >= this.$content.clientHeight - this.containerHeight - 20) {
         this.$emit('scrollEnd', e)
-        if (!this.loadFinish) {
-          if (this.loadMore && !this.isLoading && !this.loading) {
-            this.loading = true
-            let result = this.loadMore()
-            if (result instanceof Promise) {
-              result.then(() => this.loading = false)
-            } else {
-              this.loading = false
-            }
-          }
+        if (!this.finished && !this.loading) {
+          this.$emit('load')
         }
+      }
+    }
+  },
+  watch: {
+    finished() {
+      if (this.finished) {
+        this.showText = true
+        setTimeout(() => {
+          this.showText = false
+        }, 800)
       }
     }
   }
@@ -70,7 +72,7 @@ export default {
   overflow scroll
   &::-webkit-scrollbar
     display none
-  .loading-con
+  .text-con
     display flex
     justify-content center
     align-items center

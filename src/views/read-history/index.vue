@@ -4,7 +4,7 @@
       <s-header :go-back="goBackAndRemoveKeepAlive" title="阅读过的文章"/>
     </header>
     <section class="read-history-section">
-      <scroll :refreshing="refreshing" :loading="loading" :on-pulling-up="loadMore" :on-pulling-down="refresh" :load-finish="loadFinish">
+      <scroll :refreshing="refreshing" :loading="loading" @load="loadMore" @refresh="refresh" :finished="loadFinish">
         <div class="article-list-con">
           <ul class="article-list">
             <li class="article-item" v-for="item in articleList" :key="item.objectId">

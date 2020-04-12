@@ -19,9 +19,6 @@ import Refresh from '../refresh'
 import BScroll from 'better-scroll'
 export default {
   props: {
-    data: {
-      type: [Object, String, Array]
-    },
     click: {
       type: Boolean,
       default: true
@@ -38,24 +35,25 @@ export default {
       type: Boolean,
       default: false
     },
-    loadFinish: {
+    finished: {
       type: Boolean,
       default: false
     },
-    onPullingUp: Function,
-    onPullingDown: Function,
-    onScroll: Function,
     scrollX: {
       type: Boolean,
       default: false
     },
+    pullUpload:{
+      type: Boolean,
+      default: true,
+    },
+    pullDownRefresh: {
+      type: Boolean,
+      default: true,
+    },
     scrollY: {
       type: Boolean,
       default: true
-    },
-    stopPropagation: {
-      type: Boolean,
-      default: false
     },
     options: {
       type: Object,
@@ -78,53 +76,47 @@ export default {
     })
   },
   beforeDestroy() {
-    if (this.onScroll) {
+    if (this.scroll) {
       this.scroll.off('scroll')
     }
   },
   methods: {
     initBScroll() {
-      const { scrollX, scrollY, click, probeType, stopPropagation, options, onPullingUp, onPullingDown } = this
-      let pullUpload = !!onPullingUp
-      let pullDownRefresh = !!onPullingDown
+      const { scrollX, scrollY, click, probeType, options, pullUpload, pullDownRefresh } = this
       this.scroll = new BScroll(
         this.$refs['scroll-con'],
         {
-          pullUpload,
-          pullDownRefresh,
-          ...options,
           scrollX,
           scrollY,
           click,
           probeType,
-          stopPropagation
+          pullUpload,
+          pullDownRefresh,
+          ...options,
         }
       )
-      if (onPullingUp) {
-        this.scroll.on('pullingUp',  () => {
-          if (!this.loading && !this.loadFinish) {
-            onPullingUp()
-          }
-        })
-      }
-      if (onPullingDown) {
-        this.scroll.on('pullingDown',  () => {
-          if (!this.refreshing) {
-            onPullingDown() 
-          }
-        })
-      }
-      // if (this.onScroll) {
-        this.scroll.on('scroll', (pos) => {
-          this.$emit('scroll', pos)
-        })
-      // }
+     
+      this.scroll.on('pullingUp',  () => {
+        if (!this.loading && !this.finished) {
+          this.$emit('load')
+        }
+      })
+      
+      
+      this.scroll.on('pullingDown',  () => {
+        if (!this.refreshing) {
+          this.$emit('refresh') 
+        }
+      })
+      
+    
+      this.scroll.on('scroll', (pos) => {
+        this.$emit('scroll', pos)
+      })
+      
     },
     refresh() {
       this.scroll && this.scroll.refresh()
-    },
-    isPromise(x) {
-      return x instanceof Promise || (typeof x === 'object' && typeof x.then === 'function')
     }
   },
 }
