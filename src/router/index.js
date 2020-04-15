@@ -36,15 +36,17 @@ import Collection from '../views/collection'
 import Search from '../views/search'
 import SearchResult from '../views/search-result'
 import RecommendationAuthor from '../views/recommendation-author'
-import AuthorList from '../views/author-list'
+import RecommendedAuthorList from '../views/recommendation-author/pages/recommend-author-list'
 import Topic from '../views/topic'
 import TopicAttender from '../views/topic-attender'
+import Topics from '../views/topics'
 
 import { ROUTE_INDEX } from '../common/const'
 
 import { homeRoutes } from './home'
 import { pinsRoutes } from './pins'
 import { userRoutes } from './user'
+import { topicRoutes } from './topic'
 
 VueRouter.prototype.goBack = function() {
   this.isBack = true
@@ -66,6 +68,10 @@ const router = new VueRouter({
       isFirstLevel: true
     },
   }, {
+    name: 'topics',
+    path: '/topics',
+    component: Topics
+  },{
     name: 'post',
     path: '/post/:id',
     component: Post,
@@ -221,7 +227,7 @@ const router = new VueRouter({
     children: [{
       name: 'author-channel',
       path: ':channel',
-      component: AuthorList
+      component: RecommendedAuthorList
     }]
   },{
     name: 'topic-attender',
@@ -232,10 +238,7 @@ const router = new VueRouter({
     path: '/topic/:id',
     component: Topic,
     redirect: '/topic/:id/rank',
-    children: [{
-      name: 'topic-pin-list',
-      path: ':type',
-    }]
+    children: topicRoutes
   },
   {
     path: '/',

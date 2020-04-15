@@ -3,10 +3,12 @@
     <div class="content" ref="content">
       <slot></slot>
     </div>
-    <div v-if="loading" class="text-con">
-      <loading size="80rem"></loading>
+    <div v-if="showLoadingCon" ref="loading-con" class="loading-con">
+      <div v-if="loading" class="text-con">
+        <loading size="80rem"></loading>
+      </div>
+      <div v-if="showText" class="text-con">没有更多了</div>
     </div>
-    <div v-if="showText" class="text-con">没有更多了</div>
   </div>
 </template>
 
@@ -20,13 +22,14 @@ export default {
     },
     finished: {
       type: Boolean,
-      default: true
+      default: false
     },
     loadMore: Function
   },
   data() {
     return {
-      showText: false
+      showText: false,
+      showLoadingCon: true
     }
   },
   components: {
@@ -35,6 +38,7 @@ export default {
   mounted() {
     this.$container = this.$refs['container']
     this.containerHeight = this.$container.clientHeight
+    this.loadingConHeight = this.$refs['loading-con'].clientHeight
     this.$content = this.$refs['content']
     this.$container.addEventListener('scroll', this.scroll)
   },
@@ -45,7 +49,7 @@ export default {
     scroll(e) {
       this.$emit('scroll', e)
       let { scrollTop } = e.target
-      if (scrollTop >= this.$content.clientHeight - this.containerHeight - 20) {
+      if (scrollTop >= this.$content.clientHeight - this.containerHeight - this.loadingConHeight) {
         this.$emit('scrollEnd', e)
         if (!this.finished && !this.loading) {
           this.$emit('load')
@@ -59,7 +63,8 @@ export default {
         this.showText = true
         setTimeout(() => {
           this.showText = false
-        }, 800)
+          this.showLoadingCon = false
+        }, 1000)
       }
     }
   }
@@ -72,12 +77,14 @@ export default {
   overflow scroll
   &::-webkit-scrollbar
     display none
-  .text-con
-    display flex
-    justify-content center
-    align-items center
+  .loading-con
     height 100rem
-    background-color #fff
-    font-size 25rem
-    color #666
+    .text-con
+      display flex
+      justify-content center
+      align-items center
+      height 100rem
+      background-color #fff
+      font-size 25rem
+      color #666
 </style>

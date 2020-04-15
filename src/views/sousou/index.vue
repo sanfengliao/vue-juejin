@@ -10,7 +10,7 @@
             <div v-if="banner.length>0" class="banner-con">
               <swiper :options="{loop:true, autoplay: true}">
                 <swiper-slide v-for="item in banner" :key="item.id">
-                  <a class="banner-item" :href="item.url" :style="{backgroundImage: `url(${item.imageUrl})`}" ></a>
+                  <a class="banner-item" :href="item.url" target="_blank" :style="{backgroundImage: `url(${item.imageUrl})`}" ></a>
                 </swiper-slide>
               </swiper>
             </div>

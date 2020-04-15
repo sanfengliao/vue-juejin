@@ -2,9 +2,11 @@
   <div ref="scroll-con" class="scroll-wrapper">
     <div :style="{display: scrollX ? 'inline-flex' : 'block'}" class="scroll-content">
       <slot></slot>
-      <div v-show="loading && !finished" class="loading-con">
-        <loading size="80rem"></loading>
-      </div>
+      <!-- <div v-if="!finished" class="loading-container"> -->
+        <div v-show="loading" class="loading-con">
+          <loading size="80rem"></loading>
+        </div>
+      <!-- </div> -->
     </div>
     <div v-show="refreshing"  class="refresh-con">
       <refresh size="80rem"></refresh>
@@ -101,13 +103,9 @@ export default {
           scrollY,
           click,
           probeType,
-          pullUpload,
-          pullDownRefresh,
           ...options,
         }
       )
-      console.log(this.scroll)
-     
       this.scroll.on('pullingUp',  () => {
         if (!this.loading && !this.finished) {
           this.$emit('load')
@@ -124,8 +122,19 @@ export default {
     
       this.scroll.on('scroll', (pos) => {
         this.$emit('scroll', pos)
+        
       })
+      this.scroll.on('touchEnd', (pos) => {
+        if (pos.y > 50 && !this.refreshing) {
+          this.$emit('refresh')
+        }
       
+      })
+      this.scroll.on('scrollEnd', pos => {
+        if (pos.y <= this.scroll.maxScrollY - 50 && !this.loading) {
+          this.$emit('load')
+        }
+      })
     },
     refresh() {
       this.scroll && this.scroll.refresh()
@@ -141,6 +150,8 @@ export default {
   height 100%
   overflow hidden
   white-space nowrap
+  .loading-container
+    min-height 100rem
   .loading-con
     width 100%
     display flex

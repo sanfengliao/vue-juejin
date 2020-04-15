@@ -41,8 +41,7 @@ export default {
       swiperOptions: {
         slidesPerView: 1.1,
         centeredSlides: true,
-        spaceBetween: 10,
-        loop: true
+        spaceBetween: 10
       },
       loading: false
     }
@@ -93,7 +92,6 @@ export default {
       for(let item of data) {
         this.pins.push(item)
       }
-      console.log(this.pins)
     },
     async getRecommendedFeed() {
       let data = await getRecommendedFeed(this.after)

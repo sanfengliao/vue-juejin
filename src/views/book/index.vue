@@ -2,7 +2,7 @@
   <div class="book-con">
     <div class="book-content">
       <header class="book-header">
-        <d-header :title="book.title || '掘金'"></d-header>
+        <d-header :go-back="goBackAndRemoveKeepAlive" :title="book.title || '掘金'"></d-header>
       </header>
       <section class="book-section">
         <div class="book-info border-bottom-1px">
@@ -67,7 +67,10 @@
 import DHeader from '../../components/d-header'
 import BSection from '../../components/b-section'
 import { getBookDetail, getListBuy, getBookSections } from '../../api/book'
+import { keepAliveMixin } from '../../mixins/index'
 export default {
+  name: 'book',
+  mixins: [keepAliveMixin],
   data() {
     return {
       bookId: '',

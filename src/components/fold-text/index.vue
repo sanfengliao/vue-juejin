@@ -14,7 +14,7 @@ export default {
 
 <style lang="stylus" scoped>
 .fold-text
-  display: -webkit-box
+  // display: -webkit-box
   white-space pre-line  
   word-wrap break-word
   overflow hidden

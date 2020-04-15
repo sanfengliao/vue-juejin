@@ -6,8 +6,10 @@
             <search-box @focus="handleFocus" />
           </div>
           <div class="tag-setting-con">
-            <i class="iconfont icon-shezhi"></i>
-            <span>标签</span>
+            <router-link to="/tag-manage">
+              <i class="iconfont icon-shezhi"></i>
+              <span>标签</span>
+            </router-link>
           </div>
         </div>
         <div class="header-bottom">

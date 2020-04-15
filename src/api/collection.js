@@ -71,7 +71,7 @@ export const getCollectionSetEntries = (csId, page, rankType='new') => {
 
 export const followCollection = (csId) => {
   return request({
-    method: 'GET',
+    method: 'PUT',
     url: '/collection-set/v1/follow',
     params: {
       csId,
@@ -85,7 +85,7 @@ export const followCollection = (csId) => {
 
 export const unFollowCollection = (csId) => {
   return request({
-    method: 'GET',
+    method: 'PUT',
     url: '/collection-set/v1/unfollow',
     params: {
       csId,

@@ -15,9 +15,9 @@
 </template>
 
 <script>
-import Scroll from '../../components/scroll'
-import MAuthor from '../../components/m-author'
-import { getRecommendedAuthorByChannel, followUser, unFollowUser } from '../../api/user'
+import Scroll from '@/components/scroll'
+import MAuthor from '@/components/m-author'
+import { getRecommendedAuthorByChannel, followUser, unFollowUser } from '@/api/user'
 export default {
   data() {
     return {

@@ -14,7 +14,7 @@
       <link-view :url="pin.url" :url-title="pin.urlTitle" :url-pic="pin.urlPic"></link-view>
     </div>
     <div v-if="pin.topic" class="topic-con">
-      <router-link :to="`/topic/${pin.topic.id}`" class="topic">
+      <router-link :to="`/topic/${pin.topic.id || pin.topic.objectId}`" class="topic">
         {{pin.topic.title}}
       </router-link>
     </div>

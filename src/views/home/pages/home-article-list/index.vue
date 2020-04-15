@@ -136,7 +136,7 @@ export default {
         }
         this.recommendedHotArticleFeed = []
         this.edges = []
-      }      
+      }
       for (let item of items.edges) {
         this.edges.push(item.node || item.entry)   
       }

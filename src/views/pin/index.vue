@@ -80,7 +80,7 @@ export default {
       pin: {},
       comments: [],
       recommendPins: [],
-      loadFinish: true,
+      loadFinish: false,
       isLoading: false,
       swiperOptions: {
         slidesPerView: 1.1,
@@ -105,7 +105,7 @@ export default {
   methods: {
     init() {
       let { id } = this.$route.params
-      this.page = 0
+      this.page = 1
       this.getPinById(id)
       this.getPinComments(id)
     },
@@ -125,10 +125,14 @@ export default {
     },
     async getPinComments(id) {
       let data = await getPinComments(id, this.page)
-      for (let item of data.d.comments) {
+      let { comments } = data.d
+      if (comments.length === 0) {
+        this.loadFinish = true
+      }
+      for (let item of comments) {
         this.comments.push(item)
       }
-      console.log(this.comments)
+      this.page++
     },
     async getTopicList(id) {
       let data = await getTopicList(id, 2, 6)
