@@ -26,7 +26,7 @@ const backgroundImages = [
   'https://b-gold-cdn.xitu.io/v3/static/img/lv-2.f597b88.svg',
   'https://b-gold-cdn.xitu.io/v3/static/img/lv-3.e108c68.svg',
   'https://b-gold-cdn.xitu.io/v3/static/img/lv-4.2c3fafd.svg',
-  '',
+  'https://b-gold-cdn.xitu.io/v3/static/img/lv-5.f8d5198.svg',
   'https://b-gold-cdn.xitu.io/v3/static/img/lv-6.74bd93a.svg'
 ]
 

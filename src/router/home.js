@@ -1,6 +1,7 @@
-import HomeArticleList from '../views/home-article-list'
-import HomeFollowing from '../views/home-following'
+import HomeArticleList from '../views/home/pages/home-article-list'
+import HomeFollowing from '../views/home/pages/home-following'
 import { homeRoutes as _homeRoutes, routeTypes} from '../common/config'
+
 const routeMap = {
   '/home/backend': {
     props: {
@@ -108,11 +109,12 @@ const routeMap = {
   }
 }
 
-export const homeRoutes = [{
-  name: '关注',
-  path: '/home/following',
-  component: HomeFollowing
-},
+export const homeRoutes = [
+  {
+    name: '关注',
+    path: '/home/following',
+    component: HomeFollowing
+  },
   {
     props: {
       queryId: 'f948b4528c56f0d2ceaff0be67b0809d'

@@ -6,7 +6,7 @@
       <div class="title">
         {{title}}
       </div>
-      <div class="btn">
+      <div @click="goLogin" class="btn">
         登录/注册
       </div>
   </div>
@@ -18,6 +18,16 @@ export default {
     title: {
       type: String,
       default: '关注的人发布的文章会出现在这里'
+    }
+  },
+  methods: {
+    goLogin() {
+      this.$router.push({
+        path: '/login',
+        query: {
+          from : this.$route.path
+        }
+      })
     }
   }
 }

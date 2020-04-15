@@ -52,13 +52,13 @@
 </template>
 
 <script>
-import { query, queryTag, getEntryByPeriod } from '../../api/home'
-import MArticleEntry from '../../components/m-article-entry'
-import Tag from '../../components/tag'
-import Scroll from '../../components/scroll'
-import SArticleEntry from '../../components/s-article-entry'
-import { routeTypes } from '../../common/config'
-import { randomSelect } from '../../util'
+import { query, queryTag, getEntryByPeriod } from '@/api/home'
+import MArticleEntry from '@/components/m-article-entry'
+import Tag from '@/components/tag'
+import Scroll from '@/components/scroll'
+import SArticleEntry from '@/components/s-article-entry'
+import { routeTypes } from '@/common/config'
+import { randomSelect } from '@/util'
 import BScroll from 'better-scroll'
 export default {
   props: {
@@ -245,7 +245,7 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-@import "../../assets/css/variable.styl"
+@import "../../../../assets/css/variable.styl"
 .article-list-con
   display flex
   flex-direction column

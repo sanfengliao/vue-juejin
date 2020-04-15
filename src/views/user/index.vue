@@ -21,7 +21,7 @@
               <div class="left">
                 <h1 class="username-con">
                   {{user.username}}
-                  <router-link to="/book/m/5c90640c5188252d7941f5bb/section/5c9065385188252da6320022">
+                  <router-link to="/book/5c90640c5188252d7941f5bb/section/5c9065385188252da6320022">
                     <img :src="user.level | levelImage" alt="">
                   </router-link>
                 </h1>

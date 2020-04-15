@@ -22,7 +22,7 @@
           <div class="book-section-list-con">
             <ul class="book-section-list">
               <li @click="sectionClick" class="book-section-item border-bottom-1px" v-for="(item, index) in sections" :key="item._id">
-                <router-link :to="`/book/m/${bookId || item.metaId}/section/${item._id}`">
+                <router-link :to="`/book/${bookId || item.metaId}/section/${item._id}`">
                   <b-section :section="item" :index="index"></b-section>
                 </router-link>
               </li>
@@ -85,12 +85,12 @@ export default {
   },
   computed: {
     routeKey() {
-      if (this.$route.path.startsWith('/book/m/')) {
+      if (this.$route.path.startsWith('/book/')) {
         return this.$route.path
       }
     },
     routeShow() {
-      return this.$route.path.startsWith('/book/m/')
+      return this.$route.path.startsWith('/book/')
     }
   },
   components: {
@@ -105,14 +105,14 @@ export default {
       if (this.currentSectionIndex > 0) {
         this.currentSectionIndex--
         let sectionId = this.sectionIds[this.currentSectionIndex]
-        this.$router.push(`/book/m/${this.bookId}/section/${sectionId}`)
+        this.$router.push(`/book/${this.bookId}/section/${sectionId}`)
       }
     },
     nextSection() {
       if (this.currentSectionIndex < this.sectionIds.length - 1) {
         this.currentSectionIndex++
         let sectionId = this.sectionIds[this.currentSectionIndex]
-        this.$router.push(`/book/m/${this.bookId}/section/${sectionId}`)
+        this.$router.push(`/book/${this.bookId}/section/${sectionId}`)
       }
     },
     scroll(e) {

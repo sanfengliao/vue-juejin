@@ -40,7 +40,7 @@
           <div class="book-sections-content">
             <ul class="book-section-list">
               <li class="book-section-item border-bottom-1px" v-for="(item, index) in bookSections" :key="item._id">
-                <router-link :to="`/book/m/${bookId || item.metaId}/section/${item._id}`">
+                <router-link :to="`/book/${bookId || item.metaId}/section/${item._id}`">
                   <b-section :isBuy="book.isBuy" :section="item" :index="index"></b-section>
                 </router-link>
               </li>
@@ -100,7 +100,7 @@ export default {
     toRead() {
       for (let item of this.bookSections) {
         if (item.isFree) {
-          this.$router.push(`/book/m/${this.bookId}/section/${item._id}`)
+          this.$router.push(`/book/${this.bookId}/section/${item._id}`)
           return
         }
       }

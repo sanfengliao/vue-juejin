@@ -34,7 +34,7 @@ export default {
     // observer.observe(dom, {attributes: true})
   },
   updated() {
-    
+    // this.init()
   },
   methods: {
     getTitleColor(path) {
@@ -46,24 +46,26 @@ export default {
     },
     initArr() {
       let items = this.$refs["nav-item"]
-      let arr = []
-      let left = items[0].offsetLeft
-      for (let i = 0; i < items.length; i++) {
-        let item = items[i]
-        if (arr.length === 0) {
-          arr.push({
-            left: left,
-            width: item.clientWidth
-          })
-          this.lineWidth = arr[0].width
-        } else {
-          arr.push({
-            left: arr[i-1].left + arr[i-1].width,
-            width: item.clientWidth
-          })
+      if (items && items.length) {
+        let arr = []
+        let left = items[0].offsetLeft
+        for (let i = 0; i < items.length; i++) {
+          let item = items[i]
+          if (arr.length === 0) {
+            arr.push({
+              left: left,
+              width: item.clientWidth
+            })
+            this.lineWidth = arr[0].width
+          } else {
+            arr.push({
+              left: arr[i-1].left + arr[i-1].width,
+              width: item.clientWidth
+            })
+          }
         }
+        this.arr = arr
       }
-      this.arr = arr
     },
     init() {
       this.initArr()

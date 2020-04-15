@@ -138,12 +138,11 @@ export default {
     .input-box
       width 100%
       .search-input
+        padding 10rem 0
         width 100%
         color #fff
         font-size 36rem
-        padding-right 40rem
-        // font-weight 500
-        padding 10rem 0
+        background transparent
         &::placeholder
           color #ccc
           font-size 36rem

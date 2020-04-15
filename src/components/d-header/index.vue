@@ -70,7 +70,6 @@
   .right
     display flex
     align-items center
-    flex 0 0 35rem
     height 100%
   .iconfont
       border-radius 50%

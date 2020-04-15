@@ -31,7 +31,6 @@ export default {
   },
   methods: {
     pushResolve(to, from) {
-      console.log(to, from)
       let toPath = to.path
       let fromPath = from.path
       if (toPath.startsWith(this.prefix) && fromPath.startsWith(this.prefix) || !this.prefix) {

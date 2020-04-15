@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import JFooter from '../components/footer'
+import JFooter from './footer'
 export default {
   name: 'layout',
   components: {

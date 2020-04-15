@@ -22,7 +22,7 @@
       <section class="main">
         <router-transition prefix="/home">
           <keep-alive>
-            <router-view v-if="routeKey" :key="routeKey" class="router"></router-view>
+            <router-view :key="routeKey" class="router"></router-view>
           </keep-alive>
         </router-transition>
         <div class="icon-add-con">
@@ -37,6 +37,8 @@ import SearchBox from '../../components/search-box'
 import NavTab from '../../components/nav-tab'
 import { defaultHomeRoutes } from '../../common/config'
 import { mapState } from 'vuex'
+let path = window.location.pathname
+path = path.startsWith('/home/') ? path : '/home/recommended'
 export default {
   components: {
     SearchBox,
@@ -44,30 +46,26 @@ export default {
   },
   data() {
     return {
-      
+      routeKey: path
     }
   },
   computed: {
-    routeKey() {
-      if (this.$route.path.startsWith('/home/')) {
-        return this.$route.path
-      }
-    },
+    
     ...mapState({
       routeList(state) {
         return defaultHomeRoutes.concat(state.homeRoutes.filter(item => item.show))
       }
-    })
+    }),
+    
   },
   created() {
     
   },
   activated() {
-    //  this.$router.replace(this.currentRoutePath)
+    
   },
   deactivated() {
-    console.log(this.$route.path)
-    // this.currentRoutePath = this.$route.path
+    
   },
   methods: {
     handleFocus(e) {
@@ -83,6 +81,14 @@ export default {
       })
     }
   },
+  watch: {
+    $route() {
+      let { path } = this.$route
+      if (path.startsWith('/home/')) {
+        this.routeKey = path
+      }
+    }
+  }
 }
 </script>
 

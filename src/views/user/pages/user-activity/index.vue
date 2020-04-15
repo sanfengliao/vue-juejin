@@ -84,9 +84,9 @@
 </template>
 
 <script>
-import { getUserActivity } from '../../api/user'
-import LArticleEntry from '../../components/l-article-entry'
-import LPinEntry from '../../components/l-pin-entry'
+import { getUserActivity } from '@/api/user'
+import LArticleEntry from '@/components/l-article-entry'
+import LPinEntry from '@/components/l-pin-entry'
 export default {
   name: 'user-activiy',
   data() {
@@ -127,7 +127,7 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-@import "../../assets/css/variable.styl"
+@import "../../../../assets/css/variable.styl"
 .user-activty-con
   .user-activity-list
     .activity-item

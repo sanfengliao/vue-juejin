@@ -18,6 +18,8 @@
 <script>
 import { getBooks } from '../../api/book'
 import NavTab from '../../components/nav-tab'
+let path = window.location.pathname
+path = path.startsWith('/books/') ? path : '/books/all'
 export default {
   data() {
     return {
@@ -27,14 +29,8 @@ export default {
       },{
         title: '已购',
         path: '/books/my'
-      }]
-    }
-  },
-  computed: {
-    routeKey() {
-      if (this.$route.path.startsWith('/books/')) {
-        return this.$route.path
-      }
+      }],
+      routeKey: path
     }
   },
   components: {
@@ -42,6 +38,14 @@ export default {
   },
   created() {
     
+  },
+  watch: {
+    $route() {
+      let { path } = this.$route
+      if (path.startsWith('/books/')) {
+        this.routeKey = path
+      }
+    }
   }
 }
 </script>

@@ -8,6 +8,16 @@ body {
 }
 
 
+.page-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.page-section {
+  flex: 1;
+  height: 0;
+}
+
 .slide-enter, .slide-leave-to{
 
   transform: translateY(100%);
@@ -23,9 +33,10 @@ body {
 }
 
 .follow {
-  padding: 14rem 20rem;
-  /* width: 140rem; */
+  padding: 14rem 0;
+  width: 150rem;
   border: 1px #6cbd45 solid;
+  text-align: center;
   color: #6cbd45;
   font-size: 26rem;
   border-radius: 5rem;

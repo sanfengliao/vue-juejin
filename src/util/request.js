@@ -1,7 +1,7 @@
 import axios from 'axios'
 import store from '../store'
 import { device_id, client_id } from '../common/config'
-const state = store.state
+
 
 const service = axios.create({
   timeout: 5000
@@ -15,6 +15,7 @@ service.interceptors.request.use(
     // config.headers['X-Juejin-Uid'] = state.uid
     // config.headers['X-Juejin-Token'] = state.token
     // config.headers['X-Token'] = state.token
+    const state = store.state
     config.headers['X-Legacy-Token'] = state.token
     config.headers['X-Legacy-Uid'] = state.uid
     config.headers['X-Juejin-Client'] = client_id

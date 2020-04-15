@@ -2,7 +2,7 @@
   <div ref="scroll-con" class="scroll-wrapper">
     <div :style="{display: scrollX ? 'inline-flex' : 'block'}" class="scroll-content">
       <slot></slot>
-      <div v-show="loading && !loadFinish" class="loading-con">
+      <div v-show="loading && !finished" class="loading-con">
         <loading size="80rem"></loading>
       </div>
     </div>
@@ -44,12 +44,19 @@ export default {
       default: false
     },
     pullUpload:{
-      type: Boolean,
-      default: true,
+      type: [Boolean, Object],
+      default: () => ({
+        threshold: -30
+      }),
     },
     pullDownRefresh: {
-      type: Boolean,
-      default: true,
+      type: [Boolean, Object],
+      default: () => ({
+        threshold: 30,
+        // 回弹停留在距离顶部20px的位置
+        stop: 20
+      })
+      // default: true
     },
     scrollY: {
       type: Boolean,
@@ -69,8 +76,12 @@ export default {
     this.initBScroll()
   },
   updated() {
-    this.scroll.finishPullDown()
-    this.scroll.finishPullUp()
+    if (!this.refreshing) {
+      this.scroll.finishPullDown()
+    }
+    if (!this.loading) {
+      this.scroll.finishPullUp()
+    }
     this.$nextTick(() => {
       this.scroll.refresh()
     })
@@ -95,6 +106,7 @@ export default {
           ...options,
         }
       )
+      console.log(this.scroll)
      
       this.scroll.on('pullingUp',  () => {
         if (!this.loading && !this.finished) {

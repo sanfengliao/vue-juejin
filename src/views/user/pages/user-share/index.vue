@@ -11,8 +11,8 @@
 </template>
 
 <script>
-import { getEntryBySelf } from '../../api/user'
-import SArticleEntry from '../../components/s-article-entry'
+import { getEntryBySelf } from '@/api/user'
+import SArticleEntry from '@/components/s-article-entry'
 export default {
   data() {
    return {

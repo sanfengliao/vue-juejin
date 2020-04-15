@@ -24,6 +24,12 @@ const mutations = {
   [types.SET_QUERY](state, query) {
     state.query = query
   },
+  [types.SET_CURRENT_HOME_ROUTE](state, path) {
+    state.currentHomeRoute = path
+  },
+  [types.SET_CURRENT_PINS_ROUTE](state, path) {
+    state.currentPinsRoute = path
+  }
 }
 
 export default mutations

@@ -10,10 +10,10 @@ export const getEntryView = (entryId) => {
     url: '/entry-view/v1/getEntryView',
     params: {
       entryId,
-      // token: state.token,
-      // uid: state.uid,
-      // ...commonParams
-      src: commonParams.src
+      token: state.token,
+      uid: state.uid,
+      ...commonParams,
+      // src: commonParams.src
     }
   }).then(res => {
     return res.data
@@ -26,10 +26,10 @@ export const getEntryByEntryIds = (entryIds) => {
     url: '/timeline-merger/v1/get_entry_by_ids',
     params: {
       entryIds,
-      // token: state.token,
-      // uid: state.uid,
-      // ...commonParams
-      src: commonParams.src
+      token: state.token,
+      uid: state.uid,
+      ...commonParams
+      // src: commonParams.src
     }
   }).then(res => res.data)
 }
@@ -41,10 +41,10 @@ export const getRelatedEntry = (entryId, limit=4) => {
     params: {
       entryId,
       limit,
-      // token: state.token,
-      // uid: state.uid,
-      // ...commonParams
-      src: commonParams.src
+      token: state.token,
+      uid: state.uid,
+      ...commonParams
+      // src: commonParams.src
     }
   }).then(res => res.data)
 }

@@ -15,8 +15,13 @@
         <span v-if="author.company" class="company"> @ {{author.company}}</span>
         <span v-if="dateDis"> · {{dateDis}}</span>
       </div>
+      <div v-if="author.description" class="description">{{author.description}}</div>
     </div>
-    <div v-if="!author.viewerIsFollowing" @click.stop.prevent="follow" class="follow">
+    <div @click.stop.prevent="toggleFollow" v-if="author.viewerIsFollowing || author.currentUserFollowed" class="follow active">
+      <i class="iconfont icon-dui"></i>
+      <span class="text">已关注</span>
+    </div>
+    <div v-else @click.stop.prevent="toggleFollow" class="follow">
       <i class="iconfont icon-Add1"></i>
       <span class="text">关注</span>
     </div>
@@ -34,11 +39,21 @@ export default {
     showLevel: {
       type: Boolean,
       default: true
-    }
+    },
+    description: String
   },
   methods: {
-    follow() {
-      // TODO
+    toggleFollow() {
+      if (this.$store.state.isLogin) {
+        this.$emit('toggleFollow', this.author)
+      } else {
+        this.$router.push({
+          path: '/login',
+          query: {
+            from: this.$route.path
+          }
+        })
+      }
     }
   }
 }
@@ -72,7 +87,8 @@ export default {
         font-size 25rem
       .level
         height 25rem
-    .bottom
+    .bottom, .description
+      margin-bottom 5rem
       width 100%
       font-size 20rem
       color #909090
@@ -80,7 +96,9 @@ export default {
       text-overflow ellipsis
       white-space nowrap
   .follow
-    padding 12rem 20rem
+    padding 12rem 0
+    text-align center
+    width 150rem
     border 1px #6cbd45 solid
     color #6cbd45
     font-size 26rem
@@ -89,4 +107,8 @@ export default {
       margin-right 10rem
       color #6cbd45
       font-size 26rem
+    &.active
+      color #fff
+      .iconfont
+        color #fff
 </style>

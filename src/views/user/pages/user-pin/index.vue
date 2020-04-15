@@ -11,8 +11,8 @@
 </template>
 
 <script>
-import { getUserPinList } from '../../api/user'
-import LPinEntry from '../../components/l-pin-entry'
+import { getUserPinList } from '@/api/user'
+import LPinEntry from '@/components/l-pin-entry'
 export default {
   data() {
    return {

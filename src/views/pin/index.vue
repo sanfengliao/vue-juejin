@@ -1,7 +1,7 @@
 <template>
   <div class="pin-con">
     <header class="pin-header border-bottom-1px">
-      <d-header :go-back="goBackAndRemoveKeepAlive">
+      <d-header>
         <div class="pin-header-con" ref="header-con">
           <div class="pin-header-content" ref="header-content">
             <div class="author-con">

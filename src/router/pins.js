@@ -1,5 +1,5 @@
-import PinsEntryList from '../views/pins-entry-list'
-import PinFollowing from '../views/pin-following'
+import PinsEntryList from '../views/pins/pages/pins-entry-list'
+import PinFollowing from '../views/pins/pages/pin-following'
 import { pinsRouteType } from '../common/config'
 
 export const pinsRoutes = [{

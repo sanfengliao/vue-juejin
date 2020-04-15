@@ -12,8 +12,8 @@
 </template>
 
 <script>
-import { getEntryBySelf } from '../../api/user'
-import MArticleEntry from '../../components/m-article-entry'
+import { getEntryBySelf } from '@/api/user'
+import MArticleEntry from '@/components/m-article-entry'
 export default {
   data() {
    return {

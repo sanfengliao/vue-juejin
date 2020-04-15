@@ -2,7 +2,7 @@
   <div class="book-section-list-con">
     <ul class="book-section-list">
       <li @click="sectionClick(item._id)" class="book-section-item border-bottom-1px" v-for="(item, index) in bookSections" :key="item._id">
-        <router-link :to="`/book/m/${bookId || item.metaId}/section/${item._id}`">
+        <router-link :to="`/book/${bookId || item.metaId}/section/${item._id}`">
           <div class="section">
             <div class="step">{{index}}</div>
             <div class="center">

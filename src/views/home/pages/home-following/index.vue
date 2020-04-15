@@ -1,10 +1,16 @@
 <template>
   <div class="home-following">
-    <scroll>
+    <scroll :refreshing="refreshing" @refresh="refresh">
       <div v-if="!isLogin" class="need-login-con">
         <need-login />
       </div>
       <div class="article-list-con">
+        <router-link v-if="isLogin" to="/recommendation/authors">
+          <div class="find-more-author">
+            <span>发现更多掘金优秀作者</span>
+            <i class="iconfont icon-go"></i>
+          </div>
+        </router-link>
         <ul v-if="articles" class="article-list">
           <li class="article-item" v-for="(item, i) in articles" :key="item.id">
             <router-link :to="`/post/${item.id}`">
@@ -17,9 +23,9 @@
               </div>
               <ul class="user-list">
                 <li class="user-item border-bottom-1px" v-for="item in recommendedUsers" :key="item.id">
-                  <router-link :to="`/user/${item.author.id}`">
-                    <m-author :author="item.author" />
-                    <div class="description">{{item.description}}</div>
+                  <router-link :to="`/user/${item.id}`">
+                    <m-author :author="item" />
+                    
                   </router-link>
                 </li>
               </ul>
@@ -35,17 +41,18 @@
 </template>
 
 <script>
-import Scroll from '../../components/scroll'
-import LArticleEntry from '../../components/l-article-entry'
-import MAuthor from '../../components/m-author'
-import NeedLogin from '../../components/need-login'
-import { getFollowingUserArticle, getEntryByPeriod, getRecommendedUser } from '../../api/home'
+import Scroll from '@/components/scroll'
+import LArticleEntry from '@/components/l-article-entry'
+import MAuthor from '@/components/m-author'
+import NeedLogin from '@/components/need-login'
+import { getFollowingUserArticle, getEntryByPeriod, getRecommendedUser } from '@/api/home'
 export default {
   data() {
     return {
       articles: [],
       recommendedUsers:[],
-      showUser: true
+      showUser: true,
+      refreshing: false
     }
   },
   computed: {
@@ -65,6 +72,9 @@ export default {
   created() {
     this.init()
   },
+  updated() {
+    
+  },
   methods: {
     hideRecommendedUser() {
       this.showUser = false
@@ -79,11 +89,11 @@ export default {
       } else {
         this.recommendedUsers = []
       }
+      this.refreshing = true
       this.after = ''
       this.before = ''
-      let entries = await this.getFollowingUserArticle()
-      console.log(entries)
-      this.articles = entries
+      this.articles = await this.getFollowingUserArticle()
+      this.refreshing = false
     },
     async getFollowingUserArticle() {
       if (this.isLogin) {
@@ -100,9 +110,13 @@ export default {
     },
     async getRecommendedUser() {
       let data = await getRecommendedUser(this.exclude)
-      let users = data.data.articleAuthorRecommendationCard.items
-      this.exclude = users.map(item =>item.id)
-      this.recommendedUsers = users
+      let items = data.data.articleAuthorRecommendationCard.items
+      this.exclude = items.map(item =>item.id)
+      this.recommendedUsers = items.map(item => {
+        let { author, description } = item
+        author.description = description
+        return author
+      })
     }
   },
   watch: {
@@ -114,8 +128,18 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-@import "../../assets/css/variable.styl"
+@import "../../../../assets/css/variable.styl"
 .home-following
+  .find-more-author
+    display flex
+    justify-content space-between
+    padding 20rem 25rem
+    background #fff
+    font-size 34rem
+    font-weight 600
+    margin-bottom 20rem
+    .iconfont
+      color $gray-text-color
   .article-item
     margin-bottom 20rem
   .recommended-user-con

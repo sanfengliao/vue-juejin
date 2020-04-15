@@ -15,18 +15,24 @@
               </swiper>
             </div>
             <div class="nav-con">
-              <div class="nav-item">
-                <i class="iconfont icon-wenzhang"></i>
-                <span class="title">文章榜</span>
-              </div>
-              <div class="nav-item">
-                <i class="iconfont icon-huangguan"></i>
-                <span class="title">作者榜</span>
+              <router-link to="/home">
+                <div class="nav-item">
+                  <i class="iconfont icon-wenzhang"></i>
+                  <span class="title">文章榜</span>
                 </div>
-              <div class="nav-item">
-                <i class="iconfont icon-kanyikantubiao"></i>
-                <span class="title">看一看</span>
+              </router-link>
+              <router-link to="/recommendation/authors">
+                <div class="nav-item">
+                  <i class="iconfont icon-huangguan"></i>
+                  <span class="title">作者榜</span>
                 </div>
+              </router-link>
+              <router-link to="/home/following">
+                <div class="nav-item">
+                  <i class="iconfont icon-kanyikantubiao"></i>
+                  <span class="title">看一看</span>
+                </div>
+              </router-link>
               <div class="nav-item">
                 <i class="iconfont icon-huati"></i>
                 <span class="title">话题广场</span>

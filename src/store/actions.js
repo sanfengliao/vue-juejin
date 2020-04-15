@@ -62,3 +62,11 @@ export const removeKeepAlive = ({commit, state}, componentName) => {
 export const setQuery = ({ commit }, query) => {
   commit(types.SET_QUERY, query)
 }
+
+export const setCurrentHomeRoute = ({ commit }, path) => {
+  commit(types.SET_CURRENT_HOME_ROUTE, path)
+}
+
+export const setCurrentPinsRoute = ({ commit }, path) => {
+  commit(types.SET_CURRENT_PINS_ROUTE, path)
+}

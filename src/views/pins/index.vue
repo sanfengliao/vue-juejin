@@ -23,13 +23,15 @@
 import NavTab from '../../components/nav-tab'
 import { defaultPinsRoutes } from '../../common/config'
 import { mapState } from 'vuex'
+let path = window.location.pathname
+path = path.startsWith('/pins/') ? path : '/pins/recommended'
 export default {
+  data() {
+    return {
+      routeKey: path
+    }
+  },
   computed: {
-    routeKey() {
-      if (this.$route.path.startsWith('/pins/')) {
-        return this.$route.path
-      }
-    },
     ...mapState({
       routeList(state) {
         return defaultPinsRoutes.concat(state.pinsRoutes.filter(item => item.show))
@@ -48,6 +50,14 @@ export default {
           title: '话题特别展示'
         }
       })
+    }
+  },
+  watch: {
+    $route() {
+      let { path } = this.$route
+      if (path.startsWith('/pins/')) {
+        this.routeKey = path
+      }
     }
   }
 }

@@ -26,11 +26,11 @@
 </template>
 
 <script>
-import Scroll from '../../components/scroll'
-import LPinEntry from '../../components/l-pin-entry'
-import SPinEntry from '../../components/s-pin-entry'
-import { getHotRecommendList, getTopicList, getPopularPinList, getRecommendedFeed } from '../../api/pins'
-import { pinsRouteType } from '../../common/config'
+import Scroll from '@/components/scroll'
+import LPinEntry from '@/components/l-pin-entry'
+import SPinEntry from '@/components/s-pin-entry'
+import { getHotRecommendList, getTopicList, getPopularPinList, getRecommendedFeed } from '@/api/pins'
+import { pinsRouteType } from '@/common/config'
 
 export default {
   data() {
@@ -123,7 +123,7 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-@import "../../assets/css/variable.styl"
+@import "../../../../assets/css/variable.styl"
 .pin-entry-list
   height 100%
 

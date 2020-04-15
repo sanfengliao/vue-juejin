@@ -1,7 +1,7 @@
 <template>
   <div v-if="pin" class="pin-content">
     <div class="content">
-      {{pin.content}}
+      <fold-text :text="pin.content"/>
     </div>
     <div v-if="pin.pictures && pin.pictures.length" class="pictures">
       <div class="image-list" :class="{'col-1':pin.pictures.length === 1, 'col-3': pin.pictures.length > 1}">
@@ -23,10 +23,12 @@
 
 <script>
 import LinkView from '../link-view'
+import FoldText from '../fold-text'
 import { getUrlParams } from '../../util'
 export default {
   components: {
     LinkView,
+    FoldText
   },
   props: {
     pin: Object
@@ -46,8 +48,6 @@ export default {
 .pin-content
   background #fff
 .content
-  white-space pre-wrap  
-  word-wrap break-word
   font-size 28rem
   margin-bottom 20rem
 .pictures

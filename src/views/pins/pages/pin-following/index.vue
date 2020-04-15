@@ -91,9 +91,8 @@
               </div>
               <ul class="user-list">
                 <li class="user-item border-bottom-1px" v-for="item in recommendedUsers" :key="item.id">
-                  <router-link :to="`/user/${item.user.id}`">
-                    <m-author :author="item.user" />
-                    <div class="description">{{item.description}}</div>
+                  <router-link :to="`/user/${item.id}`">
+                    <m-author :author="item" />
                   </router-link>
                 </li>
               </ul>
@@ -109,12 +108,12 @@
 </template>
 
 <script>
-import LArticleEntry from '../../components/l-article-entry'
-import LPinEntry from '../../components/l-pin-entry'
-import Scroll from '../../components/scroll'
-import NeedLogin from '../../components/need-login'
-import MAuthor from '../../components/m-author'
-import { getFollowingUserActivities, getRecommendedUser } from '../../api/pins.js'
+import LArticleEntry from '@/components/l-article-entry'
+import LPinEntry from '@/components/l-pin-entry'
+import Scroll from '@/components/scroll'
+import NeedLogin from '@/components/need-login'
+import MAuthor from '@/components/m-author'
+import { getFollowingUserActivities, getRecommendedUser } from '@/api/pins.js'
 export default {
   name: 'pin-following',
   data() {
@@ -159,16 +158,22 @@ export default {
     },
     async getRecommendedUser() {
       let data = await getRecommendedUser(this.exclude)
-      let users = data.data.userRecommendationCard.items
-      this.exclude = users.map(item => item.id)
-      this.recommendedUsers = users
+      let items = data.data.userRecommendationCard.items
+      this.exclude = items.map(item => item.id)
+      this.recommendedUsers = items.map(item => {
+        let {user, achievement, description } = item
+        user.jobTitle = description
+        user.company = ''
+        user.description = achievement
+        return user
+      })
     }
   }
 }
 </script>
 
 <style lang="stylus" scoped>
-@import "../../assets/css/variable.styl"
+@import "../../../../assets/css/variable.styl"
 .pins-following
   height 100%
   .user-activty-con

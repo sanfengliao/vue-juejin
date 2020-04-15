@@ -207,3 +207,33 @@ export const getUserPinList = (uid, before, limit=20) => {
     }
   }).then(res => res.data)
 }
+
+export const getRecommendedAuthorChannel = () => {
+  return request.post(apiUrl.ANDROID_HOME_REQUEST_URL, {
+    extensions: {
+      query: {
+        id: "b79c9f44967e3b78ed8cd35e8567cd73"
+      }
+    }
+  }).then(res => res.data)
+}
+
+/**
+ * 
+ * @param {string} channel 
+ * @param {string} after 
+ */
+export const getRecommendedAuthorByChannel = (channel='recommended', after='') => {
+  return request.post(apiUrl.ANDROID_HOME_REQUEST_URL, {
+    variables: {
+      channel,
+      first: 20,
+      after
+    },
+    extensions: {
+      query: {
+        id: "71f4b77bd5fe68aadfd9eb7c65319afe"
+      }
+    }
+  }).then(res => res.data)
+}

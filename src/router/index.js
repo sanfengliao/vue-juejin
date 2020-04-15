@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import store from '../store'
 
 import Layout from '../layout'
 
@@ -25,31 +26,29 @@ import TagManage from '../views/tag-manage'
 import MyLike from '../views/my-like'
 import MyPurchasedBook from '../views/my-purchased-book'
 import CollectionSet from '../views/collection-set'
+
 import User from '../views/user'
-import Collection from '../views/collection'
-import UserActivity from '../views/user-activity'
-import UserPost from '../views/user-post'
-import UserPin from '../views/user-pin'
-import UserShare from '../views/user-share'
-import UserMore from '../views/user-more'
 import UserLike from '../views/user-like'
 import UserTag from '../views/user-tag'
+
+
+import Collection from '../views/collection'
 import Search from '../views/search'
 import SearchResult from '../views/search-result'
+import RecommendationAuthor from '../views/recommendation-author'
+import AuthorList from '../views/author-list'
+import Topic from '../views/topic'
+import TopicAttender from '../views/topic-attender'
 
 import { ROUTE_INDEX } from '../common/const'
 
 import { homeRoutes } from './home'
 import { pinsRoutes } from './pins'
+import { userRoutes } from './user'
 
 VueRouter.prototype.goBack = function() {
   this.isBack = true
   this.go(-1)
-}
-
-VueRouter.prototype.jPush = function() {
-  this.isPush = true,
-  this.push(arguments)
 }
 
 Vue.use(VueRouter)
@@ -83,10 +82,10 @@ const router = new VueRouter({
     }
   },{
     name: 'book-section',
-    path: '/book/m/:bookId/section',
+    path: '/book/:bookId/section',
     component: SectionRead,
     children: [{
-      name: 'book-section-id',
+      name: 'book-section-detail',
       path: ':sectionId',
       component: SectionContent
     }],
@@ -127,27 +126,31 @@ const router = new VueRouter({
     component: ReadHistory,
     meta: {
       [ROUTE_INDEX]: 110,
+      isAuth: true
     }
   },{
     name: 'tag-manage',
     path: '/tag-manage',
     component: TagManage,
     meta: {
-      [ROUTE_INDEX]: 110
+      [ROUTE_INDEX]: 110,
+      isAuth: true
     }
   },{
     name: 'my-like',
     path: '/my-like',
     component: MyLike,
     meta: {
-      [ROUTE_INDEX]: 110
+      [ROUTE_INDEX]: 110,
+      isAuth: true
     }
   },{
     name: 'my-purchased-book',
     path: '/my-purchased-book',
     component: MyPurchasedBook,
     meta: {
-      [ROUTE_INDEX]: 110
+      [ROUTE_INDEX]: 110,
+      isAuth: true
     }
   },{
     name: 'collection-set',
@@ -178,48 +181,7 @@ const router = new VueRouter({
     meta: {
       [ROUTE_INDEX]: 150
     },
-    children: [
-      {
-        name: 'user-activity',
-        path: 'activies',
-        component: UserActivity,
-        meta: {
-          [ROUTE_INDEX]: 151
-        }
-      },
-      {
-        name: 'user-post',
-        path: 'posts',
-        meta: {
-          [ROUTE_INDEX]: 152
-        },
-        component: UserPost
-      },
-      {
-        name: 'user-pin',
-        path: 'pins',
-        meta: {
-          [ROUTE_INDEX]: 153
-        },
-        component: UserPin
-      },
-      {
-        name: 'user-share',
-        path: 'shares',
-        meta: {
-          [ROUTE_INDEX]: 154
-        },
-        component: UserShare,
-      },
-      {
-        name: 'user-more',
-        path: 'more',
-        component: UserMore,
-        meta: {
-          [ROUTE_INDEX]: 155
-        }
-      },
-    ]
+    children: userRoutes
   },{
     name: 'collection',
     path: '/collection/:id',
@@ -251,6 +213,29 @@ const router = new VueRouter({
       path: ':type',
       component: SearchResult
     }]
+  },{
+    name: 'recommendation-author',
+    path: '/recommendation/authors',
+    component: RecommendationAuthor,
+    redirect: '/recommendation/authors/recommended',
+    children: [{
+      name: 'author-channel',
+      path: ':channel',
+      component: AuthorList
+    }]
+  },{
+    name: 'topic-attender',
+    path: '/topic/:id/attenders',
+    component: TopicAttender
+  },{
+    name: 'topic',
+    path: '/topic/:id',
+    component: Topic,
+    redirect: '/topic/:id/rank',
+    children: [{
+      name: 'topic-pin-list',
+      path: ':type',
+    }]
   },
   {
     path: '/',
@@ -263,11 +248,13 @@ const router = new VueRouter({
       name: 'home',
       path: '/home',
       component: Home,
+      redirect: '/home/recommended',
       children: homeRoutes,
     }, {
       name: 'pins',
       path: '/pins',
       component: Pins,
+      redirect: '/pins/recommended',
       children: pinsRoutes
     },{
       name: 'sousou',
@@ -291,6 +278,24 @@ const router = new VueRouter({
       component: Me,
     }, ]
   }]
+})
+
+
+router.beforeEach((to, from, next) => {
+  if (to.meta.isAuth) {
+    if (store.state.isLogin) {
+      next()
+    } else {
+      next({
+        path: '/login',
+        query: {
+          from: to.path
+        }
+      })
+    }
+  } else {
+    next()
+  }
 })
 
 export default router;

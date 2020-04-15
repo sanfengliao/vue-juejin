@@ -42,7 +42,7 @@ export default {
       text-overflow: ellipsis;
       display: -webkit-box;
       -webkit-line-clamp: 3;
-      -webkit-box-orient: vertical;
+      -webkit-box-orient: vertical
       white-space pre-line
       word-break break-all
       margin-right 25rem
