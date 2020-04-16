@@ -9,7 +9,11 @@
       <span class="username">{{author.username}}</span>
       <img class="level" v-if="showLevel && author.level > 0" :src="author.level | levelImage" :alt="`Lv-${author.level}`">
     </div>
-    <div v-if="!author.viewerIsFollowing" @click="follow" class="follow">
+     <div v-if="author.viewerIsFollowing || author.currentUserFollowed" @click="toggleFollow" class="follow active">
+      <i class="iconfont icon-dui"></i>
+      <span class="text">已关注</span>
+    </div>
+    <div v-else @click="toggleFollow" class="follow">
       <i class="iconfont icon-Add1"></i>
       <span class="text">关注</span>
     </div>
@@ -29,8 +33,8 @@ export default {
     }
   },
   methods: {
-    follow() {
-      // TODO
+    toggleFollow() {
+      this.$emit('toggleFollow', this.author)
     }
   }
 }
@@ -71,9 +75,10 @@ export default {
     border 1px #6cbd45 solid
     color #6cbd45
     font-size 23rem
+    &.active
+      color #fff
     .iconfont
       padding 0
       margin-right 10rem
-      color #6cbd45
       font-size 26rem
 </style>

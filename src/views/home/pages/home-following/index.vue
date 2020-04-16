@@ -1,6 +1,6 @@
 <template>
   <div class="home-following">
-    <scroll :refreshing="refreshing" @refresh="refresh">
+    <scroll :refreshing="refreshing" @refresh="refresh" @load="load" :loading="loading">
       <div v-if="!isLogin" class="need-login-con">
         <need-login />
       </div>
@@ -14,7 +14,7 @@
         <ul v-if="articles" class="article-list">
           <li class="article-item" v-for="(item, i) in articles" :key="item.id">
             <router-link :to="`/post/${item.id}`">
-              <l-article-entry :article="item" />
+              <l-article-entry @like="like" @toggleFollow="toggleFollow" :article="item" />
             </router-link>
             <div v-if="i === 3 && showRecommendedUser" class="recommended-user-con">
               <div class="title border-bottom-1px">
@@ -46,13 +46,16 @@ import LArticleEntry from '@/components/l-article-entry'
 import MAuthor from '@/components/m-author'
 import NeedLogin from '@/components/need-login'
 import { getFollowingUserArticle, getEntryByPeriod, getRecommendedUser } from '@/api/home'
+import { followUser,unFollowUser } from '@/api/user'
+import { likeEntry } from '@/api/entry'
 export default {
   data() {
     return {
       articles: [],
       recommendedUsers:[],
       showUser: true,
-      refreshing: false
+      refreshing: false,
+      loading: false
     }
   },
   computed: {
@@ -76,6 +79,32 @@ export default {
     
   },
   methods: {
+    async toggleFollow(author) {
+      if (author.viewerIsFollowing) {
+        let data = await unFollowUser(author.id)
+        if (data.s === 1) {
+          author.viewerIsFollowing = false
+        }
+      } else {
+        let data = await followUser(author.id)
+        if (data.s === 1) {
+          author.viewerIsFollowing = true
+        }
+      }
+    },
+    async like(article) {
+      let data = await likeEntry(article.id)
+      if (data.s === 1) {
+        if (article.viewerHasLiked) {
+
+          article.likeCount -= 1
+          article.viewerHasLiked = false
+        } else {
+          article.likeCount += 1
+          article.viewerHasLiked = true
+        }
+      }
+    },
     hideRecommendedUser() {
       this.showUser = false
     },
@@ -94,6 +123,13 @@ export default {
       this.before = ''
       this.articles = await this.getFollowingUserArticle()
       this.refreshing = false
+    },
+    async load() {
+      this.loading = true
+      let articles = await this.getFollowingUserArticle()
+      for (let item of articles) {
+        this.articles.push(item)
+      }
     },
     async getFollowingUserArticle() {
       if (this.isLogin) {

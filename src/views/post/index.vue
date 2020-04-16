@@ -1,13 +1,14 @@
 <template>
-<!-- <transition name="slide"> -->
   <div class="post" >
     <header class="header">
       <d-header title="文章详情页">
         <div ref="header-con" class="header-con">
           <div v-if="entry" ref="header-content" class="header-content">
-            <div class="user-con">
-              <s-author :author="entry.user"></s-author>
-            </div>
+            <router-link class="link" :to="`/user/${entry && entry.user.objectId}`">
+              <div class="user-con">
+                  <s-author @toggleFollow="toggleFollow" :author="entry.user"></s-author>
+              </div>
+            </router-link>
             <div class="title-con">
               <h2 class="title">文章详情页</h2>
             </div>
@@ -20,7 +21,9 @@
         <section class="article">
           <div v-if="entry" class="summary">
             <div class="author-container">
-              <m-author :author="entry.user"></m-author>
+              <router-link :to="`/user/${entry && entry.user.objectId}`">
+                <m-author @toggleFollow="toggleFollow" :author="entry && entry.user"></m-author>
+              </router-link>
             </div>
             <h1 class="title">{{entry.title}}</h1>
             <a class="origin-url" target="_blank" :href="entry.originalUrl">原文链接</a>
@@ -39,7 +42,7 @@
           </div>
         </section>
         <section class="related-article con">
-          <h3 v-if="entry" class="title border-bottom-1px">{{entry.user.username}}的更多文章</h3>
+          <h3 v-if="entry" class="title border-bottom-1px">{{entry && entry.user.username}}的更多文章</h3>
           <ul class="related-article-list">
             <li class="related-article-item border-bottom-1px" v-for="item in relatedEntry" :key="item.objectId">
               <router-link :to="`/post/${item.id || item.objectId}`">
@@ -51,7 +54,7 @@
         <section class="comment-con con">
           <ul v-if="comments.length>0" class="comment-list">
             <li v-for="item in comments" class="comment-item border-bottom-1px" :key="item.id">
-              <comment :authorId="entry.user.id" :comment="item"></comment>
+              <comment :authorId="entry && entry.user.id" :comment="item"></comment>
             </li>
           </ul>
           <div v-else class="no-comment">
@@ -62,12 +65,11 @@
       </div>
     </load-scroll>
   </div>
-<!-- </transition> -->
 </template>
 
 <script>
 import { getEntryView, getEntryByEntryIds, getRelatedEntry, getComments } from '../../api/post'
-
+import { followUser, unFollowUser, isCurrentUserFollowed } from '../../api/user'
 import DHeader from '../../components/d-header'
 import SArticleEntry from '../../components/s-article-entry'
 import Comment from '../../components/comment'
@@ -81,7 +83,7 @@ export default {
   data() {
     return {
       content: '',
-      entry: null,
+      entry:null,
       relatedEntry: [],
       comments: [],
       isLoading: false,
@@ -117,8 +119,18 @@ export default {
       this.getEntryView(id)
       this.getComments(id)
     },
-    follow() {
-      // TODO
+    async toggleFollow(author) {
+      if (author.currentUserFollowed) {
+        let data = await unFollowUser(author.objectId)
+        if (data.s === 1) {
+          author.currentUserFollowed = false
+        }
+      } else {
+        let data = await followUser(author.objectId)
+        if (data.s === 1) {
+          author.currentUserFollowed = true
+        }
+      }
     },
     postScroll(e) {
       let { scrollTop } = e.target
@@ -152,35 +164,13 @@ export default {
     async getEntryByEntryIds(id) {
       let data = await getEntryByEntryIds(id)
       let entry = data.d.entrylist[0]
-      let user = entry.user
-      this.entry = {
-        title: entry.title,
-        screenshot: entry.screenshot,
-        originalUrl: entry.originalUrl,
-        tags: entry.tags,
-        collectionCount: entry.collectionCount,
-        viewsCount: entry.viewsCount,
-        user: {
-          id: user.objectId,
-          username: user.username,
-          jobTitle: user.jobTitle,
-          company: user.company,
-          level: user.level,
-          avatarLarge: user.avatarLarge
-        }
-      }
+      data = await isCurrentUserFollowed(entry.user.objectId)
+      entry.user.currentUserFollowed = data.d[entry.user.objectId]
+      this.entry = entry
     },
     async getRelatedEntry(id) {
       let data = await getRelatedEntry(id)
-      this.relatedEntry = data.d.entrylist.map(item => ({
-        id: item.objectId,
-        title: item.title,
-        collectionCount: item.collectionCount,
-        screenshot: item.screenshot,
-        user: {
-          username: item.user.username
-        }
-      }))
+      this.relatedEntry = data.d.entrylist
     },
     async getComments(id, created) {
       let data = await getComments(id, created)
@@ -216,20 +206,7 @@ export default {
           display flex
           align-items center
           justify-content space-between
-          .user-info
-            display flex
-            align-items center
-            .avatar
-              width 60rem
-              height 60rem
-          .userinfo
-            display flex
-            align-items center
-            .username
-              margin-right 8rem
-              font-size 25rem
-            .level
-              height 25rem
+            
         .title-con
           height 105rem
           line-height 105rem

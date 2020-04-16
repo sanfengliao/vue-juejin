@@ -29,11 +29,11 @@
       </div>
     </div>
     <div class="pre-footer">
-      <span class="like">
-        <i @click.stop.prevent="handleLikeClick" class="iconfont icon-dianzan"></i>
-        {{article.likedCount || article.collectionCount ||  '点赞'}}
+      <span class="like" :class="{'active': article.viewerHasLiked}" @click.stop.prevent="handleLikeClick">
+        <i class="iconfont " :class="article.viewerHasLiked ? 'icon-dianzan1' : 'icon-dianzan'"></i>
+        {{article.likeCount || article.collectionCount ||  '点赞'}}
       </span>
-      <span class="comment">
+      <span class="comment" @click.stop.prevent="handleCommentClick">
         <i class="iconfont icon-pinglun"></i>
         {{article.commentsCount || '评论'}}
       </span>
@@ -56,7 +56,10 @@ export default {
   },
   methods: {
     handleLikeClick() {
-      console.log('abc')
+      this.$emit('like', this.article)
+    },
+    handleCommentClick() {
+      this.$emit('comment', this.article)
     }
   }
 }
@@ -127,14 +130,13 @@ export default {
   font-size 20rem
   .like
     margin-right 40rem
-    &.active
-      .iconfont
-        &::before
-          content: "\e601"
-        color $primary-color
-        font-size 30rem
-  .iconfont
     color $text-color
+    &.active
+      color #6cbd45
+      // .iconfont
+      //   color $primary-color
+      //   font-size 30rem
+  .iconfont
     font-size 20rem
     
 </style>

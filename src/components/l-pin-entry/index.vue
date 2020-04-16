@@ -1,7 +1,7 @@
 <template>
   <div class="pin-entry">
     <div class="header con">
-      <m-author class="author" :author="pin.user" :dateDis="pin.createdAt | dateDis"></m-author>
+      <m-author class="author" @toggleFollow="toggleFollow" :author="pin.user" :dateDis="pin.createdAt | dateDis"></m-author>
       <div class="iconfont-con">
         <i class="iconfont icon-unie644"></i>
       </div>
@@ -10,7 +10,7 @@
       <pin-info :pin="pin"></pin-info>
     </div>
     <div class="footer con">
-      <three-op :like-count="pin.likeCount" :comment-count="pin.commentCount"></three-op>
+      <three-op :is-like="pin.viewerHasLiked" :like-count="pin.likeCount" :comment-count="pin.commentCount" @like="like" @comment="comment" @share="share"></three-op>
     </div>
   </div>
 </template>
@@ -29,6 +29,20 @@ export default {
     ThreeOp,
     LinkView,
     PinInfo
+  },
+  methods: {
+    like() {
+      this.$emit('like', this.pin)
+    },
+    comment() {
+      this.$emit('comment', this.pin)
+    },
+    share() {
+      this.$emit('share', this.pin)
+    },
+    toggleFollow(author) {
+      this.$emit('toggleFollow', author)
+    }
   }
 }
 </script>

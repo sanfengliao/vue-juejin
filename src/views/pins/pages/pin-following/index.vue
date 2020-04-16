@@ -1,12 +1,12 @@
 <template>
   <div class="pins-following">
-    <scroll>
+    <scroll @refresh="refresh" :refreshing="refreshing" :loading="loading" @load="load">
       <div class="user-activty-con">
         <ul v-if="isLogin" class="user-activity-list">
           <li v-for="item in activies" :key="item.id" class="activity-item">
             <div v-if="item.action === 'PUBLISH_ARTICLE'">
               <router-link :to="`/post/${item.entries[0].id}`">
-                <l-article-entry :article="item.entries[0]"/>
+                <l-article-entry @like="likeArticle" @toggleFollow="toggleFollow" :article="item.entries[0]"/>
               </router-link>
             </div>
             <div v-if="item.action === 'LIKE_ARTICLE'">
@@ -17,7 +17,7 @@
               </div>
               <div>
                 <router-link :to="`/post/${item.entries[0].id}`">
-                  <l-article-entry :article="item.entries[0]"/>
+                  <l-article-entry @like="likeArticle"  @toggleFollow="toggleFollow" :article="item.entries[0]"/>
                 </router-link>
               </div>
             </div>
@@ -65,7 +65,7 @@
             </div>
             <div v-if="item.action === 'PUBLISH_PIN'">
               <router-link :to="`/pin/${item.pins[0].id}`">
-                <l-pin-entry :pin="item.pins[0]"/> 
+                <l-pin-entry @like="likePin" @toggleFollow="toggleFollow" :pin="item.pins[0]"/> 
               </router-link>
             </div>
             <div v-if="item.action === 'LIKE_PIN'">
@@ -76,7 +76,7 @@
               </div>
               <div>
                 <router-link :to="`/pin/${item.pins[0].id}`">
-                  <l-pin-entry :pin="item.pins[0]" />
+                  <l-pin-entry @like="likePin"  @toggleFollow="toggleFollow" :pin="item.pins[0]" />
                 </router-link>
               </div>
             </div>
@@ -113,13 +113,17 @@ import LPinEntry from '@/components/l-pin-entry'
 import Scroll from '@/components/scroll'
 import NeedLogin from '@/components/need-login'
 import MAuthor from '@/components/m-author'
-import { getFollowingUserActivities, getRecommendedUser } from '@/api/pins.js'
+import { getFollowingUserActivities, getRecommendedUser, likePin, unlikePin } from '@/api/pins.js'
+import { followUser,unFollowUser } from '@/api/user'
+import { likeEntry } from '@/api/entry'
 export default {
   name: 'pin-following',
   data() {
     return {
       activies: [],
-      recommendedUsers:[]
+      recommendedUsers:[],
+      refreshing: false,
+      loading: false
     }
   },
   computed: {
@@ -138,16 +142,69 @@ export default {
     this.init()
   },
   methods: {
+    async toggleFollow(author) {
+      if (author.viewerIsFollowing) {
+        let data = await unFollowUser(author.id)
+        if (data.s === 1) {
+          author.viewerIsFollowing = false
+        }
+      } else {
+        let data = await followUser(author.id)
+        if (data.s === 1) {
+          author.viewerIsFollowing = true
+        }
+      }
+    },
+    async likePin(pin) {
+      if (pin.viewerHasLiked) {
+        let data = await unlikePin(pin.id)
+        if (data.s === 1) {
+          pin.viewerHasLiked = false
+          pin.likeCount -= 1
+        }
+      } else {
+        let data = await likePin(pin.id)
+        if (data.s === 1) {
+          pin.viewerHasLiked = true
+          pin.likeCount += 1
+        }
+      }
+    },
+    async likeArticle(article) {
+      let data = await likeEntry(article.id)
+      if (data.s === 1) {
+        if (article.viewerHasLiked) {
+
+          article.likeCount -= 1
+          article.viewerHasLiked = false
+        } else {
+          article.likeCount += 1
+          article.viewerHasLiked = true
+        }
+      }
+    },
     init() {
       this.refresh()
     },
     async refresh() {
       if (this.isLogin) {
+        this.refreshing = true
         this.after = ''
         this.activies = await this.getFollowingUserActivities()
+        this.refreshing = false
       } else {
         this.exclude = []
         this.getRecommendedUser()
+      }
+    },
+    async load() {
+      if (this.isLogin) {
+        this.loading = true
+        let activies = await this.getFollowingUserActivities()
+        for (let item of activies) {
+          this.activies.push(item)
+        }
+        this.loading = false
       }
     },
     async getFollowingUserActivities() {

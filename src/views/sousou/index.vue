@@ -33,10 +33,13 @@
                   <span class="title">看一看</span>
                 </div>
               </router-link>
-              <div class="nav-item">
-                <i class="iconfont icon-huati"></i>
-                <span class="title">话题广场</span>
-                </div>
+              <router-link to="/topic">
+
+                <div class="nav-item">
+                  <i class="iconfont icon-huati"></i>
+                  <span class="title">话题广场</span>
+                  </div>
+              </router-link>
               <div class="nav-item">
                 <i class="iconfont icon-laba"></i>
                 <span class="title">活动</span>

@@ -15,7 +15,7 @@
           <ul class="pin-entry-list">
             <li class="pin-entry-item" v-for="item in pins" :key="item.id || item.objectId">
               <router-link :to="`/pin/${item.id || item.objectId}`">
-                <l-pin-entry :pin="item"></l-pin-entry>
+                <l-pin-entry @like="likePin" @toggleFollow="toggleFollow" :pin="item"></l-pin-entry>
               </router-link>
             </li>
           </ul>
@@ -29,8 +29,9 @@
 import Scroll from '@/components/scroll'
 import LPinEntry from '@/components/l-pin-entry'
 import SPinEntry from '@/components/s-pin-entry'
-import { getHotRecommendList, getTopicList, getPopularPinList, getRecommendedFeed } from '@/api/pins'
+import { getHotRecommendList, getTopicList, getPopularPinList, getRecommendedFeed, likePin, unlikePin } from '@/api/pins'
 import { pinsRouteType } from '@/common/config'
+import { followUser,unFollowUser } from '@/api/user'
 
 export default {
   data() {
@@ -61,6 +62,34 @@ export default {
         this.getHotRecommendList()
       }
       this.refresh()
+    },
+    async toggleFollow(author) {
+      if (author.viewerIsFollowing) {
+        let data = await unFollowUser(author.id)
+        if (data.s === 1) {
+          author.viewerIsFollowing = false
+        }
+      } else {
+        let data = await followUser(author.id)
+        if (data.s === 1) {
+          author.viewerIsFollowing = true
+        }
+      }
+    },
+    async likePin(pin) {
+      if (pin.viewerHasLiked) {
+        let data = await unlikePin(pin.id)
+        if (data.s === 1) {
+          pin.viewerHasLiked = false
+          pin.likeCount -= 1
+        }
+      } else {
+        let data = await likePin(pin.id)
+        if (data.s === 1) {
+          pin.viewerHasLiked = true
+          pin.likeCount += 1
+        }
+      }
     },
     async refresh() {
       this.hasNextPage = true

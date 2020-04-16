@@ -1,7 +1,7 @@
 <template>
   <div class="l-article-entry">
     <div class="article-author">
-      <m-author class="author" :author="article.user" />
+      <m-author class="author" @toggleFollow="toggleFollow" :author="article.user" />
       <div class="iconfont-con">
         <i class="iconfont icon-unie644"></i>
       </div>
@@ -21,7 +21,7 @@
       </div>
     </div>
     <div class="three-op">
-      <three-op />
+      <three-op :is-like="article.viewerHasLiked" @like="like" @share="share" @comment="comment" :like-count="article.likeCount" :comment-count="article.commentsCount" />
     </div>
   </div>
 </template>
@@ -39,6 +39,20 @@ export default {
   },
   created() {
     
+  },
+  methods: {
+    like() {
+      this.$emit('like', this.article)
+    },
+    comment() {
+      this.$emit('comment', this.article)
+    },
+    share() {
+      this.$emit('share', this.article)
+    },
+    toggleFollow(author) {
+      this.$emit('toggleFollow', author)
+    }
   }
 }
 </script>

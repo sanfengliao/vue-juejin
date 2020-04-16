@@ -40,7 +40,7 @@
         <div class="aricle-list-con">
           <ul class="article-pre-list">
             <li class="article-pre-item" v-for="item in edges" :key="item.id">
-              <router-link :to="`/post/${item.id}`"><m-article-entry :article="item"></m-article-entry></router-link>
+              <router-link :to="`/post/${item.id}`"><m-article-entry :article="item" @like="like"></m-article-entry></router-link>
             </li>
           </ul>
         </div>
@@ -60,6 +60,7 @@ import SArticleEntry from '@/components/s-article-entry'
 import { routeTypes } from '@/common/config'
 import { randomSelect } from '@/util'
 import BScroll from 'better-scroll'
+import { likeEntry } from '@/api/entry'
 export default {
   props: {
     queryId: String,
@@ -91,6 +92,11 @@ export default {
       recommendedHotArticleFeed:[]
     }
   },
+  computed: {
+    isLogin() {
+      return this.$store.state.isLogin
+    }
+  },
   created() {
     if (this.hasTags) {
       this.queryTag()
@@ -118,6 +124,28 @@ export default {
     })
   },
   methods: {
+    async like(article) {
+      if (!this.isLogin) {
+        this.$router.push({
+          path: '/login',
+          query: {
+            from: this.$route.path
+          }
+        })
+        return
+      }
+      let data = await likeEntry(article.id)
+      if (data.s === 1) {
+        if (article.viewerHasLiked) {
+
+          article.likeCount -= 1
+          article.viewerHasLiked = false
+        } else {
+          article.likeCount += 1
+          article.viewerHasLiked = true
+        }
+      }
+    },
     /**
      * @param {true} isRefresh
      */
@@ -239,6 +267,9 @@ export default {
   watch: {
     tags() {
       this.tagsChange = true
+    },
+    isLogin() {
+      this.refresh()
     }
   }
 }

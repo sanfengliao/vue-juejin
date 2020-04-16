@@ -155,3 +155,29 @@ export const getRecommendedUser = (exclude=[], limit=8) => {
     }
   }).then(res => res.data)
 }
+
+export const likePin = (msgId) => {
+  return request({
+    method: 'GET',
+    url: '/short-msg/v1/like',
+    params: {
+      msgId,
+      uid: store.state.uid,
+      token: store.state.token,
+      ...commonParams
+    }
+  }).then(res => res.data)
+}
+
+export const unlikePin = (msgId) => {
+  return request({
+    method: 'GET',
+    url: '/short-msg/v1/unlike',
+    params: {
+      msgId,
+      uid: store.state.uid,
+      token: store.state.token,
+      ...commonParams
+    }
+  }).then(res => res.data)
+}
