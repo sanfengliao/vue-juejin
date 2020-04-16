@@ -33,7 +33,7 @@
                   <span class="title">看一看</span>
                 </div>
               </router-link>
-              <router-link to="/topic">
+              <router-link to="/topics">
 
                 <div class="nav-item">
                   <i class="iconfont icon-huati"></i>
