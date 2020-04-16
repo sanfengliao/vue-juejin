@@ -125,11 +125,13 @@ export default {
       this.refreshing = false
     },
     async load() {
+      
       this.loading = true
       let articles = await this.getFollowingUserArticle()
       for (let item of articles) {
         this.articles.push(item)
       }
+      this.loading = false
     },
     async getFollowingUserArticle() {
       if (this.isLogin) {
