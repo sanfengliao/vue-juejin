@@ -46,14 +46,14 @@
 <style lang="stylus" scoped>
 @import "../../assets/css/variable.styl"
 .d-header
-  height 105rem
+  height 105*$unit
   display flex
   align-items center
   .left
-    flex 0 0 35rem
+    flex 0 0 35*$unit
     display flex
     align-items center
-    margin-right 30rem
+    margin-right 30*$unit
     height 100%
   .center
     display flex
@@ -62,7 +62,7 @@
     flex 1
     height 100%
     .title
-      font-size 40rem
+      font-size 40*$unit
       font-weight 500
       text-overflow ellipsis
       overflow hidden
@@ -73,8 +73,8 @@
     height 100%
   .iconfont
       border-radius 50%
-      padding: 15rem
-      font-size 35rem
+      padding: 15*$unit
+      font-size 35*$unit
       &:active
         background #d6d4d4
     

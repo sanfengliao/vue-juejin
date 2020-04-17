@@ -141,30 +141,30 @@ export default {
     color #fff
 .book-section
   position absolute
-  top 105rem
-  bottom 100rem
+  top 105*$unit
+  bottom 100*$unit
   width 100%
   overflow scroll
 .book-info
-  padding 25rem
-  min-height 255rem
+  padding 25*$unit
+  min-height 255*$unit
   display flex
   align-items center
   background #fff
   .poster
-    margin-right 20rem
-    flex 0 0 165rem
-    height 230rem
+    margin-right 20*$unit
+    flex 0 0 165*$unit
+    height 230*$unit
   .info
     flex 1
     width 0
     .book-title
-      margin-bottom 20rem
-      font-size 33rem
+      margin-bottom 20*$unit
+      font-size 33*$unit
       font-weight bold
     .book-desc
-      font-size 25rem
-      line-height 40rem
+      font-size 25*$unit
+      line-height 40*$unit
       color #71777c
     .author
       display flex
@@ -174,9 +174,9 @@ export default {
         display flex
         align-items center
         .avatar
-          margin-right 10rem
-          width 50rem
-          height 50rem
+          margin-right 10*$unit
+          width 50*$unit
+          height 50*$unit
           border-radius 50%
           background-size cover
           background-repeat no-repeat
@@ -184,75 +184,75 @@ export default {
         .username
           display flex
           align-items center
-          font-size 25rem
+          font-size 25*$unit
           .name
-            margin-right 5rem
+            margin-right 5*$unit
           .level
-            height 25rem
+            height 25*$unit
       .wechat-info
         .iconfont
-          font-size 40rem
+          font-size 40*$unit
           color #71777c
 .book-bought
   display flex
   align-items center
   justify-content space-between
-  padding 16rem 25rem
+  padding 16*$unit 25*$unit
   background #fff
   .bought-num
     display flex
     align-items center
-    font-size 28rem
+    font-size 28*$unit
     color $gray-text-color
   .users
     display flex
     .user
-      width 50rem
-      height 50rem
+      width 50*$unit
+      height 50*$unit
       border-radius 50%
       background-size cover
       background-position 50%
       background-repeat no-repeat
-      margin-right 8rem
+      margin-right 8*$unit
 .book-sections-con
-  margin-bottom 20rem
+  margin-bottom 20*$unit
   background #fff
 .book-sections-head
-  padding 20rem 30rem
-  font-size 40rem
+  padding 20*$unit 30*$unit
+  font-size 40*$unit
   color #333
   font-weight 600
 .book-sections-content
-  padding-left 10rem
+  padding-left 10*$unit
 
 .book-summary-con
-  padding 20rem
+  padding 20*$unit
   background #fff
 
 .book-footer
   position fixed
   bottom 0
   width 100%
-  height 100rem
+  height 100*$unit
   background #fff
   .operate
-    padding 0 8rem
+    padding 0 8*$unit
     height 100%
     display flex
     align-items center
     justify-content space-between
     .btn
-      height 80rem
-      line-height 80rem
+      height 80*$unit
+      line-height 80*$unit
       text-align center
-      border-radius 10rem
-      font-size 27rem
+      border-radius 10*$unit
+      font-size 27*$unit
       font-weight bold
     .button-read
-      width 240rem
+      width 240*$unit
       border 1px solid #007fff
       color  #007fff
       background  #fff
     .button-buy
-      width 480rem
+      width 480*$unit
 </style>

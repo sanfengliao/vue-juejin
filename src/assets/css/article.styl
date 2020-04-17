@@ -1,10 +1,12 @@
 // .article-content * {
-//   font-size: 30*24rem
+//   font-size: 30*$articleUit
 // }
 
 // code {
-//   font-size: 30*24rem !important
+//   font-size: 30*$articleUit !important
 // }
+
+$articleUit = 12/16rem
 
 .article-content {
     word-break: break-word;
@@ -15,19 +17,19 @@
 }
 
 .article-content h1 {
-    margin: 1.3 *24rem 0;
+    margin: 1.3*$articleUit 0;
     line-height: 1.2
 }
 
 .article-content p {
-    line-height: 2.27*24rem
+    line-height: 2.27*$articleUit
 }
 
 .article-content hr {
     border: none;
     border-top: 1px solid #ddd;
-    margin-top: 2.7*24rem;
-    margin-bottom: 2.7*24rem
+    margin-top: 2.7*$articleUit;
+    margin-bottom: 2.7*$articleUit
 }
 
 .article-content embed,.article-content iframe,.article-content img:not(.equation),.article-content video {
@@ -66,19 +68,19 @@
 }
 
 .article-content figure {
-    margin: 2.7*24*24rem auto;
+    margin: 2.7*24*$articleUit auto;
     text-align: center
 }
 
 .article-content figure figcaption {
     text-align: center;
-    font-size: 1*24rem;
-    line-height: 2.7*24rem;
+    font-size: 1*$articleUit;
+    line-height: 2.7*$articleUit;
     color: #909090
 }
 
 .article-content pre {
-    line-height: 1.93*24rem;
+    line-height: 1.93*$articleUit;
     overflow: auto
 }
 
@@ -87,8 +89,8 @@
 }
 
 .article-content code {
-    font-size: 1*24rem;
-    padding: .26*24rem .53em;
+    font-size: 1*$articleUit;
+    padding: .26*$articleUit .53em;
     word-break: break-word;
     color: #4e5980;
     background-color: #f8f8f8;
@@ -97,8 +99,8 @@
 }
 
 .article-content pre>code {
-    font-size: 1*24rem;
-    padding: .67*24rem 1.3*24rem;
+    font-size: 1*$articleUit;
+    padding: .67*$articleUit 1.3*$articleUit;
     margin: 0;
     word-break: normal;
     display: block
@@ -114,7 +116,7 @@
 
 .article-content table {
     display: inline-block!important;
-    font-size: 1*24rem;
+    font-size: 1*$articleUit;
     width: auto;
     max-width: 100%;
     overflow: auto;
@@ -132,34 +134,34 @@
 }
 
 .article-content td,.article-content th {
-    padding: 1*24rem .6*24rem;
-    line-height: 2*24rem
+    padding: 1*$articleUit .6*$articleUit;
+    line-height: 2*$articleUit
 }
 
 .article-content td {
-    min-width: 10*24rem
+    min-width: 10*$articleUit
 }
 
 .article-content blockquote {
     margin: 1em 0;
     border-left: 4px solid #ddd;
-    padding: 0 1.3*24rem
+    padding: 0 1.3*$articleUit
 }
 
 .article-content blockquote>p {
-    margin: .6*24rem 0
+    margin: .6*$articleUit 0
 }
 
 .article-content ol,.article-content ul {
-    padding-left: 2.7*24rem
+    padding-left: 2.7*$articleUit
 }
 
 .article-content ol li,.article-content ul li {
-    margin-bottom: .6*24rem
+    margin-bottom: .6*$articleUit
 }
 
 .article-content ol ol,.article-content ol ul,.article-content ul ol,.article-content ul ul {
-    margin-top: .27*24rem
+    margin-top: .27*$articleUit
 }
 
 .article-content pre>code {
@@ -449,7 +451,7 @@
 
 @media (max-width: 720px) {
     .article-content pre>code.copyable.hljs[lang]:before {
-        right:1*24rem
+        right:1*$articleUit
     }
 }
 

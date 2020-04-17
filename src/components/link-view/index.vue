@@ -31,26 +31,26 @@ export default {
 @import "../../assets/css/variable.styl"
 .link-view-con
   display flex
-  border-radius 8rem
-  padding 20rem 30rem
+  border-radius 8*$unit
+  padding 20*$unit 30*$unit
   background #f9f7f7
   .link-content
     display flex
     flex-direction column
     justify-content space-between
-    margin-right 20rem
+    margin-right 20*$unit
     flex 1
     width 0
-    font-size 30rem
+    font-size 30*$unit
     .link-title
       white-space normal
     .link-domain
       color #8a93a0
-      font-size 28rem
+      font-size 28*$unit
   .link-pic
     border-radius 2px
-    width 144rem
-    height 144rem
+    width 144*$unit
+    height 144*$unit
     background-size cover
     background-position 50%
 

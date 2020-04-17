@@ -62,29 +62,29 @@ export default {
 .l-article-entry
   background #fff
   .article-author
-    padding 25rem 25rem 0
+    padding 25*$unit 25*$unit 0
     display flex
     align-items center
     .author
-      margin-right 20rem
+      margin-right 20*$unit
     .iconfont
       color $gray-text-color
   .article-content-con
-    padding 20rem
+    padding 20*$unit
     .article-title
       .original-con
         display inline-block
-        line-height 32rem
+        line-height 32*$unit
         .original
-          margin-right 20rem
-          padding 2rem 10rem
-          font-size 20rem
+          margin-right 20*$unit
+          padding 2*$unit 10*$unit
+          font-size 20*$unit
           font-weight 500
           color #007fff
           background-color #e5f2ff
-          border-radius 4rem
+          border-radius 4*$unit
       .title
-        font-size 34rem
+        font-size 34*$unit
         display inline
         color #17181a
         white-space normal
@@ -94,7 +94,7 @@ export default {
       .left-content
         flex 1
         width 0
-        font-size 30rem
+        font-size 30*$unit
         color $article-content-color
         line-height 1.5
         white-space normal
@@ -104,10 +104,10 @@ export default {
         -webkit-line-clamp 3
         -webkit-box-orient vertical
       .right-image
-        margin-left 20rem
-        width 130rem
-        height 130rem
-        border-radius 5rem
+        margin-left 20*$unit
+        width 130*$unit
+        height 130*$unit
+        border-radius 5*$unit
         background-size cover
         background-position 50%
         background-repeat no-repeat

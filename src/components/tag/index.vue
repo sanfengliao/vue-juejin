@@ -14,9 +14,9 @@ export default {
 
 <style lang="stylus" scoped>
 .tag {
-  border-radius: 27.5rem
-  padding 10rem 27.5rem
-  font-size 20rem
+  border-radius: 27.5*$unit
+  padding 10*$unit 27.5*$unit
+  font-size 20*$unit
   text-align center
   background #f3f7fa
 }

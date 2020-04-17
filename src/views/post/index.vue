@@ -202,44 +202,44 @@ export default {
         transform translateY(-50%)
         transition transform .5s
         .user-con
-          height 105rem
+          height 105*$unit
           display flex
           align-items center
           justify-content space-between
             
         .title-con
-          height 105rem
-          line-height 105rem
+          height 105*$unit
+          line-height 105*$unit
       .follow
         display flex
         justify-content center
         align-items center
-        flex 0 0 140rem
-        height 60rem
+        flex 0 0 140*$unit
+        height 60*$unit
         border 1px #6cbd45 solid
         color #6cbd45
-        font-size 26rem
+        font-size 26*$unit
         .iconfont
           padding 0
-          margin-right 10rem
+          margin-right 10*$unit
           color #6cbd45
-          font-size 26rem
+          font-size 26*$unit
   .article
-    margin-bottom 20rem
-    padding 125rem 20rem 50rem
+    margin-bottom 20*$unit
+    padding 125*$unit 20*$unit 50*$unit
     background #fff
     .summary
       .author-container
-        margin-bottom 20rem
+        margin-bottom 20*$unit
       .title
-        font-size 35rem
-        margin-bottom 45rem
+        font-size 35*$unit
+        margin-bottom 45*$unit
       .origin-url
-        margin-bottom 30rem
-        font-size 25rem
+        margin-bottom 30*$unit
+        font-size 25*$unit
         color #909090
       .screenshot
-        margin 20rem 0
+        margin 20*$unit 0
         background-size cover
         background-position 50%
         background-repeat no-repeat
@@ -250,49 +250,49 @@ export default {
           width: 100%
           pointer-events: none
     .article-content
-      margin-bottom 65rem
+      margin-bottom 65*$unit
     .tag-con
-      margin-bottom 50rem
+      margin-bottom 50*$unit
     .tag-list
       display flex
       .tag-item
-        padding 15rem 20rem
+        padding 15*$unit 20*$unit
         background #ebebeb
         color #666
-        margin-right 10rem
-        font-size 20rem
+        margin-right 10*$unit
+        font-size 20*$unit
     .article-info
       color #909090
-      font-size 25rem
+      font-size 25*$unit
       line-height 1
 
   .related-article
-    margin-bottom 20rem
+    margin-bottom 20*$unit
     background #fff
     .title
-      height 100rem
-      line-height 100rem
-      font-size 30rem
+      height 100*$unit
+      line-height 100*$unit
+      font-size 30*$unit
       font-weight 500
       color #333
   .loading-con
     display flex
     justify-content center
     align-items center
-    height 100rem
+    height 100*$unit
     background-color #fff
-    font-size 25rem
+    font-size 25*$unit
     color #666
 .comment-con
   .no-comment
-    height 300rem
+    height 300*$unit
     background: #fff
     display flex
     flex-direction column
     justify-content center
     align-items center
-    font-size 30rem
+    font-size 30*$unit
     color #909090
     .iconfont
-      font-size 70rem
+      font-size 70*$unit
 </style>

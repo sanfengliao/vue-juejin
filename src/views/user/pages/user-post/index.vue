@@ -43,5 +43,5 @@ export default {
 
 <style lang="stylus" scoped>
 .post-item
-  margin-bottom 20rem
+  margin-bottom 20*$unit
 </style>

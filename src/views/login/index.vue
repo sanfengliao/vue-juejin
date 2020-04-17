@@ -83,55 +83,55 @@ export default {
 .login
   background #0180ff
   .login-header
-    padding 0 40rem
-    height 80rem
-    line-height 80rem
+    padding 0 40*$unit
+    height 80*$unit
+    line-height 80*$unit
     color #fff
-    font-size 30rem
+    font-size 30*$unit
   .login-section
     position relative
-    padding 20rem 35rem
-    height 1100rem
+    padding 20*$unit 35*$unit
+    height 1100*$unit
     .logo-con
       margin 0 auto
-      margin-bottom 40rem
+      margin-bottom 40*$unit
       display flex
       justify-content center
       align-items center
       padding-left 7px
-      width 100rem
-      height 100rem
+      width 100*$unit
+      height 100*$unit
       background #fff
-      border-radius 20rem
+      border-radius 20*$unit
     .login-form
-      margin-bottom 20rem
+      margin-bottom 20*$unit
       .border-bottom-1px
         &:after
           background #000
       .input
-        padding 30rem 
-        height 105rem
+        padding 30*$unit 
+        height 105*$unit
         width 100%
         background #fff
-        font-size 30rem
+        font-size 30*$unit
         &::placeholder
           color #909090
     .btn-con
-      margin-bottom 20rem
+      margin-bottom 20*$unit
       .login-btn
-        height 95rem
-        line-height 95rem
+        height 95*$unit
+        line-height 95*$unit
         background #006cd9
         text-align center
         color #fff
-        font-size 30rem
+        font-size 30*$unit
         &:active
           background #0460bd
     .operate-text
       display flex
       justify-content space-between
       color #fff
-      font-size 20rem
+      font-size 20*$unit
       .forget-pass
         opacity 0.6
       

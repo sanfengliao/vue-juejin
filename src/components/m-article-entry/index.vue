@@ -17,7 +17,7 @@
       </ul>
     </div>
     <div class="pre-content">
-      <div class="article" :style="{marginRight: article.screenshot ? '20rem' : '0'}">
+      <div class="article" :style="{marginRight: article.screenshot ? 20/16 + 'rem' : '0'}">
         <div class="pre-article-title">
           {{article.title}}
         </div>
@@ -68,48 +68,48 @@ export default {
 <style lang="stylus" scoped>
 @import "../../assets/css/variable.styl";
 .article-pre
-  padding: 30rem 20rem
+  padding: 30*$unit 20*$unit
   background #fff
 
 .pre-header
   display flex
   justify-content space-between
-  padding-bottom 25rem
+  padding-bottom 25*$unit
   .user
     display flex
     align-items center;
-    font-size 25rem
+    font-size 25*$unit
     color: #000
     .avator-con
-      margin-right 10rem
-      width 40rem
-      height 40rem
+      margin-right 10*$unit
+      width 40*$unit
+      height 40*$unit
       .avator
         border-radius: 50%
   .tag-list
     display flex
     .tag-item
       color $text-color
-      font-size 25rem
-      line-height 25rem
+      font-size 25*$unit
+      line-height 25*$unit
 
 .pre-content
   display flex
   justify-content space-between
-  padding-bottom 10rem
+  padding-bottom 10*$unit
   .article
     flex 1
     width 0
     .pre-article-title
       width 100%
-      padding-bottom 5rem
+      padding-bottom 5*$unit
       color $title-color
       white-space normal
-      font-size 30rem
+      font-size 30*$unit
       font-weight bold
     .pre-article-content
       width 100%
-      font-size 25rem
+      font-size 25*$unit
       color $text-color
       white-space normal
       overflow hidden
@@ -118,25 +118,25 @@ export default {
       -webkit-line-clamp 3
       -webkit-box-orient vertical
   .screenshot
-    border-radius 8rem
-    flex 0 0 145rem
-    height 145rem
+    border-radius 8*$unit
+    flex 0 0 145*$unit
+    height 145*$unit
     background $primary-color
     background-size cover
     background-position 50%
     background-repeat no-repeat
 .pre-footer
   color $text-color
-  font-size 20rem
+  font-size 20*$unit
   .like
-    margin-right 40rem
+    margin-right 40*$unit
     color $text-color
     &.active
       color #6cbd45
       // .iconfont
       //   color $primary-color
-      //   font-size 30rem
+      //   font-size 30*$unit
   .iconfont
-    font-size 20rem
+    font-size 20*$unit
     
 </style>

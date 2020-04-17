@@ -78,31 +78,31 @@ export default {
 .about-section
   color #333
   .item
-    margin-bottom 20rem
-    padding 30rem 35rem 20rem
+    margin-bottom 20*$unit
+    padding 30*$unit 35*$unit 20*$unit
     background #fff
   .title
-    font-size 34rem
+    font-size 34*$unit
     color $primary-text-color
-    margin-bottom 20rem
+    margin-bottom 20*$unit
   .desc
-    font-size 28rem
+    font-size 28*$unit
   .xx-desc
     display flex
-    padding 20rem 0
+    padding 20*$unit 0
     .iconfont-con
-      margin-right 20rem
+      margin-right 20*$unit
     .iconfont
-      font-size 28rem
+      font-size 28*$unit
     .desc
-      font-size 30rem
-      margin-bottom 20rem
+      font-size 30*$unit
+      margin-bottom 20*$unit
     .address
-      font-size 25rem
+      font-size 25*$unit
 .about-footer
   position absolute
   width 100%
-  bottom 20rem
-  font-size 25rem
+  bottom 20*$unit
+  font-size 25*$unit
   text-align center
 </style>

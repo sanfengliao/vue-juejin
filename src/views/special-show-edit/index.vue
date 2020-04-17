@@ -143,21 +143,21 @@ export default {
   position relative
   z-index 20
   display flex
-  padding 0 20rem
-  flex 0 0 105rem
+  padding 0 20*$unit
+  flex 0 0 105*$unit
   background $primary-color
-  line-height 105rem
+  line-height 105*$unit
   .icon-con
-    margin-right 30rem
+    margin-right 30*$unit
     .iconfont
       border-radius 50%
-      padding: 15rem
-      font-size 35rem
+      padding: 15*$unit
+      font-size 35*$unit
       color #fff
       &:active
         background #046bd2
   .title
-    font-size 40rem
+    font-size 40*$unit
     font-weight 500
     color #fff
 .section
@@ -167,8 +167,8 @@ export default {
       align-items center
       position relative
       justify-content space-between
-      padding 0 35rem
-      height 114rem
+      padding 0 35*$unit
+      height 114*$unit
       width 100%
       border-bottom 1px solid $border-color
       background #fff
@@ -176,10 +176,10 @@ export default {
         display flex
         align-items center
         .icon-con
-          margin-right 45rem
+          margin-right 45*$unit
           .iconfont
             color #000
         .title
-          font-size 32rem
+          font-size 32*$unit
           font-weight 500
 </style>

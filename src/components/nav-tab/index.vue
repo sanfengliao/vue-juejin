@@ -121,18 +121,18 @@ export default {
       align-items center
       white-space: nowrap
       height 100%
-      min-height 75rem
+      min-height 75*$unit
       .nav-item
-        padding 0 40rem
-        font-size 30rem
+        padding 0 40*$unit
+        font-size 30*$unit
         color #cfcfd3
         .router-link-active
           color #fff
     .bottom-line
       position absolute
-      border-radius 2rem
+      border-radius 2*$unit
       bottom 0
-      height 6rem
+      height 6*$unit
       background #fff
       transition all 100ms
 </style>

@@ -7,14 +7,21 @@ import routerTransition from './plugin/router-transition'
 // import RouterTransition from './components/router-transition'
 import Message from './components/message'
 
-import './assets/css/normalize.css'
-import './assets/css/common.css'
+import './assets/css/normalize.styl'
+import './assets/css/common.styl'
 import { dateDis, levelImage } from './fliter'
 import VueAwesomeSwiper from 'vue-awesome-swiper'
 
 // import style
 import 'swiper/css/swiper.css'
 import './assets/css/article.styl'
+
+// function resize() {
+//   let clientWidth = document.documentElement.clientWidth
+//   let fontSize = 16 * clientWidth / 375
+//   document.documentElement.style.fontSize = fontSize + 'px'
+// }
+
 
 Vue.use(VueAwesomeSwiper)
 Vue.use(Message)

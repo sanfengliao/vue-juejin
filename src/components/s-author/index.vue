@@ -5,7 +5,7 @@
         <div class="avatar" :style="{backgroundImage: `url(${author.avatarLarge})`}"></div>
       </router-link>
     </div>
-    <div class="user-info" :style="{marginRight: !author.viewerIsFollowing ? '20rem' : '0'}">
+    <div class="user-info" :style="{marginRight: !author.viewerIsFollowing ? 20/36 +'rem' : '0'}">
       <span class="username">{{author.username}}</span>
       <img class="level" v-if="showLevel && author.level > 0" :src="author.level | levelImage" :alt="`Lv-${author.level}`">
     </div>
@@ -46,11 +46,11 @@ export default {
   display flex
   align-items center
   .avatar-con
-    margin-right 20rem
+    margin-right 20*$unit
   .avatar
     border-radius 50%
-    width 60rem
-    height 60rem
+    width 60*$unit
+    height 60*$unit
     background-size cover
     background-position 50%
     background-repeat no-repeat
@@ -58,27 +58,27 @@ export default {
     flex 1
     display flex
     width 0
-    height 30rem
+    height 30*$unit
     align-items center
     .username
-      margin-right 8rem
-      font-size 25rem
+      margin-right 8*$unit
+      font-size 25*$unit
     .level
-      height 25rem
+      height 25*$unit
    
   .follow
     display flex
     justify-content center
     align-items center
-    flex 0 0 140rem
-    height 55rem
+    flex 0 0 140*$unit
+    height 55*$unit
     border 1px #6cbd45 solid
     color #6cbd45
-    font-size 23rem
+    font-size 23*$unit
     &.active
       color #fff
     .iconfont
       padding 0
-      margin-right 10rem
-      font-size 26rem
+      margin-right 10*$unit
+      font-size 26*$unit
 </style>

@@ -44,33 +44,33 @@ export default {
   display flex
   align-items center
   background #fff
-  padding: 20rem
+  padding: 20*$unit
   .left
-    margin-right 20rem
+    margin-right 20*$unit
     .icon
-      width 100rem
-      height 100rem
-      border-radius 10rem
+      width 100*$unit
+      height 100*$unit
+      border-radius 10*$unit
       background-size cover
       background-position 50%
       background-repeat no-repeat
   .center
     flex 1
     width 0
-    margin-right 20rem
+    margin-right 20*$unit
     .title
-      margin-bottom 5rem 
-      font-size 35rem
+      margin-bottom 5*$unit 
+      font-size 35*$unit
     .info
       color #909090
-      font-size 25rem
+      font-size 25*$unit
   .right
     .follow-btn
-      width 100rem
-      border-radius 25rem
-      line-height 50rem
+      width 100*$unit
+      border-radius 25*$unit
+      line-height 50*$unit
       text-align center
-      font-size 28rem
+      font-size 28*$unit
       color #007fff
       background #eee
 </style>

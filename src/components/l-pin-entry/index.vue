@@ -49,16 +49,16 @@ export default {
 
 <style lang="stylus" scoped>
 .pin-entry
-  padding-top 20rem
+  padding-top 20*$unit
   background #fff
   .header
     display flex
     align-items center
     .author
-      margin-right 20rem
+      margin-right 20*$unit
     .iconfont
       color #909090
   .section
-    padding 30rem 20rem
+    padding 30*$unit 20*$unit
 
 </style>

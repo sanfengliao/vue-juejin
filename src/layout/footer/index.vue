@@ -49,7 +49,7 @@
   box-shadow 0 1px 2px 0 rgba(0,0,0,.05)
   height 100%
   background #fff
-  border-top 1rem solid $border-color
+  border-top 1*$unit solid $border-color
   .nav-list
     height 100%
     display flex
@@ -65,7 +65,7 @@
         background #dcdbdb
       .iconfont
         color $text-color
-        font-size 55rem
+        font-size 55*$unit
       .router-link-active
         .iconfont
           color $primary-color

@@ -33,7 +33,7 @@ export default {
 }
 </script>
 
-<style lang="css" scoped>
+<style lang="stylus" scoped>
 /* 滑动切换 tab 样式 */
 .top.tabs {
   position: relative;
@@ -49,7 +49,7 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 80rem;
+  height: 80*$unit;
   color: #ccc;
   transition: 250ms ease-out;
 }
@@ -62,7 +62,7 @@ export default {
   bottom: 0;
   left: 0;
   width: 50%;
-  height: 5rem;
+  height: 5*$unit;
   background: #fff;
   transition: 250ms ease-out;
 }

@@ -131,21 +131,21 @@ export default {
 .user-activty-con
   .user-activity-list
     .activity-item
-      margin-bottom 20rem
+      margin-bottom 20*$unit
       .action
         background #fff
-        padding 20rem
+        padding 20*$unit
       .like-action
-        font-size 25rem
+        font-size 25*$unit
         color $gray-text-color
         .actor-name
           color #333
       .follow-action
         display flex
         .actor-avatar
-          margin-right 20rem
-          width 80rem
-          height 80rem
+          margin-right 20*$unit
+          width 80*$unit
+          height 80*$unit
           border-radius 50%
           background-size cover
           background-position 50%
@@ -157,26 +157,26 @@ export default {
           .user-info
             display flex
             align-items center
-            font-size 30rem
+            font-size 30*$unit
             color $gray-text-color
             .username
               color #333
             .text
-              margin 0 8rem
+              margin 0 8*$unit
             .follow-user
               display flex
               align-items center
-              height 35rem
+              height 35*$unit
               .level
-                margin-left 5rem
-                height 25rem
+                margin-left 5*$unit
+                height 25*$unit
             .follow-tag
               color #333
               .tag-icon
-                width 28rem
-                margin-right 4rem
+                width 28*$unit
+                margin-right 4*$unit
           .actor-job
-            font-size 25rem
+            font-size 25*$unit
             color $gray-text-color
 
 </style>

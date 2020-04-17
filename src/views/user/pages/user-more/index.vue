@@ -50,12 +50,12 @@ export default {
 
 <style lang="stylus" scoped>
 .user-more
-  padding-top 20rem
+  padding-top 20*$unit
   .user-item 
-    padding 20rem 30rem
+    padding 20*$unit 30*$unit
     display flex
     justify-content space-between
-    font-size 30rem
+    font-size 30*$unit
     background #fff
     .number
       color #909090

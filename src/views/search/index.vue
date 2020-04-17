@@ -138,16 +138,16 @@ export default {
     .input-box
       width 100%
       .search-input
-        padding 10rem 0
+        padding 10*$unit 0
         width 100%
         color #fff
-        font-size 36rem
+        font-size 36*$unit
         background transparent
         &::placeholder
           color #ccc
-          font-size 36rem
+          font-size 36*$unit
     .iconfont
-      font-size 50rem
+      font-size 50*$unit
       color #eee
 .search-section
   position relative
@@ -160,16 +160,16 @@ export default {
       display flex
       align-items center
       justify-content space-between
-      padding 15rem 20rem
-      font-size 36rem
+      padding 15*$unit 20*$unit
+      font-size 36*$unit
       .left
         .iconfont
-          margin-right 20rem
+          margin-right 20*$unit
       .iconfont
-        font-size 38rem
+        font-size 38*$unit
     .clear-history
-      padding 0 20rem
-      font-size 30rem
+      padding 0 20*$unit
+      font-size 30*$unit
       color #333
       text-align center
   .search-result

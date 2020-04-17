@@ -34,13 +34,13 @@ export default {
 <style lang="stylus" scoped>
 .tag-item-con
   display flex
-  padding 10rem 20rem
+  padding 10*$unit 20*$unit
   background #fff
   align-items center
   .icon
-    margin-right 20rem
-    width 80rem
-    height 80rem
+    margin-right 20*$unit
+    width 80*$unit
+    height 80*$unit
     border-radius 50%
     background-size cover
     background-repeat no-repeat
@@ -51,12 +51,12 @@ export default {
     justify-content space-between
     flex 1
     width 0
-    margin-right 20rem
+    margin-right 20*$unit
     .tag-name
-      font-size 32rem
+      font-size 32*$unit
       color #333
       font-weight 600
     .tag-other
-      font-size 25rem
+      font-size 25*$unit
       color #909090
 </style>

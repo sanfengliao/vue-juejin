@@ -65,22 +65,22 @@ export default {
 @import "../../assets/css/variable.styl"
 .setting-section
   .contact-infomation
-    margin-bottom 20rem
+    margin-bottom 20*$unit
   .op-item
     display flex
     justify-content space-between
-    padding 20rem 40rem
-    font-size 30rem
+    padding 20*$unit 40*$unit
+    font-size 30*$unit
     background #fff
     .value
       color $gray-text-color
   .about-link
     display block
-    margin-bottom 20rem
+    margin-bottom 20*$unit
   .logout
-    padding 25rem
+    padding 25*$unit
     background #fff
     color red
-    font-size 34rem
+    font-size 34*$unit
     text-align center
 </style>

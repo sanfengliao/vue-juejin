@@ -26,25 +26,25 @@ export default {
 @import "../../assets/css/variable.styl"
 .article-entry
   display flex
-  min-height 155rem
-  padding 20rem
+  min-height 155*$unit
+  padding 20*$unit
   background #fff
   .left
     flex 1
     .article-title
-      margin-bottom 25rem
-      font-size 25rem
+      margin-bottom 25*$unit
+      font-size 25*$unit
       color $title-color
       font-weight 500
       white-space normal
     .footer-content
-      font-size 18rem
+      font-size 18*$unit
       color $gray-text-color
   .screenshot
-    margin-left 35rem
-    border-radius 8rem
-    flex 0 0 100rem
-    height 100rem
+    margin-left 35*$unit
+    border-radius 8*$unit
+    flex 0 0 100*$unit
+    height 100*$unit
     background $primary-color
     background-size cover
     background-position 50%

@@ -195,7 +195,7 @@ export default {
 .book-section-header
   position fixed
   width 100%
-  height 115rem
+  height 115*$unit
   z-index 10
   transition transform .4s
 .book-section-aside
@@ -221,33 +221,33 @@ export default {
   .book-catalog-con
     display flex
     flex-direction column
-    width 630rem
+    width 630*$unit
     height 100%
     background #fff
     transition all .5s
     .book-info
       display flex
-      flex 0 0 265rem
-      padding 20rem
+      flex 0 0 265*$unit
+      padding 20*$unit
       .book-img
-        margin-right 20rem
-        width 125rem
-        height 175rem
+        margin-right 20*$unit
+        width 125*$unit
+        height 175*$unit
         background-size cover
         background-position 50%
         background-repeat no-repeat
       .book-desc
         .book-title
-          font-size 30rem
+          font-size 30*$unit
           font-weight 600
-          margin-bottom 20rem
+          margin-bottom 20*$unit
         .book-author
           display flex
           align-items center
-          height 30rem
-          font-size 28rem
+          height 30*$unit
+          font-size 28*$unit
           .author-level
-            height 23rem
+            height 23*$unit
     .book-section-list-con
       flex 1
       overflow scroll
@@ -255,33 +255,33 @@ export default {
         width 0
         height 0
 .book-section-content
-  margin-top 115rem
-  padding-bottom 110rem
+  margin-top 115*$unit
+  padding-bottom 110*$unit
   background #fff
 .button-buy
   display flex
   cursor pointer
   position fixed
-  bottom 110rem
+  bottom 110*$unit
   left 50%
   transform translateX(-50%)
   z-index 10
   justify-content center
   align-items center
-  font-size 28rem
+  font-size 28*$unit
   background-color #007fff
   color #fff
   user-select none
-  box-shadow 0 8rem 20rem rgba(0,0,0,.15)
-  width 340rem
-  height 80rem
-  border-radius 80rem
+  box-shadow 0 8*$unit 20*$unit rgba(0,0,0,.15)
+  width 340*$unit
+  height 80*$unit
+  border-radius 80*$unit
   margin-bottom env(safe-area-inset-bottom)
 .book-section-footer
   position fixed
   bottom 0
   width 100%
-  height 85rem
+  height 85*$unit
   background #fff
   transition transform .4s
   .footer-content
@@ -289,7 +289,7 @@ export default {
     justify-content space-between
     align-items center
     height 100%
-    font-size 40rem
+    font-size 40*$unit
     color #909090
     .iconfont-con
       flex 1
@@ -298,14 +298,14 @@ export default {
       align-items center
       height 100%
       text-align center
-      border-radius 35rem
+      border-radius 35*$unit
     .iconfont.disable
       color #ddd
   .icon-pinglun1
     position relative
     .count
       position absolute
-      top -5rem
-      margin-left 5rem
-      font-size 20rem
+      top -5*$unit
+      margin-left 5*$unit
+      font-size 20*$unit
 </style>

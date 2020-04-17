@@ -39,11 +39,11 @@
   margin 0
   display inline-block
   position relative
-  width 70rem
-  height 30rem
+  width 70*$unit
+  height 30*$unit
   border 1px solid #dcdfe6
   outline none
-  border-radius 15rem
+  border-radius 15*$unit
   box-sizing border-box
   background #dcdfe6
   cursor pointer
@@ -57,15 +57,15 @@
     transform translateY(-50%)
     border-radius: 100%
     transition: all .3s
-    width: 40rem
-    height: 40rem
+    width: 40*$unit
+    height: 40*$unit
     background: #fff
-    box-shadow -1rem 1rem 5rem #000
+    box-shadow -1*$unit 1*$unit 5*$unit #000
   &.is-checked
     background 
     &::after
       left: 100%;
       transform translate(-50%, -50%)
-      margin-left: -20rem;
+      margin-left: -20*$unit;
       background #007fff
 </style>

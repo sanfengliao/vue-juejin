@@ -156,5 +156,5 @@ export default {
     .all-tags
       .title
         color #333
-        padding 20rem
+        padding 20*$unit
 </style>

@@ -124,5 +124,5 @@ export default {
     .swiper, .swiper-slide
       height 100%
     .pin-item
-      margin-bottom 20rem
+      margin-bottom 20*$unit
 </style>

@@ -155,27 +155,24 @@ export default {
   height 100%
 
 .pins-con
-  padding-top 20rem
-  .abc
-    height 10000rem
-    background red
+  padding-top 20*$unit
 
 .recommend-pins-con
-  margin-bottom 20rem
+  margin-bottom 20*$unit
   width 100%
 .recommend-pin-list
   display inline-flex
-  margin-left 20rem
+  margin-left 20*$unit
 
   .recommend-pin-item
     flex 1
-    margin-right 10rem
-    width 665rem
-    height 210rem
+    margin-right 10*$unit
+    width 665*$unit
+    height 210*$unit
     background #fff
 
 .pin-entry-item
-  margin-bottom 20rem
+  margin-bottom 20*$unit
   background #fff
 
   

@@ -1,18 +1,14 @@
 <template>
-<transition name="test">
-
   <div class="layout">
       <div class="main-con">
         <keep-alive>
-          <router-view class="router"></router-view>
+          <router-view class="layout-router"></router-view>
         </keep-alive>
       </div>
-   
-    <div class="footer-con">
+    <footer class="footer-con">
       <j-footer></j-footer>
-    </div>
+    </footer>
   </div>
-</transition>
 </template>
 
 <script>
@@ -26,6 +22,7 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
+@import "../assets/css/variable.styl"
 .layout
   height 100%
   position relative
@@ -36,11 +33,13 @@ export default {
     right 0
     bottom 0
     top 0
-    margin-bottom 85rem
+    margin-bottom 85*$unit
+    .layout-router
+      width 100%
+      height 100%
 .footer-con
     position fixed
+    width 100%
     bottom 0
-    left 0
-    right 0
-    height 85rem
+    height 85*$unit
 </style>

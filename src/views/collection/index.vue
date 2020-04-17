@@ -166,7 +166,7 @@ export default {
 .collection-section
   height 100%
   .collection-info
-    height 450rem
+    height 450*$unit
     background-size cover
     background-position 50%
     background-repeat no-repeat
@@ -180,31 +180,31 @@ export default {
         justify-content space-between
         height 100%
         color #fff
-        padding 150rem 35rem 40rem
+        padding 150*$unit 35*$unit 40*$unit
         .user
           display flex
           align-items center
           .user-avatar
-            margin-right 20rem
-            width 80rem
-            height 80rem
+            margin-right 20*$unit
+            width 80*$unit
+            height 80*$unit
             border-radius 50%
             background-size cover
             background-position 50%
             background-repeat no-repeat
           .username
-            font-size 28rem
+            font-size 28*$unit
         .title
-          font-size 35rem
+          font-size 35*$unit
           font-weight 600
         .other
           display flex
           align-items center
           justify-content space-between
-          font-size 25rem
+          font-size 25*$unit
           .btn
-            font-size 25rem
-            padding 15rem 50rem
+            font-size 25*$unit
+            padding 15*$unit 50*$unit
             border 1px solid #fff
             color #fff
           .followed-btn
@@ -216,8 +216,8 @@ export default {
         display flex
         align-items center
         justify-content center
-        padding  0 30rem
-        font-size 28rem
+        padding  0 30*$unit
+        font-size 28*$unit
         color #fff
 
     
@@ -231,8 +231,8 @@ export default {
       background #fff
       color $gray-text-color
       .iconfont-con
-        margin-bottom 20rem
+        margin-bottom 20*$unit
         .iconfont
-          font-size 100rem
+          font-size 100*$unit
 
 </style>

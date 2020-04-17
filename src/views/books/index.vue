@@ -55,7 +55,7 @@ export default {
 .books
   position relative
 .books-header
-  height 85rem
+  height 85*$unit
   background $primary-color
   display flex
   justify-content center
@@ -64,7 +64,7 @@ export default {
     display inline-block
 .books-section
   position absolute
-  top 85rem
+  top 85*$unit
   bottom 0
   width 100%
   

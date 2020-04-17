@@ -49,5 +49,5 @@ export default {
 .topic-pin-list
   .pin-list
     .pin-item
-      margin-bottom 20rem
+      margin-bottom 20*$unit
 </style>

@@ -232,34 +232,34 @@ export default {
       display flex
       align-items center
       height 100%
-      font-size 38rem
+      font-size 38*$unit
       .level
-        margin-left 10rem
-        height 30rem
+        margin-left 10*$unit
+        height 30*$unit
 .mask
-  height 285rem
+  height 285*$unit
   background #015ab6
 .user-info
   position relative
-  // height 350rem
+  // height 350*$unit
   background #fff
-  margin-bottom 20rem
-  padding 0 30rem
+  margin-bottom 20*$unit
+  padding 0 30*$unit
   .avatar
     position absolute
-    width 155rem
-    height 155rem
-    top -72.5rem
-    border 5rem solid #eee
+    width 155*$unit
+    height 155*$unit
+    top -72.5*$unit
+    border 5*$unit solid #eee
     border-radius 50%
     background-size cover
     background-repeat no-repeat
     background-position 50%
   .info
-    padding-top 95rem
+    padding-top 95*$unit
     height 100%
     .info-box
-      padding-bottom 10rem
+      padding-bottom 10*$unit
       height 100%
       display flex
       flex-direction column
@@ -267,45 +267,45 @@ export default {
       .top
         display flex
         justify-content space-between
-        margin-bottom 10rem
+        margin-bottom 10*$unit
         .left
           flex 1
           width 0
-          margin-right 50rem
+          margin-right 50*$unit
         .username-con
-          margin-bottom 10rem
-          font-size 40rem
+          margin-bottom 10*$unit
+          font-size 40*$unit
         .job-info
-          font-size 25rem
+          font-size 25*$unit
           color #333
           overflow hidden
           text-overflow ellipsis
           white-space nowrap
         .favorable-author
-          font-size 20rem
+          font-size 20*$unit
           color $primary-text-color
     .self-desc
-      margin-bottom 15rem
-      font-size 25rem
+      margin-bottom 15*$unit
+      font-size 25*$unit
       color $gray-text-color
     .stat-items
       display flex
       .stat-item
-        margin-right 30rem
+        margin-right 30*$unit
         .number
           color #333
           font-weight 600
         .text
-          font-size 25rem
+          font-size 25*$unit
           color $gray-text-color
 .user-section
   .nav-tab-con
-    height 80rem
+    height 80*$unit
     width 100%
     .nav-con
       width 100%
-      height 80rem
+      height 80*$unit
       z-index 10
-      top 105rem
+      top 105*$unit
       background #fff
 </style>

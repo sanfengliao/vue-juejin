@@ -1,6 +1,6 @@
 <template>
   <div class="article-list-con">
-    <div ref="tags-con" :style="{height: tags.length ? '90rem' : 0, overflow: showAllTag ? 'visible' : 'hidden'}" class="tags-con border-bottom-1px">
+    <div ref="tags-con" :style="{height: tags.length ? 90/32 + '*$unit' : 0, overflow: showAllTag ? 'visible' : 'hidden'}" class="tags-con border-bottom-1px">
       <!-- <div class="tag-list-con" ref="tags-con"> -->
         <ul ref="tags-list" class="tag-list" :style="{flexWrap: showAllTag? 'wrap' : 'nowrap'}">
           <li @click="handleTagClick(item.tagId, $event)" class="tag-item" v-for="item in tags" :key="item.tagId">
@@ -296,14 +296,14 @@ export default {
       left 0
       display flex
       white-space nowrap
-      padding: 0 10rem
+      padding: 0 10*$unit
       align-items center
       background #fff
       z-index 20
       .tag-item
-        margin-right 20rem
-        height 80rem
-        line-height 80rem
+        margin-right 20*$unit
+        height 80*$unit
+        line-height 80*$unit
         color $text-color
         .active
           color #fff
@@ -315,57 +315,57 @@ export default {
       transform translateY(-50%)
       z-index 25
       .iconfont
-        font-size 55rem
+        font-size 55*$unit
         color $text-color
     .mask
       position fixed
       bottom 0
       left 0
       right 0
-      top 148rem
+      top 148*$unit
       background rgba(0, 0, 0, .5)
       z-index 10
   
 .article-pre-list
   .article-pre-item
-    margin-bottom 20rem
+    margin-bottom 20*$unit
 
 .recommended-article-con
   background: #fff
-  margin-bottom 18rem
+  margin-bottom 18*$unit
   .recommended-article-header
     display flex
     justify-content space-between
     align-items center
-    height 75rem
+    height 75*$unit
     .title
       .iconfont
-        margin-right 10rem
+        margin-right 10*$unit
         color $primary-color
-        font-size 30rem
+        font-size 30*$unit
       color $primary-color
-      font-size 30rem
+      font-size 30*$unit
     .delete-con
       .iconfont
         color $text-color
   .recommend-article
     display flex
-    height 155rem
-    padding-top 20rem
+    height 155*$unit
+    padding-top 20*$unit
     .left
       flex 1
       .article-title
-        margin-bottom 25rem
-        font-size 25rem
+        margin-bottom 25*$unit
+        font-size 25*$unit
         color $title-color
       .footer-content
-        font-size 18rem
+        font-size 18*$unit
         color $text-color
     .screenshot
-      margin-left 35rem
-      border-radius 8rem
-      flex 0 0 100rem
-      height 100rem
+      margin-left 35*$unit
+      border-radius 8*$unit
+      flex 0 0 100*$unit
+      height 100*$unit
       background $primary-color
       background-size cover
       background-position 50%

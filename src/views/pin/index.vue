@@ -174,55 +174,55 @@ export default {
   height 100%
  
   .main-con
-    padding-top 105rem
+    padding-top 105*$unit
   .pin-content-con
-    margin-bottom 20rem
-    padding 20rem 20rem
+    margin-bottom 20*$unit
+    padding 20*$unit 20*$unit
     background #fff
     .pin-author-con
-      margin-bottom 20rem
+      margin-bottom 20*$unit
 
 .pin-content
   .content
-    margin-bottom 30rem
-    font-size 30rem
+    margin-bottom 30*$unit
+    font-size 30*$unit
 .recommend-pins-con
-  margin-bottom 20rem
+  margin-bottom 20*$unit
   .recommend-title-con
-    margin-bottom 8rem
+    margin-bottom 8*$unit
     display block
   .recommend-pin-list-con
-    margin-bottom 8rem
+    margin-bottom 8*$unit
     .s-pin-entry
       display block
-      // margin 0 10rem
-      height 210rem
+      // margin 0 10*$unit
+      height 210*$unit
       background #fff
   .recommend-title
-    height 80rem
+    height 80*$unit
     display flex
     align-items center
     justify-content space-between
-    font-size 30rem
+    font-size 30*$unit
     background #fff
     .iconfont
       color #909090
-      font-size 25rem
+      font-size 25*$unit
   
   .line
-    height 22rem
+    height 22*$unit
     background #fff
 .comment-list-con
   background #fff
   .no-comment
-    height 300rem
+    height 300*$unit
     background: #fff
     display flex
     flex-direction column
     justify-content center
     align-items center
-    font-size 30rem
+    font-size 30*$unit
     color #909090
     .iconfont
-      font-size 70rem
+      font-size 70*$unit
 </style>

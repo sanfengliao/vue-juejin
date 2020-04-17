@@ -72,33 +72,33 @@ export default {
   background $primary-color
   .nav-tab-con
     flex 1
-    height 85rem
+    height 85*$unit
     overflow hidden
   .triangle-con
-    padding-left: 30rem
-    flex 0 0 30rem
+    padding-left: 30*$unit
+    flex 0 0 30*$unit
     .triangle
       width 0
       height 0
-      border: 15rem solid transparent
-      border-top: 15rem solid #fff
+      border: 15*$unit solid transparent
+      border-top: 15*$unit solid #fff
 .icon-add-con
   position fixed
-  right 30rem
-  bottom 120rem
+  right 30*$unit
+  bottom 120*$unit
   border-radius 50%
-  width 110rem
-  height 110rem
+  width 110*$unit
+  height 110*$unit
   background $primary-color
   text-align center
   color #fff
-  line-height 110rem
+  line-height 110*$unit
   z-index 12
   .iconfont
-    font-size 30rem
+    font-size 30*$unit
 .main
   position absolute
-  top 85rem
+  top 85*$unit
   bottom 0
   width 100%
 </style>

@@ -170,17 +170,17 @@ export default {
 .topic-section
   height 100%
 .topic-info
-  margin-bottom 20rem
-  padding 120rem 20rem 20rem
+  margin-bottom 20*$unit
+  padding 120*$unit 20*$unit 20*$unit
   background #fff
   .top
     display flex
-    margin-bottom 20rem
+    margin-bottom 20*$unit
     .image
-      margin-right 20rem
-      width 150rem
-      height 150rem
-      border-radius 10rem
+      margin-right 20*$unit
+      width 150*$unit
+      height 150*$unit
+      border-radius 10*$unit
       background-size cover
       background-repeat no-repeat
       background-position 50%
@@ -188,52 +188,52 @@ export default {
       display flex
       flex-direction column
       justify-content space-between
-      margin-right 20rem
+      margin-right 20*$unit
       flex 1
       width 0
       .title
-        font-size 40rem
+        font-size 40*$unit
         color #000
       .other
         display flex
         .stat
           display flex
           flex-direction column
-          margin-right 50rem
+          margin-right 50*$unit
           align-items center
           line-height 1.2
-          font-size 25rem
+          font-size 25*$unit
           color $gray-text-color
           .num
-            font-size 32rem
+            font-size 32*$unit
             color #000
     .btn-con
       align-self flex-end
   .center
-    margin-bottom 20rem
+    margin-bottom 20*$unit
     color $gray-text-color
-    font-size 28rem
+    font-size 28*$unit
   .bottom
     .content
       display flex
       align-items center
       color $gray-text-color
-      font-size 28rem
+      font-size 28*$unit
       .avatar-list
         display flex
         .avatar
-          margin-right 10rem
-          width 40rem
-          height 40rem
+          margin-right 10*$unit
+          width 40*$unit
+          height 40*$unit
           border-radius 50%
           background-size cover
           background-position 50%
           background-repeat no-repeat
 .topic-nav-con
-  height 80rem
+  height 80*$unit
   .topic-nav-list
-    top 105rem
-    height 80rem
+    top 105*$unit
+    height 80*$unit
     width 100%
     z-index 1
     background #fff

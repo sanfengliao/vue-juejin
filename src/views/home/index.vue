@@ -103,26 +103,26 @@ export default {
   display flex
   flex-direction column
   justify-content space-between
-  height 148rem
+  height 148*$unit
   background $primary-color
   .header-top
     display flex
-    padding-top 15rem 
-    height 75rem
+    padding-top 15*$unit 
+    height 75*$unit
     .search-con
       flex 1
       height 100%
     .tag-setting-con
-      flex 0 0 120rem
+      flex 0 0 120*$unit
       display flex
       align-items center
       justify-content space-around
-      padding-left 20rem
+      padding-left 20*$unit
       height 100%
       color #fff
-      font-size 30rem
+      font-size 30*$unit
       .iconfont
-        font-size 30rem
+        font-size 30*$unit
   .header-bottom
     display flex
     align-items center
@@ -130,32 +130,32 @@ export default {
     .nav-tab-con
       flex 1
       overflow hidden
-      height 75rem
+      height 75*$unit
     .triangle-con
-      padding-left: 30rem
-      flex 0 0 30rem
+      padding-left: 30*$unit
+      flex 0 0 30*$unit
       .triangle
         width 0
         height 0
-        border: 15rem solid transparent
-        border-top: 15rem solid #fff
+        border: 15*$unit solid transparent
+        border-top: 15*$unit solid #fff
 .main
   position absolute
-  top 148rem
+  top 148*$unit
   bottom 0
   width 100%
   .icon-add-con
     position fixed
-    right 30rem
-    bottom 120rem
+    right 30*$unit
+    bottom 120*$unit
     border-radius 50%
-    width 110rem
-    height 110rem
+    width 110*$unit
+    height 110*$unit
     background $primary-color
     text-align center
     color #fff
-    line-height 110rem
+    line-height 110*$unit
     z-index 12
     .iconfont
-      font-size 30rem
+      font-size 30*$unit
 </style>

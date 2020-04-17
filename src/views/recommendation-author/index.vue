@@ -85,7 +85,7 @@ export default {
     background $primary-color
     color #fff
     .title
-      font-size 40rem
+      font-size 40*$unit
       // font-weight 
 .recommendation-author-section
   display flex

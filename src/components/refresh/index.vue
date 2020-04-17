@@ -35,7 +35,7 @@
 }
 
 .loading .iconfont{
-  font-size: 50rem;
+  font-size: 50*$unit;
   color: #d61515
 }
   

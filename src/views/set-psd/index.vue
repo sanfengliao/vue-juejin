@@ -59,14 +59,14 @@ export default {
 
 <style lang="stylus" scoped>
 .set-psd-section
-  padding 50rem 30rem
+  padding 50*$unit 30*$unit
   .psd-con
-    margin-bottom 35rem
+    margin-bottom 35*$unit
     .psd-input
-      padding 20rem 0
+      padding 20*$unit 0
       width 100%
       background transparent
-      font-size 25rem
+      font-size 25*$unit
       color #333
       caret-color #0180ff
       border-bottom: 1px solid #333
@@ -75,10 +75,10 @@ export default {
       &::placeholder
         color #909090
   .btn
-    border-radius 5rem
-    padding 25rem 0
+    border-radius 5*$unit
+    padding 25*$unit 0
     background #0180ff
-    font-size 30rem
+    font-size 30*$unit
     color #fff
     text-align center
     &:active

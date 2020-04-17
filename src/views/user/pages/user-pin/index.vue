@@ -43,5 +43,5 @@ export default {
 
 <style lang="stylus" scoped>
 .pin-item
-  margin-bottom 20rem
+  margin-bottom 20*$unit
 </style>

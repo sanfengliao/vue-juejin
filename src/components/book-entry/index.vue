@@ -35,16 +35,16 @@ export default {
 
 <style lang="stylus" scoped>
 .book-entry-con
-  height 220rem
+  height 220*$unit
   background #fff
-  padding 20rem
+  padding 20*$unit
 .book-content
   display flex
   align-items center
   .left
-    margin-right 20rem
-    flex 0 0 104rem
-    height 144rem
+    margin-right 20*$unit
+    flex 0 0 104*$unit
+    height 144*$unit
     box-shadow: 3px 4px 12px 0 rgba(0,0,0,.2)
     overflow: hidden
     background-color: #ccc
@@ -57,38 +57,38 @@ export default {
   .center
     flex 1
     width 0
-    margin-right 20rem
+    margin-right 20*$unit
   .right
-    flex 0 0 160rem
-    height 60rem
+    flex 0 0 160*$unit
+    height 60*$unit
     .price
-      padding-left 30rem
-      padding-right 30rem
-      border-radius 30rem
-      height 60rem
-      line-height 60rem
+      padding-left 30*$unit
+      padding-right 30*$unit
+      border-radius 30*$unit
+      height 60*$unit
+      line-height 60*$unit
       background-color #f0f7ff
-      font-size 28rem
+      font-size 28*$unit
       font-weight 500
       text-align center
       color #07f
 .book-info
   white-space normal
   .title
-    margin-bottom 20rem
-    font-size 28rem
+    margin-bottom 20*$unit
+    font-size 28*$unit
     color #000
     font-weight 700
   .author
     display flex
     align-items center
-    margin-bottom 20rem
-    height 28rem
-    font-size 25rem
+    margin-bottom 20*$unit
+    height 28*$unit
+    font-size 25*$unit
     .level
-      margin-left 5rem
-      height 25rem
+      margin-left 5*$unit
+      height 25*$unit
   .other
-    font-size 25rem
+    font-size 25*$unit
     color #909090
 </style>

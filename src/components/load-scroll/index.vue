@@ -5,7 +5,7 @@
     </div>
     <div v-if="showLoadingCon" ref="loading-con" class="loading-con">
       <div v-if="loading" class="text-con">
-        <loading size="80rem"></loading>
+        <loading :size="80/36 + 'rem'"></loading>
       </div>
       <div v-if="showText" class="text-con">没有更多了</div>
     </div>
@@ -78,13 +78,13 @@ export default {
   &::-webkit-scrollbar
     display none
   .loading-con
-    height 100rem
+    height 100*$unit
     .text-con
       display flex
       justify-content center
       align-items center
-      height 100rem
+      height 100*$unit
       background-color #fff
-      font-size 25rem
+      font-size 25*$unit
       color #666
 </style>

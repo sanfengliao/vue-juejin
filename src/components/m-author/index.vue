@@ -5,7 +5,7 @@
         <div class="avatar" :style="{backgroundImage: `url(${author.avatarLarge})`}"></div>
       </router-link>
     </div>
-    <div class="user-info" :style="{marginRight: !author.viewerIsFollowing ? '20rem' : '0'}">
+    <div class="user-info" :style="{marginRight: !author.viewerIsFollowing ? 20/16+'rem' : '0'}">
       <div class="top">
         <span class="username">{{author.username}}</span>
         <img class="level" v-if="showLevel && author.level > 0" :src="author.level | levelImage" :alt="`Lv-${author.level}`">
@@ -61,17 +61,17 @@ export default {
 
 <style lang="stylus" scoped>
 .author-con
-  padding 20rem
+  padding 20*$unit
   display flex
   width 100%
   align-items center
   background #fff
   .avatar-con
-    margin-right 20rem
+    margin-right 20*$unit
   .avatar
     border-radius 50%
-    width 80rem
-    height 80rem
+    width 80*$unit
+    height 80*$unit
     background-size cover
     background-position 50%
     background-repeat no-repeat
@@ -80,33 +80,33 @@ export default {
     flex 1
     .top
       display flex
-      margin-bottom 5rem
+      margin-bottom 5*$unit
       align-items center
       .username
-        margin-right 8rem
-        font-size 25rem
+        margin-right 8*$unit
+        font-size 25*$unit
       .level
-        height 25rem
+        height 25*$unit
     .bottom, .description
-      margin-bottom 5rem
+      margin-bottom 5*$unit
       width 100%
-      font-size 20rem
+      font-size 20*$unit
       color #909090
       overflow hidden
       text-overflow ellipsis
       white-space nowrap
   .follow
-    padding 12rem 0
+    padding 12*$unit 0
     text-align center
-    width 150rem
+    width 150*$unit
     border 1px #6cbd45 solid
     color #6cbd45
-    font-size 26rem
+    font-size 26*$unit
     .iconfont
       padding 0
-      margin-right 10rem
+      margin-right 10*$unit
       color #6cbd45
-      font-size 26rem
+      font-size 26*$unit
     &.active
       color #fff
       .iconfont

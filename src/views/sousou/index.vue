@@ -141,22 +141,22 @@ export default {
     display flex
     align-items center
     width 100%
-    height 85rem
+    height 85*$unit
     background $primary-color
   .sousou-section
-    padding-top 85rem
+    padding-top 85*$unit
     height 100%
 
 .sousou-content
   .activity-con
-    margin-bottom 20rem
+    margin-bottom 20*$unit
     background #fff
   .hot-article-con
     background #fff
 .activity-con
   .banner-item
     display block
-    height 250rem
+    height 250*$unit
     background-size cover
     background-position 50%
     background-repeat no-repeat
@@ -164,15 +164,15 @@ export default {
     display flex
     justify-content space-between
     align-items center
-    padding 0 30rem
-    height 150rem
-    font-size 25rem
+    padding 0 30*$unit
+    height 150*$unit
+    font-size 25*$unit
     .nav-item
       display flex
       flex-direction column
       align-items center
       .iconfont
-        font-size 55rem
+        font-size 55*$unit
       .icon-wenzhang
         color #7dc636
       .icon-huangguan
@@ -187,10 +187,10 @@ export default {
   display flex
   align-items center
   justify-content space-between
-  height 80rem
-  font-size 26rem
+  height 80*$unit
+  font-size 26*$unit
   .iconfont
-    margin-right 10rem
+    margin-right 10*$unit
   .title
     .iconfont
       color #fd3f42

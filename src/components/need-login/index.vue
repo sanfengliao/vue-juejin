@@ -40,20 +40,20 @@ export default {
   flex-direction column
   justify-content center
   align-items center
-  height 400rem
+  height 400*$unit
   background #fff
   .iconfont-con
-    margin-bottom 10rem
+    margin-bottom 10*$unit
     .iconfont
-      font-size 110rem
+      font-size 110*$unit
       color #e7e9e9
   .title
     color $gray-text-color
-    font-size 30rem
-    margin-bottom 30rem
+    font-size 30*$unit
+    margin-bottom 30*$unit
   .btn
-    padding 15rem 30rem
-    font-size 30rem
+    padding 15*$unit 30*$unit
+    font-size 30*$unit
     background-color $primary-color
     color #fff
 </style>

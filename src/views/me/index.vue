@@ -171,28 +171,28 @@ export default {
 <style lang="stylus" scoped>
 @import "../../assets/css/variable.styl"
 .me-header
-  height 85rem
+  height 85*$unit
   background $primary-color
   color #fff
-  font-size 35rem
+  font-size 35*$unit
   text-align center
-  line-height 85rem
+  line-height 85*$unit
 .me-section
-  padding-top 20rem
+  padding-top 20*$unit
   .user-info
     display flex
     align-items center
-    padding 25rem
+    padding 25*$unit
     background #fff
-    margin-bottom 20rem
+    margin-bottom 20*$unit
     &:active
       background $active-color
     .left
-      flex 0 0 90rem
-      margin-right 20rem
+      flex 0 0 90*$unit
+      margin-right 20*$unit
       .avatar
-        width 90rem
-        height 90rem
+        width 90*$unit
+        height 90*$unit
         border-radius 50%
         background-size cover
         background-position 50%
@@ -200,28 +200,28 @@ export default {
     .center
       flex 1
       .username
-        font-size 40rem
+        font-size 40*$unit
         color $title-color
       .job-info
-        font-size 25rem
+        font-size 25*$unit
         color $gray-text-color
     .right
-      flex 0 0 25rem
+      flex 0 0 25*$unit
       color $gray-text-color
   .user-track-con
-    margin-bottom 20rem
+    margin-bottom 20*$unit
   .user-track
     display flex
     align-items center
-    padding 0 30rem
-    height 90rem
+    padding 0 30*$unit
+    height 90*$unit
     background #fff
-    font-size 30rem
+    font-size 30*$unit
     &:active
       background #d6d4d4
     .left
-      margin-right 30rem
-      width 50rem
+      margin-right 30*$unit
+      width 50*$unit
       text-align center
       .iconfont
         color $gray-text-color
@@ -235,6 +235,6 @@ export default {
       flex 1
     .right
       color $gray-text-color
-      font-size 20rem
+      font-size 20*$unit
   
 </style>

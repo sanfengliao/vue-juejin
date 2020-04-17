@@ -4,12 +4,12 @@
       <slot></slot>
       <!-- <div v-if="!finished" class="loading-container"> -->
         <div v-show="loading" class="loading-con">
-          <loading size="80rem"></loading>
+          <loading :size="80/36+'rem'"></loading>
         </div>
       <!-- </div> -->
     </div>
     <div v-show="refreshing"  class="refresh-con">
-      <refresh size="80rem"></refresh>
+      <refresh :size="80/36+'rem'"></refresh>
     </div>
   </div>
 </template>

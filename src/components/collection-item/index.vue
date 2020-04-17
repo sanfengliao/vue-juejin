@@ -25,15 +25,15 @@ export default {
 
 <style lang="stylus" scoped>
 .collection-item-con
-  padding 20rem
+  padding 20*$unit
   display flex
   background #fff
   align-items center
   .bgImg
-    margin-right 20rem
-    width 100rem
-    height 100rem
-    border-radius 10rem
+    margin-right 20*$unit
+    width 100*$unit
+    height 100*$unit
+    border-radius 10*$unit
     background-size cover
     background-repeat no-repeat
     background-position 50%
@@ -41,16 +41,16 @@ export default {
     display flex
     flex-direction column
     justify-content space-between
-    margin-right 20rem
+    margin-right 20*$unit
     flex 1
     width 0
-    height 90rem
+    height 90*$unit
     .title
       color #333
     .other
-      font-size 25rem
+      font-size 25*$unit
       color #909090
   .iconfont-con
     .iconfont
-      font-size 40rem
+      font-size 40*$unit
 </style>

@@ -86,11 +86,11 @@ export default {
 
 <style lang="stylus" scoped>
 .topics-header
-  margin-bottom 20rem
+  margin-bottom 20*$unit
 .topics-content
   .title
-    padding 20rem
+    padding 20*$unit
     color #000
-    font-size 30rem
+    font-size 30*$unit
     background #fff
 </style>

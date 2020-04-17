@@ -111,5 +111,12 @@ module.exports = {
         }
       },
     },
+  },
+  css: {
+    loaderOptions: {
+      stylus: {
+        import: '~@/assets/css/variable.styl'
+      }
+    }
   }
 }

@@ -74,7 +74,7 @@ export default {
     .author-item
       background #ffffff
       .description
-        padding-left 120rem
-        font-size 20rem
+        padding-left 120*$unit
+        font-size 20*$unit
         color #909090
 </style>

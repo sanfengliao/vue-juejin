@@ -171,40 +171,40 @@ export default {
   .find-more-author
     display flex
     justify-content space-between
-    padding 20rem 25rem
+    padding 20*$unit 25*$unit
     background #fff
-    font-size 34rem
+    font-size 34*$unit
     font-weight 600
-    margin-bottom 20rem
+    margin-bottom 20*$unit
     .iconfont
       color $gray-text-color
   .article-item
-    margin-bottom 20rem
+    margin-bottom 20*$unit
   .recommended-user-con
-    margin-top 20rem
+    margin-top 20*$unit
     .title
       display flex
       justify-content space-between
-      padding 15rem 20rem
+      padding 15*$unit 20*$unit
       background #fff
-      font-size 28rem
+      font-size 28*$unit
       color #333
       .iconfont
-        font-size 28rem
+        font-size 28*$unit
     .user-item
       .description
-        margin-top -20rem
-        padding-left 120rem
+        margin-top -20*$unit
+        padding-left 120*$unit
         color #909090
-        font-size 20rem
+        font-size 20*$unit
         background #fff
     .change
-      padding 15rem 20rem
+      padding 15*$unit 20*$unit
       text-align center
       background #fff
-      font-size 28rem
+      font-size 28*$unit
       color $primary-color
       .iconfont
-        margin-right 10rem
-        font-size 28rem
+        margin-right 10*$unit
+        font-size 28*$unit
 </style>

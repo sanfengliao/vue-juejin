@@ -43,11 +43,13 @@ export default {
 
 <style lang="stylus">
 @import "./assets/css/variable.styl"
-html,body,#app
+#app
   width 100%
   height 100%
   background $gray-color
   overflow hidden
 .router
-  background $gray-color
+  background  $gray-color
+  height 100%
+  width 100%
 </style>

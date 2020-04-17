@@ -48,10 +48,10 @@ export default {
 .pin-content
   background #fff
 .content
-  font-size 28rem
-  margin-bottom 20rem
+  font-size 28*$unit
+  margin-bottom 20*$unit
 .pictures
-  margin-bottom 20rem
+  margin-bottom 20*$unit
 .image-list
   display flex
   flex-wrap wrap
@@ -59,26 +59,26 @@ export default {
 
   &.col-1
     .image
-      width 400rem
+      width 400*$unit
   &.col-3
     .image
-      margin-right 8rem
+      margin-right 8*$unit
       width: calc((100% - 8px)/3)
-      max-width: 220rem
+      max-width: 220*$unit
 .link-con
-  margin-bottom 20rem
+  margin-bottom 20*$unit
 .topic
   display inline-block
-  padding 0 24rem
-  border-radius 25rem
+  padding 0 24*$unit
+  border-radius 25*$unit
   border 1px solid #007fff
   color #007fff
-  line-height 44rem
-  font-size 26rem
+  line-height 44*$unit
+  font-size 26*$unit
 .image
   flex: 0 1 auto
   position: relative
-  margin-top: 8rem
+  margin-top: 8*$unit
   max-width: 100%
   background-position: 50%
   background-repeat: no-repeat

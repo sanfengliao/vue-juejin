@@ -54,26 +54,26 @@
 .search-content
   display flex
   align-items center
-  border-radius 5rem
-  padding 0 10rem
+  border-radius 5*$unit
+  padding 0 10*$unit
   width 100%
-  height 60rem
+  height 60*$unit
   background #3399fe
   .search-input
     display block
     flex 1
     border none
-    padding-left 15rem
-    height 60rem
+    padding-left 15*$unit
+    height 60*$unit
     background transparent
     color white
     outline none
-    font-size 25rem
+    font-size 25*$unit
     &::placeholder
       color #88ccfb
-      font-size 25rem
+      font-size 25*$unit
   .iconfont
-    flex 0 0 40rem
+    flex 0 0 40*$unit
     color #fff
-    font-size 35rem
+    font-size 35*$unit
 </style>

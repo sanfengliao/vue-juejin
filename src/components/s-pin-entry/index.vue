@@ -30,9 +30,9 @@ export default {
   flex-direction column
   justify-content space-between
   height 100%
-  min-width 665rem
-  min-height 220rem
-  padding 30rem 25rem 20rem
+  min-width 665*$unit
+  min-height 220*$unit
+  padding 30*$unit 25*$unit 20*$unit
   background #fff
   .pin-content
     display flex
@@ -45,31 +45,31 @@ export default {
       -webkit-box-orient: vertical
       white-space pre-line
       word-break break-all
-      margin-right 25rem
+      margin-right 25*$unit
       width 0
       height 100%
-      font-size 30rem
+      font-size 30*$unit
       .recommend-icon, .hot-icon
         display inline-block
-        width 30rem
-        height 30rem
-        border-radius 5rem
+        width 30*$unit
+        height 30*$unit
+        border-radius 5*$unit
         text-align center
-        line-height 30rem
+        line-height 30*$unit
         color #fff
         background #f98e0c
-        font-size 25rem
+        font-size 25*$unit
       .hot-icon
         background #f25d43
     .picture
-      flex 0 0 100rem
-      height 100rem
-      border-radius 10rem
+      flex 0 0 100*$unit
+      height 100*$unit
+      border-radius 10*$unit
       background-size cover
       background-position 50%
       background-repeat no-repeat
   .pin-info
     color $gray-text-color
     .pin-user-username
-      margin-right 25rem
+      margin-right 25*$unit
 </style>

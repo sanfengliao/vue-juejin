@@ -42,14 +42,14 @@ export default {
   display flex
   .op-item
     flex 1
-    height 80rem
-    line-height 80rem
+    height 80*$unit
+    line-height 80*$unit
     color $gray-text-color
     text-align center
-    font-size 25rem
+    font-size 25*$unit
     &.active
       color $primary-green-color
     .iconfont
-      margin-right 10rem
-      font-size 28rem
+      margin-right 10*$unit
+      font-size 28*$unit
 </style>
