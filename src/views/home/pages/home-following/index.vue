@@ -12,8 +12,8 @@
           </div>
         </router-link>
         <ul v-if="articles" class="article-list">
-          <li class="article-item" v-for="(item, i) in articles" :key="item.id">
-            <router-link :to="`/post/${item.id}`">
+          <li class="article-item" v-for="(item, i) in articles" :key="item.id || item.objectId">
+            <router-link :to="`/post/${item.id || item.objectId}`">
               <l-article-entry @like="like" @toggleFollow="toggleFollow" :article="item" />
             </router-link>
             <div v-if="i === 3 && showRecommendedUser" class="recommended-user-con">

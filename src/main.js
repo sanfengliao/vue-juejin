@@ -27,8 +27,6 @@ Vue.use(routerTransition, {
 Vue.filter('dateDis', dateDis)
 Vue.filter('levelImage', levelImage)
 
-console.log(Vue.prototype.$routeWeight)
-
 new Vue({
   router,
   store,
