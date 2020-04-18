@@ -27,23 +27,40 @@ npm run build
 (如果图片显示不出，请访问[原文链接](https://juejin.im/post/5e98441df265da47ef2f3720))
 
 * 首页
-![首页效果](https://user-gold-cdn.xitu.io/2020/4/16/171838443f17671b?w=360&h=780&f=gif&s=4888738)
+
+  ![首页效果](https://user-gold-cdn.xitu.io/2020/4/16/171838443f17671b?w=360&h=780&f=gif&s=4888738)
+
 * 沸点
-![沸点列表](https://user-gold-cdn.xitu.io/2020/4/16/17183850b393a4d3?w=360&h=780&f=gif&s=1248458)
+
+  ![沸点列表](https://user-gold-cdn.xitu.io/2020/4/16/17183850b393a4d3?w=360&h=780&f=gif&s=1248458)
+
 * 搜索
-![](https://user-gold-cdn.xitu.io/2020/4/16/171838680ca1aff4?w=360&h=780&f=gif&s=950128)
+
+  ![](https://user-gold-cdn.xitu.io/2020/4/16/171838680ca1aff4?w=360&h=780&f=gif&s=950128)
+
 * 小册
-![小册页面](https://user-gold-cdn.xitu.io/2020/4/16/1718385ef5f13720?w=360&h=780&f=gif&s=3202154)
+
+  ![小册页面](https://user-gold-cdn.xitu.io/2020/4/16/1718385ef5f13720?w=360&h=780&f=gif&s=3202154)
+
 * 我的
-![我的](https://user-gold-cdn.xitu.io/2020/4/16/1718386fa6af9727?w=360&h=780&f=gif&s=1404012)
+
+  ![我的](https://user-gold-cdn.xitu.io/2020/4/16/1718386fa6af9727?w=360&h=780&f=gif&s=1404012)
+
 * 用户主页
-![用户主页](https://user-gold-cdn.xitu.io/2020/4/16/1718387844061e8c?w=360&h=780&f=gif&s=1946699)
+
+  ![用户主页](https://user-gold-cdn.xitu.io/2020/4/16/1718387844061e8c?w=360&h=780&f=gif&s=1946699)
+
 * 话题主页
-![话题主页](https://user-gold-cdn.xitu.io/2020/4/16/17183890948738fb?w=360&h=780&f=gif&s=381336)
+
+  ![话题主页](https://user-gold-cdn.xitu.io/2020/4/16/17183890948738fb?w=360&h=780&f=gif&s=381336)
+
 * 文章详情
-![文章详情](https://user-gold-cdn.xitu.io/2020/4/16/1718389b09f8d27b?w=360&h=780&f=gif&s=1319213)
+
+  ![文章详情](https://user-gold-cdn.xitu.io/2020/4/16/1718389b09f8d27b?w=360&h=780&f=gif&s=1319213)
+
 * 沸点详情
-![沸点详情](https://user-gold-cdn.xitu.io/2020/4/16/171838a50e7fe8a5?w=360&h=780&f=gif&s=1237673)
+
+  ![沸点详情](https://user-gold-cdn.xitu.io/2020/4/16/171838a50e7fe8a5?w=360&h=780&f=gif&s=1237673)
 ### 完成度
 本来以为仿照App实现的话应该很快就可以全部昨晚，可做起来才发现APP 里面的东西实在是不少(有一些是本菜实在做不了,比如支付)，包括页面和交互，要完全照抄实现确实需要一些时间和精力，UI 之类的都是简单测量+肉眼调试实现的，下面列出页面和交互的完成度，这里应该只是列出了绝大部分。未列出、未实现的后续会根据时间、精力来实现。
 实际完成度请以代码为主
@@ -104,8 +121,8 @@ npm run build
             - [x] 沸点
             - [x] 收藏集
                 - [x] 收藏集详情页
-                    -[x] 关注收藏集
-                    -[x] 收藏集文章列表
+                    - [x] 关注收藏集
+                    - [x]  收藏集文章列表
             - [x] 喜欢的文章
             - [x] 关注的标签
                 - [ ] 标签详情页
