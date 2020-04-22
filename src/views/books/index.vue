@@ -6,7 +6,7 @@
       </div>
     </header>
     <section class="books-section">
-      <router-transition prefix="/books">
+      <router-transition prefix="/books" :route-index="routeIndex">
         <keep-alive>
           <router-view v-if="routeKey" :key="routeKey"></router-view>
         </keep-alive>
@@ -30,7 +30,11 @@ export default {
         title: '已购',
         path: '/books/my'
       }],
-      routeKey: path
+      routeKey: path,
+      routeIndex: {
+        '/books/my': 1,
+        '/books/all': 0
+      }
     }
   },
   components: {

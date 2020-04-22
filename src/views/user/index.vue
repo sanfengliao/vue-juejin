@@ -71,7 +71,7 @@
       <section class="user-section">
         <div ref="nav" class="nav-tab-con border-bottom-1px">
           <div :style="{position: isNavFixed ? 'fixed': 'static'}" class="nav-con">
-            <nav-tab ref="nav-tab" :nav-list="navList" active-title-color="#333" title-color="#666" line-color="#0180ff"></nav-tab>
+            <nav-tab ref="nav-tab"  :nav-list="navList" active-title-color="#333" title-color="#666" line-color="#0180ff" background-color="#fff"></nav-tab>
           </div>
         </div>
         <div ref="content">

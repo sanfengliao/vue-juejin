@@ -37,7 +37,9 @@ export default {
     JSwitch
   },
   created() {
-    let { stateKey = 'homeRoutes', title= '首页特别展示' } = this.$route.params
+    let { stateKey = 'homeRoutes', title= '首页特别展示', routeAction='setHomeRoutes', routeIndexAction='setHomeRouteIndex' } = this.$route.params
+    this.routeAction = routeAction,
+    this.routeIndexAction = routeIndexAction
     this.stateKey = stateKey
     this.routeObjs = this.$store.state[stateKey]
     this.title= title
@@ -62,14 +64,13 @@ export default {
           show: routeObjs[item].show,
         })
       }
-      let routeWeight = {...this.$routeWeight}
-      for (let i = 0; i < newRouteObjs.length; ++i) {
-        let path1 = newRouteObjs[i].path
-        let path2 = this.routeObjs[i].path
-        this.$routeWeight[path1] = routeWeight[path2]
-      }
-      let name = this.stateKey.charAt(0).toUpperCase() + this.stateKey.slice(1)
-      this.$store.dispatch(`set${name}`, newRouteObjs)
+     let routeIndex = {}
+     for (let i = 0; i < newRouteObjs.length; ++i) {
+       routeIndex[newRouteObjs[i].path] = i + 1
+     }
+      
+      this.$store.dispatch(this.routeAction, newRouteObjs)
+      this.$store.dispatch(this.routeIndexAction, routeIndex)
       this.$router.go(-1)
     },
     handleClick(item) {
@@ -100,7 +101,6 @@ export default {
         // 当前item的下一位item
         let otherIndex = this.locToIndex[currentLoc + 1]
         this.switchItem(i, currentLoc, otherIndex, otherLoc, disY)
-
         this.touches.y = clientY
       } else if (disY <= -this.itemHeight) {
         disY = - this.itemHeight
@@ -110,7 +110,7 @@ export default {
           return
         }
         let otherLoc = currentLoc - 1
-        // 当前item的下一位item
+        // 当前item的上一位item
         let otherIndex = this.locToIndex[otherLoc]
         this.switchItem(i, currentLoc, otherIndex, otherLoc, disY)
         this.touches.y = clientY

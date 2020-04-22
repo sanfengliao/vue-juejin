@@ -9,9 +9,11 @@
       </div>
     </header>
     <section class="main">
-      <keep-alive>
-        <router-view :key="routeKey"></router-view>
-      </keep-alive>
+      <router-transition prefix="/pins" :route-index="$store.state.pinRouteIndex">
+        <keep-alive>
+          <router-view :key="routeKey"></router-view>
+        </keep-alive>
+      </router-transition>
       <div class="icon-add-con">
         <i class="iconfont icon-edit"></i>
       </div>
@@ -47,7 +49,9 @@ export default {
         name: 'specialShowEdit',
         params: {
           stateKey: 'pinsRoutes',
-          title: '话题特别展示'
+          title: '话题特别展示',
+          routeAction: 'setPinRoutes',
+          routeIndexAction: 'setPinRouteIndex'
         }
       })
     }
@@ -64,7 +68,6 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-@import "../../assets/css/variable.styl"
 .pins-header
   display flex
   align-items center

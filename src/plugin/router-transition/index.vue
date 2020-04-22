@@ -9,6 +9,7 @@
 <script>
 import { ROUTE_INDEX } from './index'
 import { transitionType, directionType } from './constant'
+import { isDef } from './util'
 export default {
   props: {
     prefix: String,
@@ -19,6 +20,10 @@ export default {
     direction: {
       type: String,
       default: directionType.RIGHT_TO_LEFT
+    },
+    routeIndex: {
+      type: Object,
+      default: () =>({})
     }
   },
   data() {
@@ -28,37 +33,29 @@ export default {
   },
   created() {
     this.pathStack = []
+    if (this.$routeIndex) {
+      this._routeIndex = Object.assign(this.$routeIndex, this.routeIndex)
+    } else {
+      this._routeIndex = this.routeIndex
+    }
   },
   methods: {
     pushResolve(to, from) {
       let toPath = to.path
       let fromPath = from.path
       if (toPath.startsWith(this.prefix) && fromPath.startsWith(this.prefix) || !this.prefix) {
-        let routeWeight = this.$routeWeight
-        let toWeight, fromWeight
-        if (routeWeight[toPath]) {
-          toWeight = routeWeight[toPath][ROUTE_INDEX]
-        } else {
-          for (let item of to.matched)
-          if (routeWeight[item.path]) {
-            toWeight = routeWeight[item.path][ROUTE_INDEX]
+        let { _routeIndex } = this
+        let toWeight = _routeIndex[toPath]
+        let fromWeight = _routeIndex[fromPath]
+        if (isDef(toWeight) && isDef(fromWeight)) {
+          let { type, direction } = this
+          if (toWeight >= fromWeight) {
+            this.transitionName = `${type}-${direction}-slide-push`
+          } else {
+            this.transitionName = `${type}-${direction}-slide-back`
           }
-        }
-
-        if (routeWeight[fromPath]) {
-          fromWeight = routeWeight[fromPath][ROUTE_INDEX]
         } else {
-          for (let item of from.matched){
-            if (routeWeight[item.path]) {
-              fromWeight = routeWeight[item.path][ROUTE_INDEX]
-            }
-          }
-        }
-        let { type, direction } = this
-        if (toWeight >= fromWeight) {
-          this.transitionName = `${type}-${direction}-slide-push`
-        } else {
-          this.transitionName = `${type}-${direction}-slide-back`
+          this.transitionName = 'default'
         }
       }
     },
@@ -86,7 +83,6 @@ export default {
       } else if (type === transitionType.COVER) {
         this.coverResolve(to, from)
       }
-      // console.log(this.$router)
     }
   }
 }

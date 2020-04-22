@@ -22,7 +22,7 @@
         </div>
       </header>
       <section class="main">
-        <router-transition prefix="/home">
+        <router-transition prefix="/home" :route-index="$store.state.homeRouteIndex">
           <keep-alive>
             <router-view :key="routeKey" class="router"></router-view>
           </keep-alive>

@@ -1,6 +1,7 @@
-export const ROUTE_INDEX = '$$RouteIndex$$'
 export const HOME_ROUTE_KEY = '__HOME_ROUTES__'
 export const PIN_ROUTE_KEY = '__PIN_ROUTE_KEY__'
 export const TOKEN_KEY = '__TOKEN__'
 export const UID_KEY = '__UID_KEY__'
 export const IS_LOGIN_KEY = '__IS_LOGIN__'
+export const HOME_ROUTE_INDEX_KEY = '_HOME_ROUTE_INDEX_KEY_'
+export const PIN_ROUTE_INDEX_KEY = '_PIN_ROUTE_INDEX_KEY_'

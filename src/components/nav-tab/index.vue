@@ -1,5 +1,5 @@
 <template>
-  <div class="nav-tab">
+  <div class="nav-tab" :style="{backgroundColor: backgroundColor}">
     <ul class="nav-list">
       <li @click="handleClick(i, $event)" ref="nav-item" class="nav-item" v-for="(item, i) in navList" :key="item.path.path || item.path">
         <router-link :to="item.path"><span class="text" :style="{color: getTitleColor(item.path)}">{{item.title}}</span></router-link>
@@ -15,7 +15,8 @@ export default {
     navList: Array,
     titleColor: String,
     lineColor: String,
-    activeTitleColor: String
+    activeTitleColor: String,
+    backgroundColor: String
   },
   data() {
     return {

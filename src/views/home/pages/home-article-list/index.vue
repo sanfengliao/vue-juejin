@@ -1,6 +1,6 @@
 <template>
   <div class="article-list-con">
-    <div ref="tags-con" :style="{height: tags.length ? 90/32 + 'rem' : 0, overflow: showAllTag ? 'visible' : 'hidden', marginRight: !showAllTag ? 30/32 + 'rem' : 0}" class="tags-con border-bottom-1px">
+    <div ref="tags-con" :style="{height: tags.length ? 90/32 + 'rem' : 0, overflow: showAllTag ? 'visible' : 'hidden'}" class="tags-con border-bottom-1px">
       <ul ref="tags-list" class="tag-list" :style="{flexWrap: showAllTag? 'wrap' : 'nowrap'}">
         <li @click="handleTagClick(item.tagId, $event)" class="tag-item" v-for="item in tags" :key="item.tagId">
           <tag :text="item.title" :class="{active: tagId === item.tagId}"></tag>

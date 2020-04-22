@@ -63,10 +63,6 @@ const router = new VueRouter({
     name: 'specialShowEdit',
     path: '/specialShowEdit',
     component: SpecialShowEdit,
-    meta: {
-      [ROUTE_INDEX]: 120,
-      isFirstLevel: true
-    },
   }, {
     name: 'topics',
     path: '/topics',
@@ -75,17 +71,10 @@ const router = new VueRouter({
     name: 'post',
     path: '/post/:id',
     component: Post,
-    meta: {
-      [ROUTE_INDEX]: 200,
-      isFirstLevel: true
-    }
   },{
     name: 'pin',
     path: '/pin/:id',
     component: Pin,
-    meta: {
-      [ROUTE_INDEX]: 200
-    }
   },{
     name: 'book-section',
     path: '/book/:bookId/section',
@@ -95,43 +84,27 @@ const router = new VueRouter({
       path: ':sectionId',
       component: SectionContent
     }],
-    meta: {
-      [ROUTE_INDEX]: 160
-    }
   },{
     name: 'book',
     path: '/book/:id',
     component: Book,
-    meta: {
-      [ROUTE_INDEX]: 150,
-    }
   },{
     name: 'login',
     path: '/login',
     component: Login,
-    meta: {
-      [ROUTE_INDEX]: 1000
-    }
   },{
     name: 'setting',
     path: '/setting',
     component: Setting,
-    meta: {
-      [ROUTE_INDEX]: 110,
-    }
   },{
     name: 'feedback',
     path: '/feedback',
     component: Feedback,
-    meta: {
-      [ROUTE_INDEX]: 110
-    }
   },{
     name: 'read-history',
     path: '/read-history',
     component: ReadHistory,
     meta: {
-      [ROUTE_INDEX]: 110,
       isAuth: true
     }
   },{
@@ -139,7 +112,6 @@ const router = new VueRouter({
     path: '/tag-manage',
     component: TagManage,
     meta: {
-      [ROUTE_INDEX]: 110,
       isAuth: true
     }
   },{
@@ -147,7 +119,6 @@ const router = new VueRouter({
     path: '/my-like',
     component: MyLike,
     meta: {
-      [ROUTE_INDEX]: 110,
       isAuth: true
     }
   },{
@@ -155,61 +126,40 @@ const router = new VueRouter({
     path: '/my-purchased-book',
     component: MyPurchasedBook,
     meta: {
-      [ROUTE_INDEX]: 110,
       isAuth: true
     }
   },{
     name: 'collection-set',
     path: '/user/:id/collections',
     component: CollectionSet,
-    meta: {
-      [ROUTE_INDEX]: 110,
-    }
   },{
     name: 'user-like',
     path: '/user/:id/likes',
     component: UserLike,
-    meta: {
-      [ROUTE_INDEX]: 160
-    }
   },{
     name: 'user-tag',
     path: '/user/:id/tags',
     component: UserTag,
-    meta: {
-      [ROUTE_INDEX]: 160
-    }
   },{
     name: 'user',
     path: '/user/:id',
     component: User,
     redirect: '/user/:id/activies',
-    meta: {
-      [ROUTE_INDEX]: 150
-    },
     children: userRoutes
   },{
     name: 'collection',
     path: '/collection/:id',
     component: Collection,
-    meta: {
-      [ROUTE_INDEX]: 120
-    }
+
   },
   {
     name: 'about',
     path: '/about',
     component: About,
-    meta: {
-      [ROUTE_INDEX]: 120,
-    }
   },{
     name: 'set-psd',
     path: '/set-psd',
     component: SetPsd,
-    meta: {
-      [ROUTE_INDEX]: 120
-    }
   },{
     name: 'search',
     path: '/search',
@@ -244,9 +194,6 @@ const router = new VueRouter({
     path: '/',
     component: Layout,
     redirect: '/home',
-    meta: {
-      isFirstLevel: true
-    },
     children: [{
       name: 'home',
       path: '/home',

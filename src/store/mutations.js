@@ -24,11 +24,11 @@ const mutations = {
   [types.SET_QUERY](state, query) {
     state.query = query
   },
-  [types.SET_CURRENT_HOME_ROUTE](state, path) {
-    state.currentHomeRoute = path
+  [types.SET_HOME_ROUTE_INDEX](state, homeRouteIndex) {
+    state.homeRouteIndex = homeRouteIndex
   },
-  [types.SET_CURRENT_PINS_ROUTE](state, path) {
-    state.currentPinsRoute = path
+  [types.SET_PIN_ROUTE_INDEX](state, pinRouteIndex) {
+    state.pinRouteIndex = pinRouteIndex
   }
 }
 

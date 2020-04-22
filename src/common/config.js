@@ -1,5 +1,5 @@
 import store from './store'
-import { HOME_ROUTE_KEY, PIN_ROUTE_KEY } from './const'
+import { HOME_ROUTE_KEY, PIN_ROUTE_KEY, HOME_ROUTE_INDEX_KEY, PIN_ROUTE_INDEX_KEY } from './const'
 
 export let defaultHomeRoutes = [{
     path: '/home/following',
@@ -48,6 +48,32 @@ export let homeRoutes = store.get(HOME_ROUTE_KEY, [{
   }
 ])
 
+export const homeRouteIndex = store.get(HOME_ROUTE_INDEX_KEY, {
+  '/home/following': -2,
+  '/home/recommended': -1,
+  '/home/hot': 0,
+  '/home/backend': 1,
+  '/home/frontend': 2,
+  '/home/android': 3,
+  '/home/ios': 4,
+  '/home/ai': 5,
+  '/home/freebie': 6,
+  '/home/career': 7,
+  '/home/article': 8,
+})
+
+
+export const pinRouteIndex = store.get(PIN_ROUTE_INDEX_KEY, {
+  '/pins/following': -2,
+  '/pins/recommended': -1,
+  '/pins/hot': -0,
+  '/pins/topic/5c09ea2b092dcb42c740fe73': 1,
+  '/pins/topic/5abb61e1092dcb4620ca3322': 2,
+  '/pins/topic/5c106be9092dcb2cc5de7257': 3,
+  '/pins/topic/5b514af1092dcb61bd72800d': 4,
+  '/pins/topic/5abb67d2092dcb4620ca3324': 5,
+  '/pins/topic/5c46a17f092dcb4737217152': 6,
+})
 
 export let defaultPinsRoutes = [
   {

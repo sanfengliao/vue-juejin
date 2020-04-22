@@ -85,8 +85,7 @@ export default {
       swiperOptions: {
         slidesPerView: 1.1,
         centeredSlides: true,
-        spaceBetween: 10,
-        loop: true
+        spaceBetween: 10
       }
     }
   },

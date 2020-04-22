@@ -2,7 +2,9 @@
   <div class="topic-pin-list">
     <ul class="pin-list">
       <li class="pin-item" v-for="item in pins" :key="item.objectId">
-        <l-pin-entry :pin="item"/>
+        <router-link :to="`/pin/${item.objectId}`">
+          <l-pin-entry :pin="item"/>
+        </router-link>
       </li>
     </ul>
   </div>

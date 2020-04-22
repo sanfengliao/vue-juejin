@@ -55,7 +55,7 @@
         </div>
         <div ref="nav-con" class="topic-nav-con border-bottom-1px">
           <div :style="{position: navPosition}" class="topic-nav-list">
-            <nav-tab :nav-list="navList" title-color="#333" active-title-color="#007fff" line-color="#007fff"></nav-tab>
+            <nav-tab :nav-list="navList" background-color="#fff" title-color="#333" active-title-color="#007fff" line-color="#007fff"></nav-tab>
           </div>
         </div>
         <div>
