@@ -1,6 +1,6 @@
 <template>
   <div class="pin-entry-list">
-    <scroll @load="loadMore" @refresh="refresh" :refreshing="refreshing" :loading="loading">
+    <scroll ref="scroll" @load="loadMore" @refresh="refresh" :refreshing="refreshing" :loading="loading">
       <div class="pins-con">
         <div v-if="recommendPins.length>0" class="recommend-pins-con">
           <swiper :options="swiperOptions">
@@ -15,7 +15,7 @@
           <ul class="pin-entry-list">
             <li class="pin-entry-item" v-for="item in pins" :key="item.id || item.objectId">
               <router-link :to="`/pin/${item.id || item.objectId}`">
-                <l-pin-entry @like="likePin" @toggleFollow="toggleFollow" :pin="item"></l-pin-entry>
+                <l-pin-entry @folded="folded" @like="likePin" @toggleFollow="toggleFollow" :pin="item"></l-pin-entry>
               </router-link>
             </li>
           </ul>
@@ -56,6 +56,9 @@ export default {
     this.init()
   },
   methods: {
+    folded() {
+      this.$refs['scroll'].refresh()
+    },
     init() {
       let { type } = this.$route.meta
       if (type === pinsRouteType.RECOMMENDED) {
@@ -150,7 +153,6 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-@import "../../../../assets/css/variable.styl"
 .pin-entry-list
   height 100%
 

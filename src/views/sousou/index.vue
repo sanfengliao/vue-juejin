@@ -4,7 +4,7 @@
       <search-box @focus="handleFocus"></search-box>
     </header>
     <section class="sousou-section">
-      <load-scroll @load="loadMore" :finished="loadFinish" :is-loading="isLoading">
+      <native-scroll @load="loadMore" :finished="loadFinish" :is-loading="isLoading">
         <div class="sousou-content">
           <div class="activity-con">
             <div v-if="banner.length>0" class="banner-con">
@@ -68,14 +68,14 @@
             </div>
           </div>
         </div>
-      </load-scroll>
+      </native-scroll>
     </section>
   </div>
 </template>
 
 <script>
 import SearchBox from '../../components/search-box'
-import LoadScroll from '../../components/load-scroll'
+import NativeScroll from '../../components/native-scroll'
 import SArticleEntry from '../../components/s-article-entry'
 import { getEventBanner, getEntryByRank } from '../../api/search'
 export default {
@@ -90,7 +90,7 @@ export default {
   },
   components: {
     SearchBox,
-    LoadScroll,
+    NativeScroll,
     SArticleEntry
   },
   created() {

@@ -1,7 +1,7 @@
 <template>
   <div v-if="pin" class="pin-content">
     <div class="content">
-      <fold-text :text="pin.content"/>
+      <fold-text :clip="clipText" @folded="folded" :text="pin.content"/>
     </div>
     <div v-if="pin.pictures && pin.pictures.length" class="pictures">
       <div class="image-list" :class="{'col-1':pin.pictures.length === 1, 'col-3': pin.pictures.length > 1}">
@@ -31,7 +31,11 @@ export default {
     FoldText
   },
   props: {
-    pin: Object
+    pin: Object,
+    clipText: {
+      type: Boolean,
+      default: true
+    }
   },
   methods: {
     calPaddingTop(picUrl) {
@@ -39,6 +43,9 @@ export default {
       let w = parseFloat(params['w'])
       let h = parseFloat(params['h'])
       return h / w * 100 + '%'
+    },
+    folded() {
+      this.$emit('folded', arguments)
     }
   }
 }

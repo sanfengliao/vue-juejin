@@ -10,7 +10,7 @@
         </transition>
       </d-header>
     </header>
-    <load-scroll @scroll="scroll">
+    <native-scroll @scroll="scroll">
 
       <div class="mask" ref="mask"></div>
       <div class="user-info">
@@ -80,14 +80,14 @@
           </keep-alive>
         </div>
       </section>
-    </load-scroll>
+    </native-scroll>
   </div>
 </template>
 
 <script>
 import DHeader from '../../components/d-header'
 import NavTab from '../../components/nav-tab'
-import LoadScroll from '../../components/load-scroll'
+import NativeScroll from '../../components/native-scroll'
 import { getMultiUser, isCurrentUserFollowed, followUser, unFollowUser, getUserInfo } from '../../api/user'
 import { keepAliveMixin } from '../../mixins'
 export default {
@@ -106,7 +106,7 @@ export default {
   components: {
     DHeader,
     NavTab,
-    LoadScroll
+    NativeScroll
   },
   computed: {
     navList() {

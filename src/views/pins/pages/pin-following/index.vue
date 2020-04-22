@@ -1,6 +1,6 @@
 <template>
   <div class="pins-following">
-    <scroll @refresh="refresh" :refreshing="refreshing" :loading="loading" @load="load">
+    <scroll ref="scroll" @refresh="refresh" :refreshing="refreshing" :loading="loading" @load="load">
       <div class="user-activty-con">
         <ul v-if="isLogin" class="user-activity-list">
           <li v-for="item in activies" :key="item.id" class="activity-item">
@@ -65,7 +65,7 @@
             </div>
             <div v-if="item.action === 'PUBLISH_PIN'">
               <router-link :to="`/pin/${item.pins[0].id}`">
-                <l-pin-entry @like="likePin" @toggleFollow="toggleFollow" :pin="item.pins[0]"/> 
+                <l-pin-entry @fold="folded" @like="likePin" @toggleFollow="toggleFollow" :pin="item.pins[0]"/> 
               </router-link>
             </div>
             <div v-if="item.action === 'LIKE_PIN'">
@@ -76,7 +76,7 @@
               </div>
               <div>
                 <router-link :to="`/pin/${item.pins[0].id}`">
-                  <l-pin-entry @like="likePin"  @toggleFollow="toggleFollow" :pin="item.pins[0]" />
+                  <l-pin-entry  @fold="folded" @like="likePin"  @toggleFollow="toggleFollow" :pin="item.pins[0]" />
                 </router-link>
               </div>
             </div>
@@ -142,6 +142,9 @@ export default {
     this.init()
   },
   methods: {
+    folded() {
+      this.$refs['scroll'].refresh()
+    },
     async toggleFollow(author) {
       if (author.viewerIsFollowing) {
         let data = await unFollowUser(author.id)
@@ -230,7 +233,6 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-@import "../../../../assets/css/variable.styl"
 .pins-following
   height 100%
   .user-activty-con

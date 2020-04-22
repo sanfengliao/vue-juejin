@@ -1,6 +1,6 @@
 <template>
   <div ref="scroll-con" class="scroll-wrapper">
-    <div :style="{display: scrollX ? 'inline-flex' : 'block'}" class="scroll-content">
+    <div ref="scroll-content" :style="{display: scrollX ? 'inline-flex' : 'block'}" class="scroll-content">
       <slot></slot>
     <div v-show="loading" class="loading-con">
       <loading :size="80/36+'rem'"></loading>
@@ -117,11 +117,17 @@ export default {
       
       })
       this.scroll.on('scrollEnd', pos => {
-        console.log(pos.y, this.scroll.maxScrollY)
         if (pos.y <= this.scroll.maxScrollY + 50 && !this.loading) {
           this.$emit('load')
         }
       })
+
+      // let observer = new MutationObserver((mutationsList) => {
+      //    for(var mutation of mutationsList) {
+      //      console.log(mutation)
+      //    }
+      // })
+      // observer.observe(this.$refs['scroll-content'], { attributes: true, childList: true, subtree: true})
     },
     refresh() {
       this.scroll && this.scroll.refresh()

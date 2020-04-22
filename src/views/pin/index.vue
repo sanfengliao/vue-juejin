@@ -15,14 +15,14 @@
       </d-header>
     </header>
     <section class="pin-section">
-      <load-scroll @scroll="scroll" @load="loadMore" :finished="loadFinish" :is-loading="isLoading">
+      <native-scroll @scroll="scroll" @load="loadMore" :finished="loadFinish" :is-loading="isLoading">
         <div class="main-con">
           <section class="pin-content-con con">
             <div class="pin-author-con">
               <author :author="pin.user"></author>
             </div>
             <div class="pin-content">
-              <pin-info :pin="pin"></pin-info>
+              <pin-info :clip-text="false" :pin="pin"></pin-info>
             </div>
           </section>
           <section v-if="recommendPins.length>0" class="recommend-pins-con">
@@ -57,7 +57,7 @@
             </div>
           </section>
         </div>
-      </load-scroll>
+      </native-scroll>
     </section>
   </div>
 </template>
@@ -66,7 +66,7 @@
 import DHeader from '../../components/d-header'
 import SAuthor from '../../components/s-author'
 import Author from '../../components/m-author'
-import LoadScroll from '../../components/load-scroll'
+import NativeScroll from '../../components/native-scroll'
 import PinInfo from '../../components/pin-info'
 import Comment from '../../components/comment'
 import SPinEntry from '../../components/s-pin-entry'
@@ -92,7 +92,7 @@ export default {
   components: {
     DHeader,
     SAuthor,
-    LoadScroll,
+    NativeScroll,
     Author,
     PinInfo,
     Comment,

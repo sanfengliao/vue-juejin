@@ -91,7 +91,7 @@ export default {
     white-space: nowrap
     .nav-item
       padding 20*$unit 30*$unit
-      font-size 32*$unit
+      font-size 28*$unit
       color #cfcfd3
       .router-link-active
         color #fff

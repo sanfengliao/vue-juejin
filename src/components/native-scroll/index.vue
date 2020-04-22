@@ -1,10 +1,10 @@
 <template>
-  <div class="load-scroll" ref="container">
+  <div class="native-scroll" ref="container">
     <div class="content" ref="content">
       <slot></slot>
     </div>
     <div v-if="showLoadingCon" ref="loading-con" class="loading-con">
-      <div v-if="loading" class="text-con">
+      <div v-show="loading" class="text-con">
         <loading :size="80/36 + 'rem'"></loading>
       </div>
       <div v-if="showText" class="text-con">没有更多了</div>
@@ -62,7 +62,6 @@ export default {
       if (this.finished) {
         this.showText = true
         setTimeout(() => {
-          this.showText = false
           this.showLoadingCon = false
         }, 1000)
       }
@@ -72,7 +71,7 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-.load-scroll
+.native-scroll
   height 100%
   overflow scroll
   &::-webkit-scrollbar

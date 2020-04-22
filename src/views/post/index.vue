@@ -16,7 +16,7 @@
         </div>
       </d-header>
     </header>
-    <load-scroll @scroll="postScroll" @load="loadMore" :finished="loadFinish" :is-loading="isLoading">
+    <native-scroll @scroll="postScroll" @load="loadMore" :finished="loadFinish" :loading="isLoading">
       <div>
         <section class="article">
           <div v-if="entry" class="summary">
@@ -63,7 +63,7 @@
           </div>
         </section>
       </div>
-    </load-scroll>
+    </native-scroll>
   </div>
 </template>
 
@@ -76,7 +76,7 @@ import Comment from '../../components/comment'
 import Loading from '../../components/loading'
 import MAuthor from '../../components/m-author'
 import SAuthor from '../../components/s-author'
-import LoadScroll from '../../components/load-scroll'
+import NativeScroll from '../../components/native-scroll'
 
 export default {
   name: 'post',
@@ -96,7 +96,7 @@ export default {
     Comment,
     Loading,
     MAuthor,
-    LoadScroll,
+    NativeScroll,
     SAuthor
   },
   created() {

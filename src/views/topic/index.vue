@@ -9,7 +9,7 @@
       </d-header>
     </header>
     <section class="topic-section">
-      <load-scroll @scroll="scroll" @load="load" :loading="loading">
+      <native-scroll @scroll="scroll" @load="load" :loading="loading">
         <div class="topic-info">
           <div class="top">
             <div class="image" :style="{backgroundImage: `url(${topic.icon})`}"></div>
@@ -61,7 +61,7 @@
         <div>
           <router-view ref="routerView" :key="routerKey"></router-view>
         </div>
-      </load-scroll>
+      </native-scroll>
     </section>
 
   </div>
@@ -71,7 +71,7 @@
 import DHeader from '../../components/d-header'
 import FoldText from '../../components/fold-text'
 import NavTab from '../../components/nav-tab'
-import LoadScroll from '../../components/load-scroll'
+import NativeScroll from '../../components/native-scroll'
 import { getTopicInfo, getTopicAttender } from '../../api/topic'
 import { keepAliveMixin } from '../../mixins'
 export default {
@@ -93,7 +93,7 @@ export default {
     DHeader,
     FoldText,
     NavTab,
-    LoadScroll
+    NativeScroll
   },
   created() {
     this.init()

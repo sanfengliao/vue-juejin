@@ -7,7 +7,7 @@
       </div>
     </div>
     <div class="section con border-bottom-1px">
-      <pin-info :pin="pin"></pin-info>
+      <pin-info @folded="folded" :pin="pin"></pin-info>
     </div>
     <div class="footer con">
       <three-op :is-like="pin.viewerHasLiked" :like-count="pin.likeCount" :comment-count="pin.commentCount" @like="like" @comment="comment" @share="share"></three-op>
@@ -42,6 +42,9 @@ export default {
     },
     toggleFollow(author) {
       this.$emit('toggleFollow', author)
+    },
+    folded() {
+      this.$emit('folded', arguments)
     }
   }
 }
