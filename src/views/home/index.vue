@@ -1,6 +1,6 @@
 <template>
     <div class="home">
-      <header class="header con">
+      <header class="header">
         <div class="header-top">
           <div class="search-con">
             <search-box @focus="handleFocus" />
@@ -97,18 +97,16 @@ export default {
 <style lang="stylus" scoped>
 @import "../../assets/css/variable.styl"
 .home
+  display flex
+  flex-direction column
   height 100%
   position relative
 .header
-  display flex
-  flex-direction column
-  justify-content space-between
-  height 148*$unit
   background $primary-color
   .header-top
     display flex
-    padding-top 15*$unit 
-    height 75*$unit
+    align-items center
+    padding 15*$unit 20*$unit 0
     .search-con
       flex 1
       height 100%
@@ -122,6 +120,7 @@ export default {
       color #fff
       font-size 30*$unit
       .iconfont
+        margin-right 10*$unit
         font-size 30*$unit
   .header-bottom
     display flex
@@ -130,17 +129,18 @@ export default {
     .nav-tab-con
       flex 1
     .triangle-con
-      padding-left: 30*$unit
-      flex 0 0 30*$unit
+      display flex
+      align-items center
+      justify-content center
+      flex 0 0 90*$unit
       .triangle
         width 0
         height 0
         border: 15*$unit solid transparent
         border-top: 15*$unit solid #fff
+        transform translateY(25%)
 .main
-  position absolute
-  top 148*$unit
-  bottom 0
+  flex 1
   width 100%
   .icon-add-con
     position fixed

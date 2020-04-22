@@ -1,6 +1,6 @@
 <template>
-  <div class="pin">
-    <header class="pin-header con">
+  <div class="pins">
+    <header class="pins-header">
       <div class="nav-tab-con scroll-with-no-bar">
         <nav-tab :nav-list="routeList"></nav-tab>
       </div>
@@ -65,7 +65,7 @@ export default {
 
 <style lang="stylus" scoped>
 @import "../../assets/css/variable.styl"
-.pin-header
+.pins-header
   display flex
   align-items center
   width 100%
@@ -73,13 +73,16 @@ export default {
   .nav-tab-con
     flex 1
   .triangle-con
-    padding-left: 30*$unit
-    flex 0 0 30*$unit
+    flex 0 0 90*$unit
+    display flex
+    justify-content center
+    align-items center
     .triangle
       width 0
       height 0
       border: 15*$unit solid transparent
       border-top: 15*$unit solid #fff
+      transform translateY(25%)
 .icon-add-con
   position fixed
   right 30*$unit

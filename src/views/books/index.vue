@@ -1,7 +1,7 @@
 <template>
   <div class="books-con">
     <header class="books-header">
-      <div class="nav-tab-con">
+      <div class="nav-tab-con scroll-with-no-bar">
         <nav-tab :nav-list="navList"></nav-tab>
       </div>
     </header>
@@ -55,13 +55,9 @@ export default {
 .books
   position relative
 .books-header
-  height 85*$unit
   background $primary-color
   display flex
   justify-content center
-  .nav-tab-con
-    height 100%
-    display inline-block
 .books-section
   position absolute
   top 85*$unit

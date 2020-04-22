@@ -1,20 +1,18 @@
 <template>
   <div class="article-list-con">
-    <div ref="tags-con" :style="{height: tags.length ? 90/32 + '*$unit' : 0, overflow: showAllTag ? 'visible' : 'hidden'}" class="tags-con border-bottom-1px">
-      <!-- <div class="tag-list-con" ref="tags-con"> -->
-        <ul ref="tags-list" class="tag-list" :style="{flexWrap: showAllTag? 'wrap' : 'nowrap'}">
-          <li @click="handleTagClick(item.tagId, $event)" class="tag-item" v-for="item in tags" :key="item.tagId">
-            <tag :text="item.title" :class="{active: tagId === item.tagId}"></tag>
-          </li>
-        </ul>
-      <!-- </div> -->
+    <div ref="tags-con" :style="{height: tags.length ? 90/32 + 'rem' : 0, overflow: showAllTag ? 'visible' : 'hidden', marginRight: !showAllTag ? 30/32 + 'rem' : 0}" class="tags-con border-bottom-1px">
+      <ul ref="tags-list" class="tag-list" :style="{flexWrap: showAllTag? 'wrap' : 'nowrap'}">
+        <li @click="handleTagClick(item.tagId, $event)" class="tag-item" v-for="item in tags" :key="item.tagId">
+          <tag :text="item.title" :class="{active: tagId === item.tagId}"></tag>
+        </li>
+      </ul>
       <div @click="toggleShowAllTag" class="show-con" v-if="showMoreTagOp">
         <i v-if="showAllTag" class="iconfont icon-sort_asc"></i>
         <i v-if="!showAllTag" class="iconfont icon-sanjiaojiantoutriangular"></i>
       </div>
-      <div @click="toggleShowAllTag" class="mask" v-show="showAllTag">
+    </div>
+    <div @click="toggleShowAllTag" class="mask" v-show="showAllTag">
 
-      </div>
     </div>
 
     <scroll @load="loadMore" :refreshing="refreshing" @refresh="refresh" :loading="loading">
@@ -276,7 +274,6 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-@import "../../../../assets/css/variable.styl"
 .article-list-con
   display flex
   flex-direction column
@@ -287,10 +284,6 @@ export default {
     width 100%
     background #fff
     overflow hidden
-    .tag-list-con
-      height 100%
-      width 100%
-      overflow hidden
     .tag-list
       position absolute
       left 0
@@ -317,14 +310,14 @@ export default {
       .iconfont
         font-size 55*$unit
         color $text-color
-    .mask
-      position fixed
-      bottom 0
-      left 0
-      right 0
-      top 148*$unit
-      background rgba(0, 0, 0, .5)
-      z-index 10
+  .mask
+    position absolute
+    bottom 0
+    left 0
+    right 0
+    top 0
+    background rgba(0, 0, 0, .5)
+    z-index 10
   
 .article-pre-list
   .article-pre-item

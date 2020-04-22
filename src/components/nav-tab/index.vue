@@ -83,13 +83,13 @@ export default {
 .nav-tab
   position relative
   display inline-block
+  background $primary-color
   .nav-list
     display flex
     align-items center
     white-space: nowrap
-    min-height 75*$unit
     .nav-item
-      padding 0 40*$unit
+      padding 20*$unit 30*$unit
       font-size 32*$unit
       color #cfcfd3
       .router-link-active

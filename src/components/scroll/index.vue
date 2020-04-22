@@ -2,11 +2,9 @@
   <div ref="scroll-con" class="scroll-wrapper">
     <div :style="{display: scrollX ? 'inline-flex' : 'block'}" class="scroll-content">
       <slot></slot>
-      <!-- <div v-if="!finished" class="loading-container"> -->
-        <div v-show="loading" class="loading-con">
-          <loading :size="80/36+'rem'"></loading>
-        </div>
-      <!-- </div> -->
+    <div v-show="loading" class="loading-con">
+      <loading :size="80/36+'rem'"></loading>
+    </div>
     </div>
     <div v-show="refreshing"  class="refresh-con">
       <refresh :size="80/36+'rem'"></refresh>
@@ -106,32 +104,21 @@ export default {
           ...options,
         }
       )
-      this.scroll.on('pullingUp',  () => {
-        if (!this.loading && !this.finished) {
-          this.$emit('load')
-        }
-      })
       
-      
-      this.scroll.on('pullingDown',  () => {
-        if (!this.refreshing) {
-          this.$emit('refresh') 
-        }
-      })
-      
-    
       this.scroll.on('scroll', (pos) => {
         this.$emit('scroll', pos)
         
       })
       this.scroll.on('touchEnd', (pos) => {
         if (pos.y > 50 && !this.refreshing) {
+          console.log('refresh')
           this.$emit('refresh')
         }
       
       })
       this.scroll.on('scrollEnd', pos => {
-        if (pos.y <= this.scroll.maxScrollY - 50 && !this.loading) {
+        console.log(pos.y, this.scroll.maxScrollY)
+        if (pos.y <= this.scroll.maxScrollY + 50 && !this.loading) {
           this.$emit('load')
         }
       })
@@ -157,9 +144,9 @@ export default {
     display flex
     justify-content center
   .refresh-con
-    width 80rem
+    width 80 * $unit
     position absolute
-    top 50rem
+    top 50 * $unit
     left 50%
     transform translateX(-50%)
 </style>
