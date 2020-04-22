@@ -55,3 +55,12 @@ export const throttle = function(fn, delay=500) {
     }
   }
 }
+
+export function generateDeviceId() {
+  let deviceId = localStorage.getItem('_device_id_')
+  if (!deviceId) {
+    deviceId = Math.random().toString().slice(2, 6)
+    let deviceId = localStorage.setItem('_device_id_', deviceId)
+  }
+  return deviceId
+}

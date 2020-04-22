@@ -22,6 +22,8 @@ import './assets/css/article.styl'
 //   document.documentElement.style.fontSize = fontSize + 'px'
 // }
 
+console.log(navigator.userAgent)
+
 
 Vue.use(VueAwesomeSwiper)
 Vue.use(Message)

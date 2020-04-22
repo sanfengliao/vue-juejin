@@ -1,5 +1,6 @@
 import store from './store'
 import { HOME_ROUTE_KEY, PIN_ROUTE_KEY, HOME_ROUTE_INDEX_KEY, PIN_ROUTE_INDEX_KEY } from './const'
+import { generateDeviceId } from '../util'
 
 export let defaultHomeRoutes = [{
     path: '/home/following',
@@ -137,5 +138,6 @@ export const routeTypes = {
   HOME_HOT: 'home_hot',
 }
 
-export const client_id = 'client_id'
-export const device_id = 'client_id'
+
+export const device_id = generateDeviceId()
+export const client_id = device_id
