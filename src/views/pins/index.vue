@@ -1,7 +1,7 @@
 <template>
   <div class="pin">
     <header class="pin-header con">
-      <div class="nav-tab-con">
+      <div class="nav-tab-con scroll-with-no-bar">
         <nav-tab :nav-list="routeList"></nav-tab>
       </div>
       <div class="triangle-con">
@@ -72,8 +72,6 @@ export default {
   background $primary-color
   .nav-tab-con
     flex 1
-    height 85*$unit
-    overflow hidden
   .triangle-con
     padding-left: 30*$unit
     flex 0 0 30*$unit
