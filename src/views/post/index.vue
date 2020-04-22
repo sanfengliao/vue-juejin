@@ -51,7 +51,7 @@
             </li>
           </ul>
         </section>
-        <section class="comment-con con">
+        <section class="comment-con">
           <ul v-if="comments.length>0" class="comment-list">
             <li v-for="item in comments" class="comment-item border-bottom-1px" :key="item.id">
               <comment :authorId="entry && entry.user.id" :comment="item"></comment>

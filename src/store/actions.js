@@ -1,6 +1,6 @@
 import * as types from './mutation-types'
 
-import { HOME_ROUTE_KEY, PIN_ROUTE_KEY, TOKEN_KEY, UID_KEY, IS_LOGIN_KEY } from '../common/const'
+import { HOME_ROUTE_KEY, PIN_ROUTE_KEY, TOKEN_KEY, UID_KEY, IS_LOGIN_KEY, HOME_ROUTE_INDEX_KEY, PIN_ROUTE_INDEX_KEY } from '../common/const'
 import { login } from '../api/auth'
 
 import Message from '../components/message'
@@ -51,14 +51,16 @@ export const removeKeepAlive = ({commit, state}, componentName) => {
 
 
 export const setHomeRoutes = ({commit}, homeRoutes) => {
-  store.set(HOME_ROUTE_KEY, homeRoutes)
+  // store.set(HOME_ROUTE_KEY, homeRoutes)
   commit(types.SET_HOME_ROUTES, homeRoutes)
+  store.set(HOME_ROUTE_KEY, homeRoutes)
 }
 
 
 export const setPinRoutes = ({commit}, pinRoutes) => {
-  store.set(PIN_ROUTE_KEY, pinRoutes)
+  // store.set(PIN_ROUTE_KEY, pinRoutes)
   commit(types.SET_PINS_ROUTES, pinRoutes)
+  store.set(PIN_ROUTE_KEY, pinRoutes)
 }
 
 export const setQuery = ({ commit }, query) => {
@@ -70,11 +72,13 @@ export const setHomeRouteIndex = ({commit, state}, routeIndex) => {
   let { homeRouteIndex } = state
   homeRouteIndex = Object.assign(homeRouteIndex, routeIndex)
   commit(types.SET_HOME_ROUTE_INDEX, homeRouteIndex)
+  store.set(HOME_ROUTE_INDEX_KEY, homeRouteIndex)
 }
 
 export const setPinRouteIndex = ({commit, state}, routeIndex) => {
   let { pinRouteIndex } = state
   pinRouteIndex = Object.assign(pinRouteIndex, routeIndex)
   commit(types.SET_PIN_ROUTE_INDEX, pinRouteIndex)
+  store.set(PIN_ROUTE_INDEX_KEY, pinRouteIndex)
 }
 

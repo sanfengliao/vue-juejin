@@ -17,13 +17,15 @@
       </div>
       <div v-if="author.description" class="description">{{author.description}}</div>
     </div>
-    <div @click.stop.prevent="toggleFollow" v-if="author.viewerIsFollowing || author.currentUserFollowed" class="follow active">
-      <i class="iconfont icon-dui"></i>
-      <span class="text">已关注</span>
-    </div>
-    <div v-else @click.stop.prevent="toggleFollow" class="follow">
-      <i class="iconfont icon-Add1"></i>
-      <span class="text">关注</span>
+    <div v-if="showBtn">
+      <div @click.stop.prevent="toggleFollow" v-if="author.viewerIsFollowing || author.currentUserFollowed" class="follow active">
+        <i class="iconfont icon-dui"></i>
+        <span class="text">已关注</span>
+      </div>
+      <div v-else @click.stop.prevent="toggleFollow" class="follow">
+        <i class="iconfont icon-Add1"></i>
+        <span class="text">关注</span>
+      </div>
     </div>
   </div>
 </template>
@@ -41,6 +43,15 @@ export default {
       default: true
     },
     description: String
+  },
+  data() {
+    return {
+      showBtn: true
+    }
+  },
+  created() {
+    const { author } = this
+    this.showBtn = !(author.viewerIsFollowing || author.currentUserFollowed)
   },
   methods: {
     toggleFollow() {
