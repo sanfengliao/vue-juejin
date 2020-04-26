@@ -1,5 +1,5 @@
 <template>
-  <div class="b-section-con">
+  <div class="book-section-entry-con">
     <div class="step">{{index}}</div>
     <div class="center">
       <div class="title">{{section.title}}</div>
@@ -44,7 +44,7 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-.b-section-con
+.book-section-entry-con
   background #fff
   padding 30*$unit 20*$unit
   display flex

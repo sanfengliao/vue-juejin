@@ -13,15 +13,14 @@ import Post from '../views/post'
 import Pin from '../views/pin'
 import Login from '../views/login'
 import SpecialShowEdit from '../views/special-show-edit'
-import BookEntryList from '../views/book-entry-list'
+import BookEntryList from '../views/books/pages/book-entry-list'
 import Book from '../views/book'
-import SectionRead from '../views/section-read'
-import SectionContent from '../views/section-content'
+import SectionDetail from '../views/section-detail'
 import Setting from '../views/setting'
 import About from '../views/about'
 import Feedback from '../views/feedback'
 import SetPsd from '../views/set-psd'
-import ReadHistory from '../views/read-history'
+import UserReadHistory from '../views/user-read-history'
 import TagManage from '../views/tag-manage'
 import MyLike from '../views/my-like'
 import MyPurchasedBook from '../views/my-purchased-book'
@@ -34,14 +33,13 @@ import UserTag from '../views/user-tag'
 
 import Collection from '../views/collection'
 import Search from '../views/search'
-import SearchResult from '../views/search-result'
+import SearchResult from '../views/search/pages/search-result'
 import RecommendationAuthor from '../views/recommendation-author'
 import RecommendedAuthorList from '../views/recommendation-author/pages/recommend-author-list'
 import Topic from '../views/topic'
 import TopicAttender from '../views/topic-attender'
 import Topics from '../views/topics'
 
-import { ROUTE_INDEX } from '../common/const'
 
 import { homeRoutes } from './home'
 import { pinsRoutes } from './pins'
@@ -77,13 +75,8 @@ const router = new VueRouter({
     component: Pin,
   },{
     name: 'book-section',
-    path: '/book/:bookId/section',
-    component: SectionRead,
-    children: [{
-      name: 'book-section-detail',
-      path: ':sectionId',
-      component: SectionContent
-    }],
+    path: '/book/:bookId/section/:sectionId',
+    component: SectionDetail,
   },{
     name: 'book',
     path: '/book/:id',
@@ -101,9 +94,9 @@ const router = new VueRouter({
     path: '/feedback',
     component: Feedback,
   },{
-    name: 'read-history',
-    path: '/read-history',
-    component: ReadHistory,
+    name: 'user-read-history',
+    path: '/user-read-history',
+    component: UserReadHistory,
     meta: {
       isAuth: true
     }

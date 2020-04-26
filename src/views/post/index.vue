@@ -1,7 +1,7 @@
 <template>
   <div class="post" >
     <header class="header">
-      <d-header title="文章详情页">
+      <m-header title="文章详情页">
         <div ref="header-con" class="header-con">
           <div v-if="entry" ref="header-content" class="header-content">
             <router-link class="link" :to="`/user/${entry && entry.user.objectId}`">
@@ -14,7 +14,7 @@
             </div>
           </div>
         </div>
-      </d-header>
+      </m-header>
     </header>
     <native-scroll @scroll="postScroll" @load="loadMore" :finished="loadFinish" :loading="isLoading">
       <div>
@@ -70,7 +70,7 @@
 <script>
 import { getEntryView, getEntryByEntryIds, getRelatedEntry, getComments } from '../../api/post'
 import { followUser, unFollowUser, isCurrentUserFollowed } from '../../api/user'
-import DHeader from '../../components/d-header'
+import MHeader from '../../components/m-header'
 import SArticleEntry from '../../components/s-article-entry'
 import Comment from '../../components/comment'
 import Loading from '../../components/loading'
@@ -91,7 +91,7 @@ export default {
     }
   },
   components: {
-    DHeader,
+    MHeader,
     SArticleEntry,
     Comment,
     Loading,

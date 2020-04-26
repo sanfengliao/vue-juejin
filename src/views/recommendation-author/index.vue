@@ -1,14 +1,14 @@
 <template>
   <div class="recommendation-author">
     <header class="recommendation-author-header">
-      <d-header :go-back="goBackAndRemoveKeepAlive">
+      <m-header :go-back="goBackAndRemoveKeepAlive">
         <div class="title">作者榜</div>
         <div slot="right">
           <router-link to="/book/5c90640c5188252d7941f5bb/section/5c9065385188252da6320022">
            排名规则
           </router-link>
         </div>
-      </d-header>
+      </m-header>
     </header>
     <section class="recommendation-author-section">
       <div class="nav-tab-con">
@@ -27,7 +27,7 @@
 </template>
 
 <script>
-import DHeader from '../../components/d-header'
+import MHeader from '../../components/m-header'
 import NavTab from '../../components/nav-tab'
 import { getRecommendedAuthorChannel } from '../../api/user'
 let path = window.location.pathname
@@ -43,7 +43,7 @@ export default {
     }
   },
   components: {
-    DHeader,
+    MHeader,
     NavTab
   },
   created() {
@@ -81,7 +81,7 @@ export default {
   display flex
   flex-direction column
 .recommendation-author-header
-  .d-header
+  .m-header
     background $primary-color
     color #fff
     .title

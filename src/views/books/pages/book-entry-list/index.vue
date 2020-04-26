@@ -15,9 +15,9 @@
 </template>
 
 <script>
-import { getBooks, getMyBooks } from '../../api/book'
-import Scroll from '../../components/scroll'
-import BookEntry from '../../components/book-entry'
+import { getBooks, getMyBooks } from '@/api/book'
+import Scroll from '@/components/scroll'
+import BookEntry from '@/components/book-entry'
 export default {
   data() {
     return {
@@ -28,7 +28,6 @@ export default {
   },
   created() {
     this.init()
-    console.log(this.$options.name)
   },
   components: {
     BookEntry,

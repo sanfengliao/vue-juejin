@@ -1,7 +1,7 @@
 <template>
   <div class="pin-con">
     <header class="pin-header border-bottom-1px">
-      <d-header>
+      <m-header>
         <div class="pin-header-con" ref="header-con">
           <div class="pin-header-content" ref="header-content">
             <div class="author-con">
@@ -12,7 +12,7 @@
             </div>
           </div>
         </div>
-      </d-header>
+      </m-header>
     </header>
     <section class="pin-section">
       <native-scroll @scroll="scroll" @load="loadMore" :finished="loadFinish" :is-loading="isLoading">
@@ -63,7 +63,7 @@
 </template>
 
 <script>
-import DHeader from '../../components/d-header'
+import MHeader from '../../components/m-header'
 import SAuthor from '../../components/s-author'
 import Author from '../../components/m-author'
 import NativeScroll from '../../components/native-scroll'
@@ -90,7 +90,7 @@ export default {
     }
   },
   components: {
-    DHeader,
+    MHeader,
     SAuthor,
     NativeScroll,
     Author,

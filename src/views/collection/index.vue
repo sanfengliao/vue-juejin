@@ -1,7 +1,7 @@
 <template>
   <div class="collection-con">
       <header ref="header" class="collection-header">
-        <d-header :go-back="goBackAndRemoveKeepAlive" :title="collection.title || '掘金'"></d-header>
+        <m-header :go-back="goBackAndRemoveKeepAlive" :title="collection.title || '掘金'"></m-header>
       </header>
       <scroll @scroll="scroll" :options="{bounce: {top: false}}">
         <section class="collection-section">
@@ -67,7 +67,7 @@
 import { getCollectionSetInfo, getCollectionSetEntries, followCollection, unFollowCollection } from '../../api/collection'
 import { getEntryByIds } from '../../api/entry'
 import { getMultiUser } from '../../api/user'
-import DHeader from '../../components/d-header'
+import MHeader from '../../components/m-header'
 import Scroll from '../../components/scroll'
 import SArticleEntry from '../../components/s-article-entry'
 import { keepAliveMixin } from '../../mixins'
@@ -85,7 +85,7 @@ export default {
     }
   },
   components: {
-    DHeader,
+    MHeader,
     Scroll,
     SArticleEntry
   },
@@ -158,7 +158,7 @@ export default {
   position fixed
   width 100%
   z-index 20
-  .d-header
+  .m-header
     color #fff
     background transparent
     

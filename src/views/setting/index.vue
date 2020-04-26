@@ -62,7 +62,6 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-@import "../../assets/css/variable.styl"
 .setting-section
   .contact-infomation
     margin-bottom 20*$unit

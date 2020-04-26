@@ -2,7 +2,7 @@
   <div class="book-con">
     <div class="book-content">
       <header class="book-header">
-        <d-header :go-back="goBackAndRemoveKeepAlive" :title="book.title || '掘金'"></d-header>
+        <m-header :go-back="goBackAndRemoveKeepAlive" :title="book.title || '掘金'"></m-header>
       </header>
       <section class="book-section">
         <div class="book-info border-bottom-1px">
@@ -41,7 +41,7 @@
             <ul class="book-section-list">
               <li class="book-section-item border-bottom-1px" v-for="(item, index) in bookSections" :key="item._id">
                 <router-link :to="`/book/${bookId || item.metaId}/section/${item._id}`">
-                  <b-section :isBuy="book.isBuy" :section="item" :index="index"></b-section>
+                  <book-section-entry :isBuy="book.isBuy" :section="item" :index="index"></book-section-entry>
                 </router-link>
               </li>
             </ul>
@@ -64,8 +64,8 @@
 </template>
 
 <script>
-import DHeader from '../../components/d-header'
-import BSection from '../../components/b-section'
+import MHeader from '../../components/m-header'
+import BookSectionEntry from '../../components/book-section-entry'
 import { getBookDetail, getListBuy, getBookSections } from '../../api/book'
 import { keepAliveMixin } from '../../mixins/index'
 export default {
@@ -80,8 +80,8 @@ export default {
     }
   },
   components: {
-    DHeader,
-    BSection
+    MHeader,
+    BookSectionEntry
   },
   computed: {
     boughtUsers() {
@@ -136,7 +136,7 @@ export default {
 .book-header
   position absolute
   width 100%
-  .d-header
+  .m-header
     background #0180ff
     color #fff
 .book-section

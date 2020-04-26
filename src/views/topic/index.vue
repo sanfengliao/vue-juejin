@@ -1,12 +1,12 @@
 <template>
   <div class="topic">
     <header ref="header" class="topic-header">
-      <d-header>
+      <m-header>
         <div v-show="showTitle" class="title">{{topic.title}}</div>
         <div slot="right">
           <i class="iconfont icon-fenxiang"></i>
         </div>
-      </d-header>
+      </m-header>
     </header>
     <section class="topic-section">
       <native-scroll @scroll="scroll" @load="load" :loading="loading">
@@ -68,7 +68,7 @@
 </template>
 
 <script>
-import DHeader from '../../components/d-header'
+import MHeader from '../../components/m-header'
 import FoldText from '../../components/fold-text'
 import NavTab from '../../components/nav-tab'
 import NativeScroll from '../../components/native-scroll'
@@ -90,7 +90,7 @@ export default {
     }
   },
   components: {
-    DHeader,
+    MHeader,
     FoldText,
     NavTab,
     NativeScroll

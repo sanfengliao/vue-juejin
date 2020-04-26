@@ -21,11 +21,11 @@
 </template>
 
 <script>
-import Scroll from '../../components/scroll'
-import TagItem from '../../components/tag-item'
-import MAuthor from '../../components/m-author'
-import SArticleEntry from '../../components/s-article-entry'
-import { search } from '../../api/search'
+import Scroll from '@/components/scroll'
+import TagItem from '@/components/tag-item'
+import MAuthor from '@/components/m-author'
+import SArticleEntry from '@/components/s-article-entry'
+import { search } from '@/api/search'
 export default {
   components: {
     Scroll,

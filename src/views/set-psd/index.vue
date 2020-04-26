@@ -1,6 +1,6 @@
 <template>
   <div style="set-psd">
-    <header class="set-psd-header">
+    <header class="set-psm-header">
       <s-header title="设置密码"/>
     </header>
     <section class="set-psd-section">

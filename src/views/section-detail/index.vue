@@ -1,7 +1,7 @@
 <template>
   <div @scroll="scroll" class="book-section-con">
     <header class="book-section-header border-bottom-1px" :style="{transform: `translateY(${scrollToBottom ? '-100%': '0'})`}">
-      <d-header :title="sectionTitles[currentSectionIndex] || '掘金'"></d-header>
+      <m-header :title="sectionTitles[currentSectionIndex] || '掘金'"></m-header>
     </header>
     <transition name="cata-slide">
       <aside v-show="showCataLog" v-if="book" class="book-section-aside">
@@ -23,7 +23,7 @@
             <ul class="book-section-list">
               <li @click="sectionClick" class="book-section-item border-bottom-1px" v-for="(item, index) in sections" :key="item._id">
                 <router-link :to="`/book/${bookId || item.metaId}/section/${item._id}`">
-                  <b-section :section="item" :index="index"></b-section>
+                  <book-section-entry :section="item" :index="index"></book-section-entry>
                 </router-link>
               </li>
             </ul>
@@ -33,11 +33,8 @@
     </transition>
     <section class="book-section-content con">
       <keep-alive>
-        <router-view :key="routeKey"></router-view>
+        <component :book="book" :key="routeKey" :is="componentId"></component>
       </keep-alive>
-      <div class="need-to-buy-content">
-
-      </div>
     </section>
     
     <footer class="book-section-footer border-top-1px" :style="{transform: `translateY(${scrollToBottom ? '100%': '0'})`}">
@@ -66,11 +63,12 @@
 
 <script>
 import { getBookDetail, getBookSections, getBooks } from '../../api/book'
+import SectionContent from './components/section-content'
 import { throttle } from '../../util'
-import DHeader from '../../components/d-header'
-import BSection from '../../components/b-section'
+import MHeader from '../../components/m-header'
+import BookSectionEntry from '../../components/book-section-entry'
 export default {
-  name: 'section-read',
+  name: 'section-detail',
   data() {
     return {
       sectionIds: [],
@@ -80,7 +78,8 @@ export default {
       sectionTitles: [],
       book:null,
       scrollToBottom: false,
-      showCataLog: false
+      showCataLog: false,
+      componentId: 'section-content'
     }
   },
   computed: {
@@ -94,8 +93,9 @@ export default {
     }
   },
   components: {
-    DHeader,
-    BSection
+    MHeader,
+    BookSectionEntry,
+    SectionContent
   },
   created() {
     this.init()
@@ -137,6 +137,7 @@ export default {
     },
     async init() {
       let { bookId, sectionId } = this.$route.params
+
       this.bookId = bookId
 
       await Promise.all([this.getBookDetail(bookId),this.getBookSections(bookId)])
@@ -153,8 +154,10 @@ export default {
             this.sectionTitles.push(item.title)
           }
         }
-        this.scrollTop = 0
       }
+
+      this.scrollTop = 0
+      // 章节Id和下表的映射
       this.sectionIndex = {}
       this.sectionIds.forEach((item, index) => {
         this.sectionIndex[item] = index
@@ -167,9 +170,7 @@ export default {
     },
     async getBookSections(bookId) {
       let data = await getBookSections(bookId)
-      for (let item of data.d) {
-        this.sections.push(item)
-      }
+      this.sections = data.d
     }
   },
   watch: {
@@ -180,6 +181,7 @@ export default {
       } else {
         this.currentSectionIndex = -1
       }
+      this.scrollTop = 0
     }
   }
 }

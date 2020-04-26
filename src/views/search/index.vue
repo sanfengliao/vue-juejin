@@ -1,7 +1,7 @@
 <template>
   <div class="search">
     <header class="search-header">
-      <d-header :go-back="goBackAndRemoveKeepAlive">
+      <m-header :go-back="goBackAndRemoveKeepAlive">
         <div class="input-box">
           <form class="search-form" @submit.prevent="search">
 
@@ -12,7 +12,7 @@
         <div slot="right">
           <i v-show="query" @click="clearQuery" class="iconfont  icon-chuyidong1-copy"></i>
         </div>
-      </d-header>
+      </m-header>
     </header>
     <section class="search-section">
       <div v-show="!isSearch && this.history.length" class="search-history">
@@ -46,8 +46,9 @@
 </template>
 
 <script>
-import DHeader from '../../components/d-header'
+import MHeader from '../../components/m-header'
 import NavTab from '../../components/nav-tab'
+
 import { keepAliveMixin } from '../../mixins'
 const HISTORY_KEY = 'history_key'
 
@@ -75,7 +76,7 @@ export default {
     }
   },
   components: {
-    DHeader,
+    MHeader,
     NavTab
   },
   computed: {
@@ -131,7 +132,7 @@ export default {
   display flex
   flex-direction column
 .search-header
-  .d-header
+  .m-header
     color #fff
     background $primary-color
 

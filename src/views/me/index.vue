@@ -54,7 +54,7 @@
             <div class="right">{{user.purchasedBookletCount}} 本</div>
           </div>
         </router-link>
-        <router-link to="/read-history">
+        <router-link to="/user-read-history">
           <div class="user-track border-bottom-1px">
             <div class="left">
               <i class="iconfont icon-see"></i>
@@ -169,7 +169,6 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-@import "../../assets/css/variable.styl"
 .me-header
   height 85*$unit
   background $primary-color

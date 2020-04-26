@@ -1,5 +1,5 @@
 <template>
-  <div class="d-header con">
+  <div class="m-header con">
     <div class="left">
       <slot name="left">
         <i @click="back" class="iconfont icon-fanhui"></i>
@@ -45,7 +45,7 @@
 
 <style lang="stylus" scoped>
 @import "../../assets/css/variable.styl"
-.d-header
+.m-header
   height 105*$unit
   display flex
   align-items center

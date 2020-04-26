@@ -1,14 +1,14 @@
 <template>
   <div class="user-con">
     <header ref="header" class="user-header" :style="{backgroundColor: headerBackgroundColor}">
-      <d-header :go-back="goBackAndRemoveKeepAlive">
+      <m-header :go-back="goBackAndRemoveKeepAlive">
         <transition name="username-slide">
           <div v-show="showUser" class="username-con">
             <span class="username">{{user.username}}</span>
             <img class="level" :src="user.level | levelImage" alt="">
           </div>
         </transition>
-      </d-header>
+      </m-header>
     </header>
     <native-scroll @scroll="scroll">
 
@@ -85,7 +85,7 @@
 </template>
 
 <script>
-import DHeader from '../../components/d-header'
+import MHeader from '../../components/m-header'
 import NavTab from '../../components/nav-tab'
 import NativeScroll from '../../components/native-scroll'
 import { getMultiUser, isCurrentUserFollowed, followUser, unFollowUser, getUserInfo } from '../../api/user'
@@ -104,7 +104,7 @@ export default {
     }
   },
   components: {
-    DHeader,
+    MHeader,
     NavTab,
     NativeScroll
   },
@@ -225,7 +225,7 @@ export default {
   width 100%
   background transparent
   z-index 10
-  .d-header
+  .m-header
     background transparent
     color #fff
     .username-con
