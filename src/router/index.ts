@@ -6,7 +6,13 @@ const router = createRouter({
   routes: [{
     name: 'main',
     path: '/',
-    component: Main
+    component: Main,
+    children: [
+      {
+        path: '/recommended',
+        component: () => import('../pages/recommended/index.vue')
+      }
+    ]
   }]
 })
 

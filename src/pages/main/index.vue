@@ -1,13 +1,18 @@
 <template>
   <div class="main">
-    hello world
+    <router-view></router-view>
+    <Footer />
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
+import Footer from './components/footer/index.vue'
 
 export default defineComponent({
+  components: {
+    Footer,
+  },
   setup () {
     return {}
   }
@@ -15,7 +20,4 @@ export default defineComponent({
 </script>
 
 <style scoped lang="less">
-.main {
-  color: red;
-}
 </style>
