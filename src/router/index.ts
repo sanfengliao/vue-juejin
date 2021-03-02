@@ -10,7 +10,7 @@ const router = createRouter({
     children: [
       {
         path: '/recommended',
-        component: () => import('../pages/recommended/index.vue')
+        component: () => import('../pages/main/pages/recommended/index.vue')
       }
     ]
   }]
