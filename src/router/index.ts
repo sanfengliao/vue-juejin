@@ -7,6 +7,7 @@ const router = createRouter({
     name: 'main',
     path: '/',
     component: Main,
+    redirect: '/recommended',
     children: [
       {
         path: '/recommended',

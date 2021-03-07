@@ -51,6 +51,7 @@ export default defineComponent({
 @unit: 1 * 100 / 1080vw;
 .nav-list {
   display: flex;
+  background-color: @white;
   &-route-item {
     flex: 1;
   }
