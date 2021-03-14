@@ -1,49 +1,83 @@
 <template>
   <div class="recommend-nav">
-    <ul class="nav-list">
-      <li class="nav-list-item">关注</li>
-      <li class="nav-list-item">推荐</li>
-      <li class="nav-list-item">热榜</li>
-      <li class="nav-list-item">后端</li>
-      <li class="nav-list-item">前端</li>
-      <li class="nav-list-item">Android</li>
-      <li class="nav-list-item">iOS</li>
-      <li class="nav-list-item">人工智能</li>
-      <li class="nav-list-item">开发工具</li>
-      <li class="nav-list-item">代码人生</li>
-      <li class="nav-list-item">阅读</li>
-    </ul>
-    <div class="nav-line"></div>
+    <div class="nav-list-con">
+      <ul class="nav-list">
+        <li
+          v-for="(item, index) in navList" 
+          :key="item.categoryId || index"
+          class="nav-list-item"
+          :class="{
+            'nav-list-item--active': index === currentCategoryIndex
+          }"
+          @click="onNavItemClick(item, index, $event)">
+          {{item.name}}
+        </li>
+      </ul>
+      <div class="nav-line" ref="navLine"></div>
+    </div>
   </div>
 </template>
 
-<script>
-import { defineComponent } from 'vue';
-
+<script lang="ts">
+import { State } from '@/store';
+import { NavCategory } from '@/types';
+import { computed, defineComponent, ref, onMounted } from 'vue';
+import { useStore } from 'vuex';
 export default defineComponent({
   setup () {
-    return {
+    const store = useStore<State>();
+
+    const navLine = ref<HTMLDivElement>();
+    const computeNavLineStyle = (el: HTMLDivElement) => {
+      const width = getComputedStyle(el, null).width;
+      const offsetLeft = el.offsetLeft + (el.offsetWidth - parseInt(width)) / 2;
+      navLine.value!.style.transform = `translateX(${offsetLeft}px)`;
+      navLine.value!.style.width = width;
     }
-  }
+
+    const currentCategoryIndex = ref(1);
+    const onNavItemClick = (item: NavCategory, index: number, e: MouseEvent) => {
+      const target = e.target as HTMLDivElement;
+      computeNavLineStyle(target);
+      currentCategoryIndex.value = index;
+    }
+    
+    onMounted(() => {
+      const el = document.querySelector(`.recommend-nav .nav-list-item:nth-child(${currentCategoryIndex.value + 1})`) as HTMLDivElement;
+      computeNavLineStyle(el);
+    })
+
+    const navList = computed(() => store.state.defaultCateList.concat(store.state.categoryList));
+
+    return {
+      navLine,
+      onNavItemClick,
+      navList,
+      currentCategoryIndex,
+    }
+  },
 })
 </script>
 
 <style lang="less" scoped>
 .recommend-nav {
-  position: relative;
   overflow: auto;
   background-color: @white;
   &::-webkit-scrollbar {
     display: none;
   }
   .nav {
+    &-list-con {
+      position: relative;
+      flex-direction: column;
+    }
     &-list {
-      display: inline-flex;
+      display: flex;
       padding: 0 50 * @unit;
       &-item {
+        box-sizing: content-box;
         flex-shrink: 0;
-        margin-right: 110 * @unit;
-        padding: 45 * @unit 0;
+        padding: 45 * @unit 55 * @unit;
         color: #929292;
         font-size: 45 * @unit;
         &:last-child {
@@ -61,6 +95,7 @@ export default defineComponent({
       width: 90 * @unit;
       background-color: #216fd2;
       transform: translateX(50 * @unit);
+      transition: transform .5s;
     }
   }
 }

@@ -9,6 +9,21 @@ export default defineConfig({
       '@': resolve(__dirname, 'src')
     }
   },
+  server: {
+    proxy: {
+      '/api': {
+        target: 'https://api.juejin.cn',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, ''),
+        configure: (proxyServer, opts) => {
+          proxyServer.on('proxyReq', (proxyReq, req) => {
+            proxyReq.setHeader('origin', 'https://juejin.cn')
+            proxyReq.setHeader('Referer', 'https://juejin.cn/')
+          })
+        }
+      }
+    }
+  },
   css: {
     preprocessorOptions: {
       less: {

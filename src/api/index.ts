@@ -1,0 +1,4 @@
+import request from "@/utils/request";
+
+
+export const getCategoryList = <T>() => request.post<T>('/tag_api/v1/query_category_list?_rticket=1615719051256&manifest_version_code=50919&iid=2305009491396157&channel=xiaomi&language=zh&device_type=M2011K2C&resolution=3200x1440&uuid=865787041628799&openudid=410a4ca304f566ac&update_version_code=50919&cdid=3748e8e5-b199-4dc7-ab40-c2c083098e38&os_api=30&mac_address=50%3A8E%3A49%3A51%3A45%3ADA&dpi=560&oaid=4e3f024440413bb7&ac=wifi&device_id=69374092176&mcc_mnc=46000&os_version=11&version_code=50919&app_name=jj_app&clientudid=7c432b98-ce3c-4374-9135-82c2dcd869cf&carrier=%E4%B8%AD%E5%9B%BD%E7%A7%BB%E5%8A%A8&sdk_version_code=15049654&version_name=5.9.19&device_brand=Xiaomi&ssmix=a&device_platform=android&sim_region=cn&aid=2606')

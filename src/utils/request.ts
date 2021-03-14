@@ -1,6 +1,8 @@
 import Axios, { AxiosInterceptorManager, AxiosRequestConfig, AxiosResponse } from 'axios';
 
-const request = Axios.create()
+const request = Axios.create({
+  baseURL: '/api'
+})
 
 request.interceptors.response.use((res) => {
   if (res.status === 200) {
@@ -9,8 +11,8 @@ request.interceptors.response.use((res) => {
 });
 
 export interface RequestInstance {
-  (config: AxiosRequestConfig): any;
-  (url: string, config?: AxiosRequestConfig): any;
+  <T = any>(config: AxiosRequestConfig): Promise<T>;
+  <T = any>(url: string, config?: AxiosRequestConfig): Promise<T>;
   defaults: AxiosRequestConfig;
   interceptors: {
     request: AxiosInterceptorManager<AxiosRequestConfig>;
